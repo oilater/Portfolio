@@ -1,43 +1,94 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { css } from "@emotion/react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useAssemble } from "../hooks/useAssemble";
-import { useSlideUp } from "../hooks/useSlideUp";
+import { useFly } from "../hooks/useFly";
+import { useSlide } from "../hooks/useSlide";
+import Button from "../components/Button";
+import { useFade } from "../hooks/useFade";
 
-export default function Landing() {
-  const titleRef = useRef<HTMLHeadingElement>(null!);
-  // Custom Hooks
-  const { assemble } = useAssemble();
-  const { slideUp } = useSlideUp();
+type Step = 'init' | 'introduce' | 'landing' | 'projects';
 
-  // Animation Timeline
-  useGSAP(() => {
-    const tl = gsap.timeline();
-    const assembleTween = assemble(titleRef, { split: 'words', duration: 1.5, ease: 'expo.inOut' });
-    const slideUpTween = slideUp(titleRef, { split: 'lines', duration: 1, ease: 'power2.out' });
-
-    assembleTween && tl.add(assembleTween);
-    slideUpTween && tl.add(slideUpTween);
-    tl.play();
-  }, {
-    dependencies: [assemble, slideUp],
-  });
+export default function Landing() {  
   
-  return (
-    <div css={container}>
-      {/* Title */}
-      <h1 ref={titleRef} css={title}>
-        Hello! I'm a <br /> 
-        <span css={subTitle}>Frontend </span>Engineer
-      </h1>      
+  // Status
+  const [step, setStep] = useState<Step>('init');
 
-      {/* Subtitle */}
+  // Target Refs
+  const refs = {
+    container: useRef<HTMLDivElement>(null!),
+    title: useRef<HTMLHeadingElement>(null!),
+    introduceBtn: useRef<HTMLButtonElement>(null!),
+    projectsBtn: useRef<HTMLButtonElement>(null!),
+  };
+  
+  // Hooks
+  const { flyIn } = useFly(refs.container);
+  const { slideIn, slideOut } = useSlide(refs.container);
+  const { fadeIn } = useFade(refs.container);
+  
+// Timeline
+useGSAP(() => {
+  const tl = gsap.timeline();
+  
+  if (step === 'init') {
+    const flyTitle = flyIn(refs.title, { 
+      split: 'words', 
+      duration: 0.9, 
+      ease: 'expo.inOut',
+      onComplete: ()=>{
+        gsap.delayedCall(0.5, () => setStep('introduce'))
+      },
+    });
+
+    flyTitle && tl.add(flyTitle);
+    
+    tl.play();
+  }
+
+  if (step === 'introduce') {
+    slideIn(refs.title, {
+      opacity: 0,
+      y: "-=50%", 
+      duration: 0.6, 
+      ease: 'power2.in',
+    });
+
+    const buttonRefs = [refs.introduceBtn, refs.projectsBtn];
+    
+    buttonRefs.forEach((ref, index) => {
+      const btnTween = fadeIn(ref, {
+        split: 'chars',
+        delay: 0.1 * (index + 1),
+        duration: 0.3,
+        ease: 'power2.inOut',
+        stagger: { each: 0.05, from: 'start' }
+      });
       
-    </div>
+      btnTween?.play();
+    });
+  }
+}, [step]);
+
+  return (
+    <main css={container}>
+      {/* Title */}
+      <section ref={refs.container}>
+        <h1 ref={refs.title} css={title}>
+          안녕하세요!<br />
+          <span css={subTitle}>프론트엔드 개발자 </span>김성현입니다
+        </h1>    
+      </section>  
+      {/* Navigate Section */}
+      <nav css={navigateSection}>
+        {step === 'landing' && <Button ref={refs.introduceBtn} onClick={() => slideOut(refs.title, {opacity: 0, y: "-=30%", duration: 0.62, ease: 'power2.out', onComplete: () => setStep('introduce')})}>About Me</Button>}
+        {step === 'landing' && <Button ref={refs.projectsBtn} onClick={() => slideOut(refs.title, {opacity: 0, y: "-=30%", duration: 0.62, ease: 'power2.out', onComplete: () => setStep('projects')})}>Projects</Button>}
+      </nav>
+    </main>
   );
 };
 
+// Styles
 const container = css`
   display: flex;
   flex-direction: column;
@@ -50,10 +101,19 @@ const container = css`
 `;
 
 const title = css`
-  font-size: calc(2rem + 2vw);
+  font-size: calc(1rem + 2vw);
   color: white;
 `;
 
 const subTitle = css`
-  color: dodgerblue;
+  color: #3182f6;
+`;
+
+const navigateSection = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 5rem;
 `;
