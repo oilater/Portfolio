@@ -2,7 +2,7 @@
 import { gsap } from 'gsap';
 import { useRef, type RefObject } from 'react';
 import { useSplitText } from './useSplitText';
-import { configAssemble } from '../animations/assemble';
+import { configFly } from '../animations/fly';
 import type { TargetType } from './types';
 import { useGSAP } from '@gsap/react';
 
@@ -35,7 +35,7 @@ export function useFly(scope: RefObject<TargetType>) {
             tweenRef.current.kill();
         }
         
-        tweenRef.current = gsap.from(elements, configAssemble(options));
+        tweenRef.current = gsap.from(elements, configFly(options));
         return tweenRef.current;
     });
 
@@ -53,7 +53,7 @@ export function useFly(scope: RefObject<TargetType>) {
             tweenRef.current.kill();
         }
         
-        tweenRef.current = gsap.from(elements, configAssemble(options));
+        tweenRef.current = gsap.from(elements, configFly(options));
         return tweenRef.current;
     });
     

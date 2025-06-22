@@ -10,11 +10,9 @@ import { useFade } from "../hooks/useFade";
 type Step = 'init' | 'introduce' | 'landing' | 'projects';
 
 export default function Landing() {  
-  
-  // Status
   const [step, setStep] = useState<Step>('init');
 
-  // Target Refs
+  // Refs
   const refs = {
     container: useRef<HTMLDivElement>(null!),
     title: useRef<HTMLHeadingElement>(null!),
@@ -27,63 +25,61 @@ export default function Landing() {
   const { slideIn, slideOut } = useSlide(refs.container);
   const { fadeIn } = useFade(refs.container);
   
-// Timeline
-useGSAP(() => {
-  const tl = gsap.timeline();
-  
-  if (step === 'init') {
-    const flyTitle = flyIn(refs.title, { 
-      split: 'words', 
-      duration: 0.9, 
-      ease: 'expo.inOut',
-      onComplete: ()=>{
-        gsap.delayedCall(0.5, () => setStep('introduce'))
-      },
-    });
-
-    flyTitle && tl.add(flyTitle);
-    
-    tl.play();
-  }
-
-  if (step === 'introduce') {
-    slideIn(refs.title, {
-      opacity: 0,
-      y: "-=50%", 
-      duration: 0.6, 
-      ease: 'power2.in',
-    });
-
-    const buttonRefs = [refs.introduceBtn, refs.projectsBtn];
-    
-    buttonRefs.forEach((ref, index) => {
-      const btnTween = fadeIn(ref, {
-        split: 'chars',
-        delay: 0.1 * (index + 1),
-        duration: 0.3,
-        ease: 'power2.inOut',
-        stagger: { each: 0.05, from: 'start' }
+  useGSAP(() => {
+    if (step === 'init') {
+      flyIn(refs.title, { 
+        split: 'words', 
+        duration: 0.9, 
+        ease: 'expo.inOut',
+        onComplete: () => {
+          gsap.delayedCall(0.3, () => {
+            slideOut(refs.title, {
+              opacity: 0, 
+              y: "-=30%", 
+              duration: 0.8, 
+              ease: 'expo.in', 
+              onComplete: () => setStep('introduce')
+            });
+          });
+        },
       });
-      
-      btnTween?.play();
-    });
-  }
-}, [step]);
+    } else if (step === 'introduce') {
+      slideIn(refs.title, {
+        opacity: 0,
+        y: "-=50%", 
+        duration: 0.6, 
+        ease: 'power2.in',
+      });
+
+      const buttonRefs = [refs.introduceBtn, refs.projectsBtn];
+      buttonRefs.forEach((ref, index) => {
+        const btnTween = fadeIn(ref, {
+          split: 'chars',
+          delay: 0.1 * (index + 1),
+          duration: 0.3,
+          ease: 'power2.inOut',
+          stagger: { each: 0.05, from: 'start' }
+        });
+        
+        btnTween?.play();
+      });
+    }
+  }, [step]);
 
   return (
     <main css={container}>
       {/* Title */}
-      <section ref={refs.container}>
+      {step === 'init' && <section ref={refs.container}>
         <h1 ref={refs.title} css={title}>
           안녕하세요!<br />
           <span css={subTitle}>프론트엔드 개발자 </span>김성현입니다
         </h1>    
-      </section>  
+      </section>}
       {/* Navigate Section */}
-      <nav css={navigateSection}>
-        {step === 'landing' && <Button ref={refs.introduceBtn} onClick={() => slideOut(refs.title, {opacity: 0, y: "-=30%", duration: 0.62, ease: 'power2.out', onComplete: () => setStep('introduce')})}>About Me</Button>}
-        {step === 'landing' && <Button ref={refs.projectsBtn} onClick={() => slideOut(refs.title, {opacity: 0, y: "-=30%", duration: 0.62, ease: 'power2.out', onComplete: () => setStep('projects')})}>Projects</Button>}
-      </nav>
+      {step === 'introduce' && <nav css={navigateSection}>
+        <Button ref={refs.introduceBtn} onClick={() => slideOut(refs.title, {opacity: 0, y: "-=30%", duration: 0.62, ease: 'power2.out', onComplete: () => setStep('introduce')})}>About Me</Button>
+        <Button ref={refs.projectsBtn} onClick={() => slideOut(refs.title, {opacity: 0, y: "-=30%", duration: 0.62, ease: 'power2.out', onComplete: () => setStep('projects')})}>Projects</Button>
+      </nav>}
     </main>
   );
 };

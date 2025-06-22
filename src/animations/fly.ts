@@ -1,8 +1,8 @@
 import { gsap } from "gsap";
 
-type AssembleProps = gsap.TweenVars;
+type FlyProps = gsap.TweenVars;
 
-export const configAssemble = (options: AssembleProps) => ({
+export const configFly = (options: FlyProps) => ({
     x: () => gsap.utils.random(-400, 400),
     y: () => gsap.utils.random(-400, 400),
     opacity: 0,
