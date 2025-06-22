@@ -1,6 +1,5 @@
 import { gsap } from 'gsap';
 import { useRef, type RefObject } from 'react';
-import { configSlide } from '../animations/slide';
 import type { TargetType } from './types';
 import { useGSAP } from '@gsap/react';
 
@@ -27,7 +26,7 @@ export function useSlide(scope: RefObject<TargetType>) {
             tweenRef.current.kill();
         }
         
-        tweenRef.current = gsap.to(target.current, configSlide(options));
+        tweenRef.current = gsap.to(target.current, options);
         return tweenRef.current;
     });
 
@@ -41,7 +40,7 @@ export function useSlide(scope: RefObject<TargetType>) {
             tweenRef.current.kill();
         }
         
-        tweenRef.current = gsap.to(target.current, configSlide(options));
+        tweenRef.current = gsap.to(target.current, options);
         
         return tweenRef.current;
     });

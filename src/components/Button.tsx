@@ -3,8 +3,17 @@ import { forwardRef, type ButtonHTMLAttributes } from "react";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ ...props }, ref) => {
-  return <button role="button" aria-label={`${props.children}으로 이동`} css={button} ref={ref} {...props}/>;
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ children, onClick, ...props }, ref) => {
+  return <button 
+      role="button" 
+      aria-label={`${children}으로 이동`} 
+      css={button} 
+      onClick={onClick}
+      ref={ref} 
+      {...props}
+      >
+        {children}
+      </button>;
 });
 
 export default Button;

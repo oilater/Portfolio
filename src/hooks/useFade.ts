@@ -2,7 +2,6 @@
 import { gsap } from 'gsap';
 import { useRef, type RefObject } from 'react';
 import { useSplitText } from './useSplitText';
-import { configFade } from '../animations/fade';
 import type { TargetType } from './types';
 import { useGSAP } from '@gsap/react';
 
@@ -32,7 +31,7 @@ export function useFade(scope: RefObject<TargetType>) {
         const elements = splitText?.[options.split] || splitText?.lines;
         if (!elements) return null;
         
-        tweenRef.current = gsap.from(elements, configFade(options));
+        tweenRef.current = gsap.from(elements, options);
         return tweenRef.current;
     });
 
@@ -47,7 +46,7 @@ export function useFade(scope: RefObject<TargetType>) {
         const elements = splitText?.[options.split] || splitText?.lines;
         if (!elements) return null;
         
-        tweenRef.current = gsap.from(elements, configFade(options));
+        tweenRef.current = gsap.from(elements, options);
         return tweenRef.current;
     });
     
