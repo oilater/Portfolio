@@ -7,10 +7,11 @@ import { useSlide } from "../hooks/useSlide";
 import Button from "../components/Button";
 import { useFade } from "../hooks/useFade";
 import { slidePreset, fadePreset } from "../presets";
+import { Header } from "../components/Header";
 
-type Step = 'init' | 'introduce' | 'landing' | 'projects';
+type Step = 'init' | 'introduce' | 'projects' | 'contact';
 
-const INTRO_REMAIN_TIME = 0.5;
+const INTRO_REMAIN_TIME = 0.6;
 
 export default function Landing() {
   const [step, setStep] = useState<Step>('init');
@@ -18,8 +19,9 @@ export default function Landing() {
   // Refs
   const refs = {
     container: useRef<HTMLDivElement>(null!),
+    header: useRef<HTMLDivElement>(null!),
     title: useRef<HTMLHeadingElement>(null!),
-    introduceBtn: useRef<HTMLButtonElement>(null!),
+    contactBtn: useRef<HTMLButtonElement>(null!),
     projectsBtn: useRef<HTMLButtonElement>(null!),
   };
   
@@ -31,7 +33,7 @@ export default function Landing() {
   useGSAP(() => {
     // Init
     if (step === 'init') {
-      flyIn(refs.title, { 
+      flyIn(refs.title, {
         split: 'words', 
         duration: 0.9, 
         ease: 'expo.inOut',
@@ -39,11 +41,12 @@ export default function Landing() {
       });
       // Introduce
     } else if (step === 'introduce') {
+      slideIn(refs.header, slidePreset.in.from);
       slideIn(refs.title, slidePreset.in.from);
-      const buttonRefs = [refs.introduceBtn, refs.projectsBtn];
+      const buttonRefs = [refs.projectsBtn, refs.contactBtn];
       
       buttonRefs.forEach((ref, index) => {
-      fadeIn(ref, {
+        fadeIn(ref, {
           ...fadePreset.in.from,
           split: 'chars',
           delay: 0.1 * (index + 1),
@@ -60,11 +63,19 @@ export default function Landing() {
   };
 
   return (
-    <main css={container}>
+    <main ref={refs.container} css={container}>
+      {step === 'introduce' && (
+        <Header 
+          ref={refs.header}
+          onGithub={() => {window.open('https://github.com/oilater', '_blank');}} 
+          onVelog={() => {window.open('https://velog.io/@oilater', '_blank');}} 
+        />
+      )}
       {step === 'init' && 
-        <section ref={refs.container}>
+        <section>
           <h1 ref={refs.title} css={title}>
             안녕하세요!<br />
+            만드는 것 좋아하는<br />
             <span css={subTitle}>프론트엔드 개발자 </span>김성현입니다
           </h1>    
         </section>
@@ -72,11 +83,11 @@ export default function Landing() {
       
       {step === 'introduce' && 
         <nav css={navigateSection}>
-          <Button ref={refs.introduceBtn} onClick={moveToStep('introduce')}>
-            About Me
-          </Button>
           <Button ref={refs.projectsBtn} onClick={moveToStep('projects')}>
             Projects
+          </Button>
+          <Button ref={refs.contactBtn} onClick={moveToStep('contact')}>
+            Contact
           </Button>
         </nav>
       }

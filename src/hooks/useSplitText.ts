@@ -5,9 +5,9 @@ import { useCallback, useEffect, useRef, type RefObject } from "react";
 type TargetType = RefObject<HTMLElement>;
 type SplitType = 'words' | 'lines' | 'chars';
 
-gsap.registerPlugin(SplitText);
 
 export function useSplitText() {
+    gsap.registerPlugin(SplitText);
     const splitRef = useRef<SplitText>(null);
     
     useEffect(() => {

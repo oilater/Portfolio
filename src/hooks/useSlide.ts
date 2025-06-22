@@ -26,7 +26,7 @@ export function useSlide(scope: RefObject<TargetType>) {
             tweenRef.current.kill();
         }
         
-        tweenRef.current = gsap.to(target.current, options);
+        tweenRef.current = gsap.from(target.current, options);
         return tweenRef.current;
     });
 

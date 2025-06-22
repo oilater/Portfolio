@@ -34,15 +34,3 @@ export const fadePreset = {
         }
     }
 }
-
-/**
- * 
- *         const btnTween = fadeIn(ref, {
-          split: 'chars',
-          delay: 0.1 * (index + 1),
-          duration: 0.3,
-          ease: 'power2.inOut',
-          stagger: { each: 0.05, from: 'start' }
-        });
-        
- */

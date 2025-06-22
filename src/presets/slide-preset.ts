@@ -2,14 +2,14 @@ export const slidePreset = {
     in: {
         from: {
             opacity: 0,
-            y: "-=50%",
+            y: "-=10%",
             duration: 0.6,
             ease: 'power2.in',
         },
         fromTo: {
             from: {
                 opacity: 0,
-                y: "-=50%",
+                y: "-=20%",
             },
             to: {
                 opacity: 1,

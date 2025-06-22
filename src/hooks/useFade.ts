@@ -27,11 +27,11 @@ export function useFade(scope: RefObject<TargetType>) {
         if (!target.current) return null;
 
         const splitText = createSplit(target, options.split);
-        
         const elements = splitText?.[options.split] || splitText?.lines;
         if (!elements) return null;
         
-        tweenRef.current = gsap.from(elements, options);
+        const { split, ...gsapOptions } = options;
+        tweenRef.current = gsap.from(elements, gsapOptions);
         return tweenRef.current;
     });
 
@@ -42,11 +42,11 @@ export function useFade(scope: RefObject<TargetType>) {
         if (!target.current) return null;
 
         const splitText = createSplit(target, options.split);
-        
         const elements = splitText?.[options.split] || splitText?.lines;
         if (!elements) return null;
         
-        tweenRef.current = gsap.from(elements, options);
+        const { split, ...gsapOptions } = options;
+        tweenRef.current = gsap.from(elements, gsapOptions);
         return tweenRef.current;
     });
     
