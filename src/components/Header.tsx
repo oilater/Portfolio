@@ -1,28 +1,25 @@
 import { css } from '@emotion/react';
 import { GithubIcon } from './GithubIcon';
 import { VelogIcon } from './VelogIcon';
-import { forwardRef } from 'react';
 
 type HeaderProps = {
     onVelog: () => void;
     onGithub: () => void;
-    ref: React.RefObject<HTMLElement>;
+    className: string;
 };
 
-export const Header = forwardRef<HTMLElement, HeaderProps>(
-    ({ onVelog, onGithub }, ref) => {
-      return (
-        <header ref={ref} css={header}>
-          <button type="button" onClick={onVelog}>
-            <VelogIcon />
-          </button>
-          <button type="button" onClick={onGithub}>
-            <GithubIcon />
-          </button>
-        </header>
-      );
-    }
-  );
+export function Header({ onVelog, onGithub, className }: HeaderProps) {
+    return (
+    <header className={className} css={header}>
+        <button type="button" onClick={onVelog}>
+        <VelogIcon />
+        </button>
+        <button type="button" onClick={onGithub}>
+        <GithubIcon />
+        </button>
+    </header>
+    );
+};
 
 const header = css`
   position: fixed;

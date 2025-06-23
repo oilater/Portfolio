@@ -1,6 +1,5 @@
 import { gsap } from 'gsap';
-import { useRef, type RefObject } from 'react';
-import type { TargetType } from './types';
+import { type RefObject } from 'react';
 import { useGSAP } from '@gsap/react';
 
 type SlideOptions = {
@@ -12,38 +11,20 @@ type SlideOptions = {
  * @returns - {slideIn, slideOut} 함수 반환
  * @description 슬라이드 애니메이션 훅
  */
-export function useSlide(scope: RefObject<TargetType>) {
-    const {contextSafe} = useGSAP({scope});
-    const tweenRef = useRef<gsap.core.Tween>(null);
+export function useSlide(scope: RefObject<HTMLElement>) {
+    const { contextSafe } = useGSAP({ scope });
     
-    const slideIn = contextSafe((
-        target: RefObject<TargetType>, 
-        options: SlideOptions,
-    ) => {
-        if (!target.current) return null;
-        
-        if (tweenRef.current) {
-            tweenRef.current.kill();
-        }
-        
-        tweenRef.current = gsap.from(target.current, options);
-        return tweenRef.current;
+    const slideIn = contextSafe((target: string, options: SlideOptions): gsap.core.Tween | null => {
+        if (!target) return null;
+        const tween = gsap.from(target, options);
+        return tween;
     });
-
-    const slideOut = contextSafe((
-        target: RefObject<TargetType>, 
-        options: SlideOptions,
-    ) => {
-        if (!target.current) return null;
-
-        if (tweenRef.current) {
-            tweenRef.current.kill();
-        }
         
-        tweenRef.current = gsap.to(target.current, options);
-        
-        return tweenRef.current;
+    const slideOut = contextSafe((target: string, options: SlideOptions): gsap.core.Tween | null => {
+        if (!target) return null;
+        const tween = gsap.to(target, options);
+        return tween;
     });
-
+    
     return { slideIn, slideOut };
 }

@@ -1,10 +1,8 @@
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
-import { useCallback, useEffect, useRef, type RefObject } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
-type TargetType = RefObject<HTMLElement>;
 type SplitType = 'words' | 'lines' | 'chars';
-
 
 export function useSplitText() {
     gsap.registerPlugin(SplitText);
@@ -17,8 +15,8 @@ export function useSplitText() {
     }, []);
     
     // useCallback 사용으로 불필요한 함수 재생성 방지
-    const createSplit = useCallback((target: TargetType, splitType: SplitType) => {
-        splitRef.current = SplitText.create(target.current, { type: splitType });
+    const createSplit = useCallback((target: string, splitType: SplitType) => {
+        splitRef.current = SplitText.create(target, { type: splitType });
         return splitRef.current;
     }, []);
     

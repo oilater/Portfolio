@@ -1,1 +1,0 @@
-export type TargetType = HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement | HTMLDivElement | HTMLButtonElement;

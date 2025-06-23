@@ -1,8 +1,7 @@
 // hooks/useFade.ts
 import { gsap } from 'gsap';
-import { useRef, type RefObject } from 'react';
+import { type RefObject } from 'react';
 import { useSplitText } from './useSplitText';
-import type { TargetType } from './types';
 import { useGSAP } from '@gsap/react';
 
 type FadeOptions = {
@@ -15,39 +14,38 @@ type FadeOptions = {
  * @returns - {fadeIn, fadeOut} 함수 반환
  * @description 페이드 애니메이션 훅
  */
-export function useFade(scope: RefObject<TargetType>) {
+export function useFade(scope: RefObject<HTMLElement>) {
     const { contextSafe } = useGSAP({ scope });
     const { createSplit } = useSplitText();
-    const tweenRef = useRef<gsap.core.Tween>(null);
     
     const fadeIn = contextSafe((
-        target: RefObject<TargetType>, 
+        target: string, 
         options: FadeOptions
     ) => {
-        if (!target.current) return null;
+        if (!target) return null;
 
         const splitText = createSplit(target, options.split);
         const elements = splitText?.[options.split] || splitText?.lines;
         if (!elements) return null;
         
         const { split, ...gsapOptions } = options;
-        tweenRef.current = gsap.from(elements, gsapOptions);
-        return tweenRef.current;
+        const tween = gsap.from(elements, gsapOptions);
+        return tween;
     });
 
     const fadeOut = contextSafe((
-        target: RefObject<TargetType>, 
+        target: string, 
         options: FadeOptions
     ) => {
-        if (!target.current) return null;
+        if (!target) return null;
 
         const splitText = createSplit(target, options.split);
         const elements = splitText?.[options.split] || splitText?.lines;
         if (!elements) return null;
         
         const { split, ...gsapOptions } = options;
-        tweenRef.current = gsap.from(elements, gsapOptions);
-        return tweenRef.current;
+        const tween = gsap.from(elements, gsapOptions);
+        return tween;
     });
     
     return { fadeIn, fadeOut };
