@@ -2,12 +2,10 @@ import { useRef, useState } from "react";
 import { css } from "@emotion/react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useFly } from "../hooks/useFly";
-import { useSlide } from "../hooks/useSlide";
-import Button from "../components/Button";
-import { useFade } from "../hooks/useFade";
-import { slidePreset, fadePreset } from "../presets";
 import { Header } from "../components/Header";
+import { Button } from "../components/Button";
+import { Timeline } from "../core/Timeline.ts";
+import { useRally } from "../core/Rally.ts";
 
 type Step = 'init' | 'introduce' | 'projects' | 'contact';
 
@@ -16,40 +14,82 @@ const INTRO_REMAIN_TIME = 0.6;
 export default function Landing() {
   const [step, setStep] = useState<Step>('init');
   const container = useRef<HTMLDivElement>(null!);
-  
-  const { flyIn } = useFly(container);
-  const { slideIn, slideOut } = useSlide(container);
-  const { fadeIn } = useFade(container);
+  const { Rally } = useRally();
   
   useGSAP(() => {
-    // Init
-    if (step === 'init') {
-      flyIn(".introTitle", {
-        duration: 0.9, 
-        ease: 'expo.inOut',
-        split: 'words', 
-        onComplete: moveToStep('introduce', INTRO_REMAIN_TIME),
-      });
-      // Introduce
-    } else if (step === 'introduce') {
-      slideIn(".header", slidePreset.in.from);
-      slideIn(".title2", slidePreset.in.from);
+    
+    Timeline({
+      playback: "serial",
+      playables: [
+        
+        Rally({
+          target: ".introTitle",
+          split: 'words',
+          splitDelay: 0.1,
+          randomOrder: true,
+          motions: [
+            {
+              duration: 0.9,
+              ease: "expo.inOut",
+              opacity: { to: 1 },
+              translateX: { from: 'random'},
+              translateY: { from: 'random'},
+            },
+          ],
+          exitMotions: [
+            {
+              translateY: { to: "-40%", duration: 0.5, ease: "spring.out" },
+              opacity: { to: 0 },
+            },
+          ],
+          onComplete: () => setStep('introduce')
+        }),
+
+        Rally({
+          target: ".introTitle2",
+          motions: [
+            {
+              duration: 2,
+              ease: "expo.inOut",
+              opacity: { to: 1 },
+            },
+          ],
+          exitMotions: [
+            {
+              translateY: { to: "-40%", duration: 0.5, ease: "power2.out" },
+              opacity: { to: 0 },
+            },
+          ],
+          onComplete: () => console.log(121231233)
+        }),
+      ]
+    }).play();
       
-      const buttons = gsap.utils.toArray(".button");
-      buttons.forEach((el, index) => {
-        fadeIn(el as string, {
-          ...fadePreset.in.from,
-          split: 'chars',
-          delay: 0.1 * (index + 1),
-          stagger: { each: 0.05, from: 'start' },
-        });
-      });
-    }
+    
+    
+    // const tl = gsap.timeline();
+    // // Init
+
+    //   flyIntroTitle && tl.add(flyIntroTitle);
+    //   // Introduce
+    // } else if (step === 'introduce') {
+    //   slideIn(".header");
+    //   slideIn(".title2");
+      
+    //   const buttons = gsap.utils.toArray(".button");
+    //   buttons.forEach((el, index) => {
+    //     fadeIn(el as string, 'chars', {
+    //       delay: 0.1 * (index + 1),
+    //       stagger: { each: 0.05, from: 'start' },
+    //     });
+    //   });
+    // }
+
   }, {scope: container, dependencies: [step]});
 
   const moveToStep = (step: Step, delay = 0) => () => {
     gsap.delayedCall(delay, () => {
-      slideOut(".introTitle", {...slidePreset.out.to, onComplete: () => setStep(step)});
+      // slideOut(".introTitle", {onComplete: () => setStep(step)});
     });
   };
 
@@ -65,9 +105,12 @@ export default function Landing() {
       {step === 'init' && 
         <section>
           <h1 className="introTitle" css={title}>
-            안녕하세요!<br />
-            만드는 걸 좋아하는<br />
-            <span css={subTitle}>프론트엔드 개발자 </span>김성현입니다
+            Hello!<br />
+            I'm <span css={subTitle}>Frontend Engineer </span>
+          </h1>    
+          <h1 className="introTitle2" css={title}>
+            Hello!<br />
+            I'm <span css={subTitle}>Frontend Engineer </span>
           </h1>    
         </section>
       }
@@ -108,7 +151,7 @@ const mainContainer = css`
 `;
 
 const title = css`
-  font-size: calc(1rem + 2vw);
+  font-size: calc(1.5rem + 2vw);
   color: white;
 `;
 

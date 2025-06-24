@@ -1,6 +1,9 @@
 import { gsap } from 'gsap';
 import { type RefObject } from 'react';
 import { useGSAP } from '@gsap/react';
+import { slidePreset } from '../presets';
+
+type SlideProps = RefObject<HTMLElement>;
 
 type SlideOptions = {
     onComplete?: () => void;
@@ -11,18 +14,18 @@ type SlideOptions = {
  * @returns - {slideIn, slideOut} 함수 반환
  * @description 슬라이드 애니메이션 훅
  */
-export function useSlide(scope: RefObject<HTMLElement>) {
+export function useSlide(scope: SlideProps) {
     const { contextSafe } = useGSAP({ scope });
     
-    const slideIn = contextSafe((target: string, options: SlideOptions): gsap.core.Tween | null => {
+    const slideIn = contextSafe((target: string, options?: SlideOptions): gsap.core.Tween | null => {
         if (!target) return null;
-        const tween = gsap.from(target, options);
+        const tween = gsap.from(target, {...slidePreset.in.from, ...options});
         return tween;
     });
         
-    const slideOut = contextSafe((target: string, options: SlideOptions): gsap.core.Tween | null => {
+    const slideOut = contextSafe((target: string, options?: SlideOptions): gsap.core.Tween | null => {
         if (!target) return null;
-        const tween = gsap.to(target, options);
+        const tween = gsap.to(target, {...slidePreset.out.to, ...options});
         return tween;
     });
     

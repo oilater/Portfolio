@@ -6,6 +6,7 @@ type SplitType = 'words' | 'lines' | 'chars';
 
 export function useSplitText() {
     gsap.registerPlugin(SplitText);
+    
     const splitRef = useRef<SplitText>(null);
     
     useEffect(() => {
@@ -15,7 +16,7 @@ export function useSplitText() {
     }, []);
     
     // useCallback 사용으로 불필요한 함수 재생성 방지
-    const createSplit = useCallback((target: string, splitType: SplitType) => {
+    const createSplit = useCallback((target: string, splitType: SplitType) => {    
         splitRef.current = SplitText.create(target, { type: splitType });
         return splitRef.current;
     }, []);
