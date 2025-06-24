@@ -4,12 +4,12 @@ import { useSplitText } from "./useSplitText";
 
 type RallyProps = {
   target: string;
-  split?: 'words' | 'lines' | 'chars';
-  splitDelay?: number;
-  randomOrder?: boolean;
   playCount?: number | 'infinity';
   motions: Motion[];
   exitMotions?: Motion[];
+  split?: 'words' | 'lines' | 'chars';
+  splitDelay?: number;
+  randomOrder?: boolean;
   onComplete?: () => void;
 };
 
@@ -23,42 +23,42 @@ export function useRally() {
   /**
    * Rally 생성
    * @param target - 모션을 적용할 요소
-   * @param split - 요소 분할 방식
-   * @param splitDelay - 분할 딜레이
-   * @param randomOrder - 순서 랜덤화 여부
    * @param playCount - 반복 횟수
    * @param motions - 모션 배열
    * @param exitMotions - 종료 모션 배열
+   * @param split - 요소 분할 방식
+   * @param splitDelay - 분할 딜레이
+   * @param randomOrder - 순서 랜덤화 여부
    * @param onComplete - 콜백
    */
   function Rally({
     target,
+    playCount = 1,
+    motions,
+    exitMotions,
     split,
     splitDelay = 0,
     randomOrder = false,
-    playCount = 1,
-    motions,
-    exitMotions = [],
     onComplete,
   }: RallyProps): gsap.core.Timeline {
     // 각 Rally는 자신의 타임라인을 가짐
     const rallyTl = gsap.timeline();
     const exitTl = gsap.timeline({paused: true});
 
-    let elements = split ? getSplitElements(target, split) : [target];
-    if (randomOrder) elements = gsap.utils.shuffle(elements as Element[]);
+    let elements = split 
+    ? getSplitElements(target, split) 
+    : [target];
     
-    // 모션 추가
+    if (randomOrder) 
+      elements = gsap.utils.shuffle(elements as Element[]);
+    
     addMotions();
     
-    /**
-     * 각 요소별로 모션 취합 및 tween 생성 후 Rally 타임라인에 추가
-     */
     function addMotions() {
       for (const element of elements) {
-        const motion = motionToGSAP(motions);
-        if (!motion) continue;
-        const tweens = getTweens({element, motion, mode: "enter"});
+        const gsapMotions = getGSAPMotions(motions);
+        if (!gsapMotions) continue;
+        const tweens = getTweens({element, motions: gsapMotions, mode: "enter"});
         rallyTl.add(tweens, "<" + splitDelay);
       }
     }
@@ -71,16 +71,13 @@ export function useRally() {
       });
     }
     
-    /**
-     * exitMotions 재생
-     */
     function playExitMotions(): void {
-      if (!exitMotions.length) return;
+      if (!exitMotions) return;
       
-      const motion = motionToGSAP(exitMotions);
-      if (!motion) return;
+      const gsapMotions = getGSAPMotions(exitMotions);
+      if (!gsapMotions) return;
       
-      const tweens = getTweens({ element: target, motion, mode: "exit" });
+      const tweens = getTweens({ element: target, motions: gsapMotions, mode: "exit" });
       exitTl.add(tweens, "<").play();
     };
     
@@ -91,20 +88,22 @@ export function useRally() {
   /**
    * gsap 형식으로 모션 변환
    */
-  function motionToGSAP(motions: Motion[]): Motion | undefined {
-    console.log("모션들",motions);
+  function getGSAPMotions(motions: Motion[]): Motion[] {
+    const combinedMotion: Motion[] = [];
     
     for (const motion of motions) {
       const motionValue: Motion = {};
 
       for (const [key, value] of Object.entries(motion)) {
         if (!value) continue;
-        const gsapKey = key === 'translateX' ? 'x' : key === 'translateY' ? 'y' : key; // gsap key로 변환
-        
+        const gsapKey = key.replace('translate', '').toLowerCase() || key;
         motionValue[gsapKey] = value;
-      }  
-      return motionValue;
+      }
+
+      combinedMotion.push(motionValue);
     }
+
+    return combinedMotion;
 }
 
 /**
@@ -112,49 +111,45 @@ export function useRally() {
  */
 function getTweens({
   element,
-  motion,
+  motions,
   mode,
 }: GetTweenProps): gsap.core.Tween[] {
   const tweens: gsap.core.Tween[] = [];
-  let { delay, duration, ease, ...properties } = motion;
 
-  for (const [key, value] of Object.entries(properties)) {
-    if (!value || typeof value !== 'object') continue;
+  for (const motion of motions) {
+    let { delay, duration, ease, ...properties } = motion;
     
-    delay = value.delay ?? delay ?? DEFAULTS.delay;
-    duration = value.duration ?? duration ?? DEFAULTS.duration; // 개별 duration 우선
-    ease = value.ease ?? ease ?? DEFAULTS.ease; // 개별 ease 우선
+    for (const [key, value] of Object.entries(properties)) {
+      if (!value || typeof value !== 'object') continue;
+      
+      const motionValue = value as Motion;
+      delay = motionValue.delay ?? delay ?? DEFAULTS.delay;
+      duration = motionValue.duration ?? duration ?? DEFAULTS.duration;
+      ease = motionValue.ease ?? ease ?? DEFAULTS.ease;
 
-    let from = value.from ?? getDefaultValue(key, mode, "from");
-    let to = value.to ?? getDefaultValue(key, mode, "to");
-    
-    if (value?.from === 'random') {
-      from = gsap.utils.random(-400, 400);
+      let from = motionValue.from ?? getDefaultValue(key, mode, "from");
+      let to = motionValue.to ?? getDefaultValue(key, mode, "to");
+      
+      if (motionValue.from === 'random') {
+        from = gsap.utils.random(-400, 400);
+      }
+
+      const tween: gsap.core.Tween = gsap.fromTo(
+        element, 
+        { [key]: from },
+        { [key]: to, duration: duration as number, ease: ease as string }
+      );
+      tweens.push(tween);
     }
-
-    // 속성별 tween 생성
-    const tween: gsap.core.Tween = gsap.fromTo(
-      element, 
-      { [key]: from },
-      { [key]: to, duration: duration as number, ease: ease as string }
-    );
-    tweens.push(tween);
   }
-
   return tweens;
 }
 
-  /**
-   * 타겟 요소 분할
-   */
   function getSplitElements(target: string, split: 'words' | 'lines' | 'chars'): Element[] {
     const splitTarget = createSplit(target, split);
     return splitTarget?.[split] || splitTarget?.lines;
   }
   
-  /**
-   * 모션 기본값 반환
-   */
   function getDefaultValue(prop: string, mode: "enter" | "exit", type: "from" | "to"): number {
     if (prop === "opacity") return DEFAULTS.values[mode].opacity[type];
     if (prop === "scale") return DEFAULTS.values[mode].scale[type];

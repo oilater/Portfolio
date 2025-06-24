@@ -13,7 +13,7 @@ export type Motion = {
 
 export type GetTweenProps = {
   element: string | Element;
-  motion: Motion;
+  motions: Motion[];
   mode: "enter" | "exit";
 };
 
