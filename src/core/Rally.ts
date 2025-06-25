@@ -1,10 +1,10 @@
 import { gsap } from "gsap";
-import { DEFAULTS, type GetTweenProps, type Motion } from "./types";
+import { DEFAULTS, type GetTweenProps, type Motion, type MotionValueType } from "./types";
 import { useSplitText } from "./useSplitText";
 
 type RallyProps = {
   target: string;
-  playCount?: number | 'infinity';
+  playCount?: number | 'infinite';
   motions: Motion[];
   exitMotions?: Motion[];
   split?: 'words' | 'lines' | 'chars';
@@ -58,8 +58,8 @@ export function useRally() {
       for (const element of elements) {
         const gsapMotions = getGSAPMotions(motions);
         if (!gsapMotions) continue;
-        const tweens = getTweens({element, motions: gsapMotions, mode: "enter"});
-        rallyTl.add(tweens, "<" + splitDelay);
+        const motionTl = getMotionTl({element, motions: gsapMotions, mode: "enter"});
+        rallyTl.add(motionTl, "<" + splitDelay);
       }
     }
 
@@ -67,21 +67,27 @@ export function useRally() {
     if (onComplete) {
       rallyTl.eventCallback("onComplete", () => {
         playExitMotions();
-        gsap.delayedCall(exitTl.duration(), onComplete);
+        gsap.delayedCall(exitTl.duration() ?? 0, () => {
+          gsap.killTweensOf([...elements, target]);
+          exitTl.kill();
+          rallyTl.kill();
+          onComplete();
+        });
       });
     }
     
     function playExitMotions(): void {
       if (!exitMotions) return;
       
-      const gsapMotions = getGSAPMotions(exitMotions);
-      if (!gsapMotions) return;
-      
-      const tweens = getTweens({ element: target, motions: gsapMotions, mode: "exit" });
-      exitTl.add(tweens, "<").play();
+      for (const element of elements) {
+        const gsapMotions = getGSAPMotions(exitMotions);
+        if (!gsapMotions) continue;
+        const motionTl = getMotionTl({ element, motions: gsapMotions, mode: "exit" });
+        exitTl.add(motionTl, "<").play();
+      }
     };
     
-    const repeatCount = (playCount !== "infinity") ? playCount - 1 : -1;
+    const repeatCount = (playCount !== "infinite") ? playCount - 1 : -1;
     return rallyTl.repeat(repeatCount);
   };
   
@@ -109,17 +115,21 @@ export function useRally() {
 /**
  * 각 속성별 tween 생성 후 배열로 반환
  */
-function getTweens({
+function getMotionTl({
   element,
   motions,
   mode,
-}: GetTweenProps): gsap.core.Tween[] {
-  const tweens: gsap.core.Tween[] = [];
+}: GetTweenProps): gsap.core.Timeline {
+  
+  const motionTl = gsap.timeline();
+  const previousValues: Record<string, MotionValueType> = {}; // 이전 값들을 추적
 
   for (const motion of motions) {
     let { delay, duration, ease, ...properties } = motion;
-    
+    const innerMotionTl = gsap.timeline();
+
     for (const [key, value] of Object.entries(properties)) {
+      
       if (!value || typeof value !== 'object') continue;
       
       const motionValue = value as Motion;
@@ -127,22 +137,23 @@ function getTweens({
       duration = motionValue.duration ?? duration ?? DEFAULTS.duration;
       ease = motionValue.ease ?? ease ?? DEFAULTS.ease;
 
-      let from = motionValue.from ?? getDefaultValue(key, mode, "from");
-      let to = motionValue.to ?? getDefaultValue(key, mode, "to");
+      let from = motionValue.from ?? previousValues[key] ?? getDefaultValue(key, mode, "from");
+      let to = motionValue.to ?? previousValues[key] ?? getDefaultValue(key, mode, "to");
+      if (from === 'random') from = gsap.utils.random(-400, 400);
       
-      if (motionValue.from === 'random') {
-        from = gsap.utils.random(-400, 400);
-      }
+      previousValues[key] = from;
+      previousValues[key] = to;
 
-      const tween: gsap.core.Tween = gsap.fromTo(
+      const tween = gsap.fromTo(
         element, 
         { [key]: from },
         { [key]: to, duration: duration as number, ease: ease as string }
       );
-      tweens.push(tween);
+      innerMotionTl.add(tween, "<");
     }
+    motionTl.add(innerMotionTl, ">" + delay);
   }
-  return tweens;
+  return motionTl;
 }
 
   function getSplitElements(target: string, split: 'words' | 'lines' | 'chars'): Element[] {

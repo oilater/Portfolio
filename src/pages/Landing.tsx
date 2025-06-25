@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { css } from "@emotion/react";
-import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Header } from "../components/Header";
 import { Button } from "../components/Button";
@@ -8,8 +7,6 @@ import { Timeline } from "../core/Timeline.ts";
 import { useRally } from "../core/Rally.ts";
 
 type Step = 'init' | 'introduce' | 'projects' | 'contact';
-
-const INTRO_REMAIN_TIME = 0.6;
 
 export default function Landing() {
   const [step, setStep] = useState<Step>('init');
@@ -21,7 +18,6 @@ export default function Landing() {
     Timeline({
       playback: "serial",
       playables: [
-        
         Rally({
           target: ".introTitle",
           split: 'words',
@@ -38,33 +34,15 @@ export default function Landing() {
           ],
           exitMotions: [
             {
-              translateY: { to: "-40%", duration: 0.5, ease: "spring.out" },
+              delay: 0.5,
+              translateY: { to: "-40%", duration: 0.5, ease: "power2.out" },
               opacity: { to: 0 },
             },
           ],
           onComplete: () => setStep('introduce')
         }),
-
-        Rally({
-          target: ".introTitle2",
-          motions: [
-            {
-              duration: 2,
-              ease: "expo.inOut",
-              opacity: { to: 1 },
-            },
-          ],
-          exitMotions: [
-            {
-              translateY: { to: "-40%", duration: 0.5, ease: "power2.out" },
-              opacity: { to: 0 },
-            },
-          ],
-          onComplete: () => console.log(121231233)
-        }),
       ]
     }).play();
-      
     
     
     // const tl = gsap.timeline();
@@ -87,12 +65,6 @@ export default function Landing() {
 
   }, {scope: container, dependencies: [step]});
 
-  const moveToStep = (step: Step, delay = 0) => () => {
-    gsap.delayedCall(delay, () => {
-      // slideOut(".introTitle", {onComplete: () => setStep(step)});
-    });
-  };
-
   return (
     <main ref={container} css={mainContainer}>
       {step === 'introduce' && (
@@ -105,10 +77,6 @@ export default function Landing() {
       {step === 'init' && 
         <section>
           <h1 className="introTitle" css={title}>
-            Hello!<br />
-            I'm <span css={subTitle}>Frontend Engineer </span>
-          </h1>    
-          <h1 className="introTitle2" css={title}>
             Hello!<br />
             I'm <span css={subTitle}>Frontend Engineer </span>
           </h1>    
@@ -125,10 +93,10 @@ export default function Landing() {
             </h1>    
           </section>
           <nav css={navigateSection}>
-            <Button className="button" onClick={moveToStep('projects')}>
+            <Button className="button">
               Projects
             </Button>
-            <Button className="button" onClick={moveToStep('contact')}>
+            <Button className="button">
               Contact
             </Button>
           </nav>

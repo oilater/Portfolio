@@ -7,3 +7,22 @@ Timeline을 생성해 동시에 각 모션들이 실행되도록 하는 것이 �
 ### 2. Exit Animation은 Rally가 가진 Timeline의 onComplete에 설정
 
 이벤트 기반의 Exit Animation은 contextSafe로 감싸주었다.
+
+
+```ts
+Rally({
+    target: ".타이틀",
+    playCount: 'infinite',
+    motions: [
+    {
+        duration: 0.8,
+        ease: "power2.out",
+        translateY: { to: -40},
+    },
+    {
+        ease: 'power2.in',
+        translateY: { to: 0},
+    },
+    ],
+}),
+```
