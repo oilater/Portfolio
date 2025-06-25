@@ -25,7 +25,7 @@ export default function Landing() {
           randomOrder: true,
           motions: [
             {
-              duration: 0.9,
+              duration: 1.5,
               ease: "expo.inOut",
               opacity: { to: 1 },
               translateX: { from: 'random'},
@@ -35,7 +35,7 @@ export default function Landing() {
           exitMotions: [
             {
               delay: 0.5,
-              translateY: { to: "-40%", duration: 0.5, ease: "power2.out" },
+              translateY: { to: "-70%", duration: 1, ease: "back.inOut" },
               opacity: { to: 0 },
             },
           ],
@@ -77,8 +77,8 @@ export default function Landing() {
       {step === 'init' && 
         <section>
           <h1 className="introTitle" css={title}>
-            Hello!<br />
-            I'm <span css={subTitle}>Frontend Engineer </span>
+            아이디어를 만드는<br />
+            <span css={subTitle}>프론트엔드 개발자</span> 김성현입니다
           </h1>    
         </section>
       }

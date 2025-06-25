@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { DEFAULTS, type GetTweenProps, type Motion, type MotionValueType } from "./types";
+import { DEFAULTS, type GetMotionTlProps, type Motion, type MotionValueType } from "./types";
 import { useSplitText } from "./useSplitText";
 
 type RallyProps = {
@@ -57,8 +57,7 @@ export function useRally() {
     function addMotions() {
       for (const element of elements) {
         const gsapMotions = getGSAPMotions(motions);
-        if (!gsapMotions) continue;
-        const motionTl = getMotionTl({element, motions: gsapMotions, mode: "enter"});
+        const motionTl = getMotionTl({element, gsapMotions, mode: "enter"});
         rallyTl.add(motionTl, "<" + splitDelay);
       }
     }
@@ -71,7 +70,10 @@ export function useRally() {
           gsap.killTweensOf([...elements, target]);
           exitTl.kill();
           rallyTl.kill();
-          onComplete();
+          
+          requestAnimationFrame(() => {
+            onComplete();
+          });
         });
       });
     }
@@ -82,7 +84,7 @@ export function useRally() {
       for (const element of elements) {
         const gsapMotions = getGSAPMotions(exitMotions);
         if (!gsapMotions) continue;
-        const motionTl = getMotionTl({ element, motions: gsapMotions, mode: "exit" });
+        const motionTl = getMotionTl({ element, gsapMotions, mode: "exit" });
         exitTl.add(motionTl, "<").play();
       }
     };
@@ -117,14 +119,14 @@ export function useRally() {
  */
 function getMotionTl({
   element,
-  motions,
+  gsapMotions,
   mode,
-}: GetTweenProps): gsap.core.Timeline {
+}: GetMotionTlProps): gsap.core.Timeline {
   
   const motionTl = gsap.timeline();
-  const previousValues: Record<string, MotionValueType> = {}; // 이전 값들을 추적
+  const previousValues: Record<string, MotionValueType> = {};
 
-  for (const motion of motions) {
+  for (const motion of gsapMotions) {
     let { delay, duration, ease, ...properties } = motion;
     const innerMotionTl = gsap.timeline();
 
@@ -139,7 +141,7 @@ function getMotionTl({
 
       let from = motionValue.from ?? previousValues[key] ?? getDefaultValue(key, mode, "from");
       let to = motionValue.to ?? previousValues[key] ?? getDefaultValue(key, mode, "to");
-      if (from === 'random') from = gsap.utils.random(-400, 400);
+      if (from === 'random') from = gsap.utils.random(-60, 60);
       
       previousValues[key] = from;
       previousValues[key] = to;

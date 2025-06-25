@@ -11,9 +11,9 @@ export type Motion = {
 [key: string]: MotionValueType;
 };
 
-export type GetTweenProps = {
+export type GetMotionTlProps = {
   element: string | Element;
-  motions: Motion[];
+  gsapMotions: Motion[];
   mode: "enter" | "exit";
 };
 
