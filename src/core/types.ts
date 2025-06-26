@@ -7,6 +7,8 @@ export type MotionValue = {
 
 export type MotionValueType = gsap.TweenVars | number | string;
 
+export type ElementType = string | Element;
+
 export type Motion = {
 [key: string]: MotionValueType;
 };
@@ -16,6 +18,15 @@ export type GetMotionTlProps = {
   gsapMotions: Motion[];
   mode: "enter" | "exit";
 };
+
+export type AddMotionsProps = {
+  tl: gsap.core.Timeline;
+  elements: ElementType[];
+  motions: Motion[];
+  mode: "enter" | "exit";
+  splitDelay?: number;
+}
+
 
 export const DEFAULTS = {
   delay: 0,
