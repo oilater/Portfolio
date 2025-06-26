@@ -20,17 +20,6 @@ type RallyProps = {
 export function useRally() {
   const { createSplit } = useSplitText();
   
-  /**
-   * Rally 생성
-   * @param target - 모션을 적용할 요소
-   * @param playCount - 반복 횟수
-   * @param motions - 모션 배열
-   * @param exitMotions - 종료 모션 배열
-   * @param split - 요소 분할 방식
-   * @param splitDelay - 분할 딜레이
-   * @param randomOrder - 순서 랜덤화 여부
-   * @param onComplete - 콜백
-   */
   function Rally({
     target,
     playCount = 1,
@@ -41,57 +30,42 @@ export function useRally() {
     randomOrder = false,
     onComplete,
   }: RallyProps): gsap.core.Timeline {
-    // 각 Rally는 자신의 타임라인을 가짐
     const rallyTl = gsap.timeline();
     const exitTl = gsap.timeline({paused: true});
 
-    let elements = split 
-    ? getSplitElements(target, split) 
-    : [target];
-    
+    let elements : string[] | Element[] = split ? getSplitElements(target, split) : [target];
     if (randomOrder) 
       elements = gsap.utils.shuffle(elements as Element[]);
     
-    addMotions();
     
-    function addMotions() {
-      for (const element of elements) {
-        const gsapMotions = getGSAPMotions(motions);
-        const motionTl = getMotionTl({element, gsapMotions, mode: "enter"});
-        rallyTl.add(motionTl, "<" + splitDelay);
-      }
-    }
+    addMotions(rallyTl, elements, motions, "enter", splitDelay);
+    
+    if (exitMotions) 
+      addMotions(exitTl, elements, exitMotions, "exit");
 
     // exitMotions 재생 후 onComplete 호출
-    if (onComplete) {
-      rallyTl.eventCallback("onComplete", () => {
-        playExitMotions();
-        gsap.delayedCall(exitTl.duration() ?? 0, () => {
-          gsap.killTweensOf([...elements, target]);
-          exitTl.kill();
-          rallyTl.kill();
-          
-          requestAnimationFrame(() => {
-            onComplete();
-          });
-        });
-      });
-    }
-    
-    function playExitMotions(): void {
-      if (!exitMotions) return;
-      
-      for (const element of elements) {
-        const gsapMotions = getGSAPMotions(exitMotions);
-        if (!gsapMotions) continue;
-        const motionTl = getMotionTl({ element, gsapMotions, mode: "exit" });
-        exitTl.add(motionTl, "<").play();
-      }
-    };
+    rallyTl.eventCallback("onComplete", () => {
+      exitTl.play();
+      gsap.delayedCall(exitTl.duration(), () => requestAnimationFrame(() => onComplete?.()));
+    });
     
     const repeatCount = (playCount !== "infinite") ? playCount - 1 : -1;
     return rallyTl.repeat(repeatCount);
   };
+
+
+  function addMotions(tl: gsap.core.Timeline, elements: string[] | Element[], motions: Motion[], mode: "enter" | "exit", splitDelay?: number): void {
+    if (mode === "enter") {
+      tl.set(elements, { opacity: 0 }, 0);
+    }
+    
+    for (const element of elements) {
+      const gsapMotions = getGSAPMotions(motions);
+      const motionTl = getMotionTl({element, gsapMotions, mode});
+
+      tl.add(motionTl, "<" + (splitDelay ?? 0));
+    }
+  }
   
   /**
    * gsap 형식으로 모션 변환
@@ -107,7 +81,6 @@ export function useRally() {
         const gsapKey = key.replace('translate', '').toLowerCase() || key;
         motionValue[gsapKey] = value;
       }
-
       combinedMotion.push(motionValue);
     }
 
@@ -115,41 +88,42 @@ export function useRally() {
 }
 
 /**
- * 각 속성별 tween 생성 후 배열로 반환
+ * motion마다 innerMotionTl을 생성하고 합쳐서 motionTl에 추가 후 반환
  */
 function getMotionTl({
   element,
   gsapMotions,
   mode,
 }: GetMotionTlProps): gsap.core.Timeline {
-  
   const motionTl = gsap.timeline();
   const previousValues: Record<string, MotionValueType> = {};
 
   for (const motion of gsapMotions) {
-    let { delay, duration, ease, ...properties } = motion;
     const innerMotionTl = gsap.timeline();
+    
+    let { delay, duration, ease, ...properties } = motion;
 
     for (const [key, value] of Object.entries(properties)) {
-      
-      if (!value || typeof value !== 'object') continue;
+      if (typeof value !== 'object') continue;
       
       const motionValue = value as Motion;
-      delay = motionValue.delay ?? delay ?? DEFAULTS.delay;
-      duration = motionValue.duration ?? duration ?? DEFAULTS.duration;
-      ease = motionValue.ease ?? ease ?? DEFAULTS.ease;
+      
+      delay = motionValue.delay ?? delay;
+      duration = motionValue.duration ?? duration;
+      ease = motionValue.ease ?? ease;
 
       let from = motionValue.from ?? previousValues[key] ?? getDefaultValue(key, mode, "from");
       let to = motionValue.to ?? previousValues[key] ?? getDefaultValue(key, mode, "to");
-      if (from === 'random') from = gsap.utils.random(-60, 60);
+      
+      if (from === 'random') from = gsap.utils.random(-500, 500);
       
       previousValues[key] = from;
       previousValues[key] = to;
-
+      
       const tween = gsap.fromTo(
         element, 
         { [key]: from },
-        { [key]: to, duration: duration as number, ease: ease as string }
+        { ease: ease as string, duration: duration as number, [key]: to }
       );
       innerMotionTl.add(tween, "<");
     }

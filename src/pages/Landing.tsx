@@ -14,10 +14,10 @@ export default function Landing() {
   const { Rally } = useRally();
   
   useGSAP(() => {
-    
     Timeline({
       playback: "serial",
       playables: [
+
         Rally({
           target: ".introTitle",
           split: 'words',
@@ -25,7 +25,7 @@ export default function Landing() {
           randomOrder: true,
           motions: [
             {
-              duration: 1.5,
+              duration: 0.9,
               ease: "expo.inOut",
               opacity: { to: 1 },
               translateX: { from: 'random'},
@@ -34,15 +34,18 @@ export default function Landing() {
           ],
           exitMotions: [
             {
-              delay: 0.5,
-              translateY: { to: "-70%", duration: 1, ease: "back.inOut" },
+              delay: 0.8,
+              ease: "expo.out",
+              duration: 0.5,
               opacity: { to: 0 },
+              translateY: { to: "-30%"},
             },
           ],
           onComplete: () => setStep('introduce')
         }),
       ]
     }).play();
+  }, {scope: container});
     
     
     // const tl = gsap.timeline();
@@ -63,8 +66,6 @@ export default function Landing() {
     //   });
     // }
 
-  }, {scope: container, dependencies: [step]});
-
   return (
     <main ref={container} css={mainContainer}>
       {step === 'introduce' && (
@@ -78,7 +79,7 @@ export default function Landing() {
         <section>
           <h1 className="introTitle" css={title}>
             아이디어를 만드는<br />
-            <span css={subTitle}>프론트엔드 개발자</span> 김성현입니다
+            <span className="subTitle" css={subTitle}>프론트엔드 개발자</span> 김성현입니다
           </h1>    
         </section>
       }
@@ -108,12 +109,12 @@ export default function Landing() {
 
 // Styles
 const mainContainer = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: black;
   text-align: center;
 `;

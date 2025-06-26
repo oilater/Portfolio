@@ -19,7 +19,7 @@ export type GetMotionTlProps = {
 
 export const DEFAULTS = {
   delay: 0,
-  duration: 0.5,
+  duration: 0,
   ease: "power2.ease",
   values: {
     enter: {
