@@ -9,9 +9,6 @@ type RallyProps = {
   playCount?: number | 'infinite';
   motions: Motion[];
   exitMotions?: Motion[];
-  split?: 'words' | 'lines' | 'chars';
-  splitDelay?: number;
-  randomOrder?: boolean;
 };
 
 /**
@@ -22,51 +19,53 @@ export function Rally({
   target,
   playCount = 1,
   motions,
-  split,
-  splitDelay = 0,
-  randomOrder = false,
 }: RallyProps): gsap.core.Timeline {
   const rallyTl = gsap.timeline();
-
-  let elements: ElementType[] = split ? getSplitElements(target, split) : [target];
-  if (randomOrder) elements = gsap.utils.shuffle(elements);
   
-  addMotions({ tl: rallyTl, elements, motions, splitDelay });
+  addMotions({ tl: rallyTl, target, motions });
 
   const repeatCount = playCount !== "infinite" ? playCount - 1 : -1;
   return rallyTl.repeat(repeatCount);
 }
 
-function addMotions({ tl, elements, motions, splitDelay }: AddMotionsProps): void {
-  if (elements.length === 0) return;
-  tl.set(elements, { opacity: 0 }, 0);
+function addMotions({ tl, target, motions }: AddMotionsProps): void {
+  for (const motion of motions) {
+    const motionTl = gsap.timeline();
 
-  const gsapMotions = motionToGSAP(motions);
-
-  for (const element of elements) {
-    const motionTl = getMotionTl({ element, gsapMotions });
-    tl.add(motionTl, "<" + (splitDelay ?? 0));
+    let elements: ElementType[] = motion.split ? getSplitElements(target, motion.split) : [target];
+    if (motion.randomOrder) elements = gsap.utils.shuffle(elements);    
+    
+    const gsapMotion = motionToGSAP(motion);
+    
+    for (const element of elements) {
+      const innerMotionTl = getMotionTl({ element, gsapMotion });
+      motionTl.add(innerMotionTl, "<" + (motion?.splitDelay ?? 0));
+    }
+    tl.add(motionTl, ">" + (motion.delay ?? 0));
+    console.log(tl.getChildren());
+    
   }
 }
 
 /**
  * gsap 형식으로 모션 변환
  */
-function motionToGSAP(motions: Motion[]): Motion[] {
-  const combinedMotion: Motion[] = [];
-
-  for (const motion of motions) {
-    const motionValue: Motion = {};
+function motionToGSAP(motion: Motion): Motion {
+  const motionValue: Motion = {};
 
     for (const [key, value] of Object.entries(motion)) {
       if (!value) continue;
-      const gsapKey = key.replace('translate', '').toLowerCase() || key;
+      const gsapKey = getGSAPKey(key);
       motionValue[gsapKey] = value;
     }
-    combinedMotion.push(motionValue);
-  }
 
-  return combinedMotion;
+  return motionValue;
+}
+
+function getGSAPKey(key: string): string {
+  if (key.includes('X')) return 'x';
+  if (key.includes('Y')) return 'y';
+  return key.toLowerCase();
 }
 
 /**
@@ -74,54 +73,60 @@ function motionToGSAP(motions: Motion[]): Motion[] {
  */
 function getMotionTl({
   element,
-  gsapMotions,
+  gsapMotion,
 }: GetMotionTlProps): gsap.core.Timeline {
-  const motionTl = gsap.timeline();
-  const previousValues: Record<string, MotionValueType> = {};
+  const innerMotionTl = gsap.timeline();
 
-  for (const motion of gsapMotions) {
-    const innerMotionTl = gsap.timeline();
+  const previousValues: Record<string, { from: MotionValueType, to: MotionValueType }> = {};
+  
+  let { delay, duration, ease, ...properties } = gsapMotion;
 
-    let { delay, duration, ease, ...properties } = motion;
+  for (const [key, value] of Object.entries(properties)) {
+    if (typeof value !== 'object') continue;
 
-    for (const [key, value] of Object.entries(properties)) {
-      if (typeof value !== 'object') continue;
+    const motionValue = value as Motion;
 
-      const motionValue = value as Motion;
-
-      delay = motionValue.delay ?? delay;
-      duration = motionValue.duration ?? duration;
-      ease = motionValue.ease ?? ease;
-
-      let from = motionValue.from ?? previousValues[key] ?? getDefaultValue(key, "from");
-      let to = motionValue.to ?? previousValues[key] ?? getDefaultValue(key, "to");
-
-      if (from === 'random') from = gsap.utils.random(-500, 500);
-
-      previousValues[key] = from;
-      previousValues[key] = to;
-
-      const tween = gsap.fromTo(
-        element,
-        { [key]: from },
-        { ease: ease as string, duration: duration as number, [key]: to }
-      );
-      innerMotionTl.add(tween, "<");
+    // 개별 속성 우선
+    delay = motionValue.delay ?? delay;
+    duration = motionValue.duration ?? duration;
+    ease = motionValue.ease ?? ease;
+    
+    let from = motionValue.from ?? previousValues[key]?.to ?? getDefaultValue(key, "from");
+    let to = motionValue.to ?? previousValues[key]?.from ?? getDefaultValue(key, "to");
+    
+    if (from === 'random') {
+      from = gsap.utils.random(-200, 200);
+      to = 0;
     }
-    motionTl.add(innerMotionTl, ">" + delay);
+
+    if (to === 'random') {
+      to = gsap.utils.random(-500, 500);
+      from = 0;
+    }
+    
+    previousValues[key] = { from, to };
+    
+    const tween = gsap.fromTo(
+      element,
+      { [key]: from },
+      { ease: ease as string, duration: duration as number, [key]: to }
+    );
+    innerMotionTl.add(tween, "<");
   }
-  return motionTl;
+  return innerMotionTl;
 }
 
-function getSplitElements(target: string, split: SplitType): Element[] {
+function getSplitElements(target: string, split: SplitType): ElementType[] {
   const splitTarget = createSplit(target, split);
   return splitTarget?.[split] || splitTarget?.lines;
 }
 
-function getDefaultValue(prop: string, type: "from" | "to"): number {
-  if (prop === "opacity") return DEFAULTS.values.opacity[type];
-  if (prop === "scale") return DEFAULTS.values.scale[type];
-  return DEFAULTS.values.translate[type];
+function getDefaultValue(key: string, type: 'from' | 'to') {
+  if (typeof DEFAULTS[key] === 'object') {
+    return DEFAULTS[key][type];
+  } 
+
+  return DEFAULTS[key];
 }
 
 // useCallback 사용으로 불필요한 함수 재생성 방지

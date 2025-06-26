@@ -7,20 +7,21 @@ export function introTimeline(onComplete?: () => void) {
     playables: [
       Rally({
         target: ".introTitle",
-        split: 'words',
-        splitDelay: 0.1,
-        randomOrder: true,
+        playCount: 1,
         motions: [
           {
-            duration: 0.9,
-            ease: "expo.inOut",
-            opacity: { to: 1 },
-            translateX: { from: 'random'},
-            translateY: { from: 'random'},
+            split: 'words',
+            splitDelay: 0.15,
+            randomOrder: true,
+            duration: 0.8,
+            ease: "expo.out",
+            opacity: { from: 0 },
+            translateX: { from: 'random' },
+            translateY: { from: 'random' },
           },
           {
             delay: 0.8,
-            ease: "expo.out",
+            ease: "back.inOut",
             duration: 0.5,
             opacity: { to: 0 },
             translateY: { to: "-30%"},
