@@ -22,6 +22,7 @@ export default function Header({ onVelog, onGithub, className }: HeaderProps) {
 };
 
 const header = css`
+  margin-top: 4rem;
   display: flex;
   justify-content: flex-end;
   gap: 10px;

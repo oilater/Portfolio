@@ -27,7 +27,7 @@ export const Top = {
 // style
 const rootStyle = css({
   width: '100%',
-  padding: '50px 24px 18px',
+  padding: '40px 24px 18px',
 });
 
 const paragraphStyle = css({

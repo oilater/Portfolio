@@ -61,7 +61,7 @@ export function introduceTimeline(length: number) {
                 duration: 0.7,
                 ease: "power2.out",
                 opacity: { from: 0 },
-                translateX: { from: -10 },
+                translateX: { from: -5 },
               }
             ]
           }),
@@ -89,7 +89,7 @@ export function introduceTimeline(length: number) {
     playables: [
       titleTimeline,
       listRowSectionRally,
-      listRowTl.delay(0.5),
+      listRowTl,
     ],
   });
 

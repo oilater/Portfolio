@@ -12,7 +12,7 @@ export function introTimeline(onComplete?: () => void) {
         motions: [
           {
             split: 'words',
-            splitDelay: 0.2,
+            splitDelay: 0.1,
             randomOrder: true,
             duration: 0.5,
             ease: "expo.out",

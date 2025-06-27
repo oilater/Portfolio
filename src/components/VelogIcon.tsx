@@ -21,6 +21,7 @@ export function VelogIcon() {
 const velogIcon = css`
     width: 42px;
     height: 42px;
+    display: block;
     transition: transform 0.3s ease-in-out;
     
     &:hover {

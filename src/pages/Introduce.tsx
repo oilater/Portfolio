@@ -1,9 +1,10 @@
+import { useRef } from "react";
 import { css } from "@emotion/react";
 import { Top } from "../components/Top";
 import { introduceTimeline } from "../Timelines/IntroduceTimeline";
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
 import { ListRow } from "../components/ListRow";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
 
 type MyData = {
   id: number;
@@ -18,6 +19,27 @@ export default function Introduce() {
     introduceTimeline(myData.length).play();
   }, {scope: introduceScope});
 
+  useGSAP(() => {
+    // gsap.fromTo(".box", 
+    //   {
+    //     opacity: 0,
+    //     y: -100,
+    //   },
+    //   {
+    //     opacity: 1,
+    //     y: 0,
+    //     duration: 1,
+    //     scrollTrigger: {
+    //       trigger: ".scrollBox",
+    //       start: "top 80%",
+    //       end: "bottom 10%",
+    //       scrub: true,
+    //       markers: true,
+    //     },
+    //   }
+    // );
+  });
+
   return (
     <div ref={introduceScope} css={introduceWrapper}>
         <Top.Root 
@@ -30,7 +52,7 @@ export default function Introduce() {
 
       <div css={mainDescription}>
         <p className="mainDescription">안녕하세요, 토스에서 아름다운 화면을 개발하고 싶은 지원자 김성현이라고 합니다. <br/>
-          <span css={highlight}>서비스의 완성도는 디테일에서 나온다</span>는 생각으로 항상 사용자의 입장에서 생각하며 UX 개발 역량을 키워왔습니다.</p>
+          <span css={highlight}>서비스의 완성도는 디테일에서 나온다</span>는 생각으로 항상 사용자의 입장에서 UI를 개발했습니다.</p>
       </div>
       <div className="listRowSection" css={listSection}>
         {myData.map((data, index) => (
@@ -44,9 +66,28 @@ export default function Introduce() {
           </ListRow>
         ))}
       </div>
+
+      <div className="scrollBox" css={scrollTrigger}>
+        <div className="box" css={scrollTriggerContent}>
+          <p>ScrollTrigger</p>
+        </div>
+      </div>
     </div>
   );
 }
+
+const scrollTrigger = css`
+  margin-top: 5rem;
+  width: 500px;
+  height: 1000px;
+  background: blue;
+`;
+
+const scrollTriggerContent = css`
+  width: 500px;
+  height: 500px;
+  background: green;
+`;
 
 const myData: MyData[] = [
   {
@@ -57,12 +98,12 @@ const myData: MyData[] = [
   {
     id: 2,
     title: '🧚🏻 인터렉션 시스템을 개발했습니다',
-    description: 'SLASH 23을 통해 알게된 토스 인터렉션 팀의 Rally를 보고 저만의 인터렉션 시스템을 만들어보고 싶었습니다. 여러 시행착오를 통해 Rally의 구조가 사용하기 쉽고 확장성이 좋다고 생각하였고, Rally의 구조를 예상하며 따라 만들어보았습니다. 이 포트폴리오도 Rally를 사용해 제작했습니다 😀',
+    description: 'SLASH 23을 통해 알게된 토스 인터렉션 팀의 Rally를 보고 저만의 인터렉션 시스템을 만들어보고 싶었습니다. 여러 시행착오 끝에 사용하기 쉽고 확장성이 좋은 Rally의 구조를 따라 만들어보았습니다. 이 포트폴리오도 Rally를 사용해 제작했습니다 😀',
   },
   {
     id: 3,
     title: '👨🏼‍💻 토스에서 함께 일하고 싶습니다',
-    description: '불필요한 비용은 줄이고, 개발에 집중하여 최고의 서비스를 만드는 토스에서 함께 일하고 싶습니다. UI 개발이라면 밤도 거뜬히 샐 수 있는 저의 열정을 토스에서 발휘하고 싶습니다.',
+    description: '업무에 불필요한 비용을 줄이고, 개발에 몰입하여 최고의 서비스를 만드는 토스에서 함께 성장하고 싶습니다. UI 개발이라면 밤도 거뜬히 샐 수 있는 저의 열정을 토스에서 발휘하겠습니다.',
   },
 ];
 
@@ -72,7 +113,7 @@ const introduceWrapper = css`
 `;
 
 const listSection = css`
-  background:rgb(37, 37, 41);
+  background: rgb(36, 36, 38);
   border-radius: 12px;
   padding: 10px;
   margin: 0 24px;
@@ -84,7 +125,7 @@ const listWrapper = css`
   flex-direction: column;
   align-items: flex-start;
   gap: 1.3rem;
-  padding: 20px;
+  padding: 18px;
 `;
 
 const listRowTitle = css`
@@ -99,9 +140,7 @@ const listRowDescription = css`
   font-weight: 500;
   color: white;
   line-height: 1.7;
-  white-space: pre-line;
   word-wrap: break-word;
-  overflow-wrap: break-word;
   max-width: 100%;
   box-sizing: border-box;
 `;

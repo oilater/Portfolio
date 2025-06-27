@@ -6,12 +6,12 @@ const Header = lazy(() => import("../components/Header"));
 const Intro = lazy(() => import("./Intro"));
 const Introduce = lazy(() => import("./Introduce"));
 
-export type Step = 'init' | 'introduce' | 'projects' | 'contact';
+export type Step = 'init' | 'introduce' | 'projects';
 
-const githubUrl = 'https://github.com/oilater';
-const velogUrl = 'https://velog.io/@oilater';
+const GITHUB_URL = 'https://github.com/oilater';
+const VELOG_URL = 'https://velog.io/@oilater';
 
-export default function Landing() {
+export default function Portfolio() {
   const [step, setStep] = useState<Step>('init');
 
   return (
@@ -20,8 +20,8 @@ export default function Landing() {
         <Suspense fallback={<Skeleton count={10} />}>
           <Header 
             className="header"
-            onGithub={() => {window.open(githubUrl, '_blank');}}
-            onVelog={() => {window.open(velogUrl, '_blank');}}
+            onGithub={() => {window.open(GITHUB_URL, '_blank');}}
+            onVelog={() => {window.open(VELOG_URL, '_blank');}}
           />
         </Suspense>
       )}
@@ -45,22 +45,3 @@ const wrapper = css`
   justify-content: center;
   align-items: center;
 `;
-
-const navigateSection = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 5rem;
-`;
-
-
-{/* <nav css={navigateSection}>
-<Button className="button">
-  Projects
-</Button>
-<Button className="button">
-  Contact
-</Button>
-</nav> */}

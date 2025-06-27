@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import type { Step } from "./Landing";
+import type { Step } from "./Portfolio";
 import { introTimeline } from "../Timelines/IntroTimeline";
 
 type IntroProps = {
