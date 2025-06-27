@@ -22,15 +22,12 @@ export function Header({ onVelog, onGithub, className }: HeaderProps) {
 };
 
 const header = css`
-  position: fixed;
   display: flex;
   justify-content: flex-end;
-  top: 0;
+  gap: 10px;
   width: 100%;
   max-width: 1140px;
-  height: 60px;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 20px;
   padding-right: 20px;
-  gap: 10px;
 `;

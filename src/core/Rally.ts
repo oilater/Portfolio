@@ -42,8 +42,6 @@ function addMotions({ tl, target, motions }: AddMotionsProps): void {
       motionTl.add(innerMotionTl, "<" + (motion?.splitDelay ?? 0));
     }
     tl.add(motionTl, ">" + (motion.delay ?? 0));
-    console.log(tl.getChildren());
-    
   }
 }
 
@@ -83,24 +81,21 @@ function getMotionTl({
 
   for (const [key, value] of Object.entries(properties)) {
     if (typeof value !== 'object') continue;
-
-    const motionValue = value as Motion;
-
     // 개별 속성 우선
-    delay = motionValue.delay ?? delay;
-    duration = motionValue.duration ?? duration;
-    ease = motionValue.ease ?? ease;
+    delay = value.delay ?? delay;
+    duration = value.duration ?? duration;
+    ease = value.ease ?? ease;
     
-    let from = motionValue.from ?? previousValues[key]?.to ?? getDefaultValue(key, "from");
-    let to = motionValue.to ?? previousValues[key]?.from ?? getDefaultValue(key, "to");
+    let from = value.from ?? previousValues[key]?.to ?? getDefaultValue(key, "from");
+    let to = value.to ?? previousValues[key]?.from ?? getDefaultValue(key, "to");
     
     if (from === 'random') {
-      from = gsap.utils.random(-200, 200);
+      from = gsap.utils.random(-400, 400);
       to = 0;
     }
 
     if (to === 'random') {
-      to = gsap.utils.random(-500, 500);
+      to = gsap.utils.random(-400, 400);
       from = 0;
     }
     

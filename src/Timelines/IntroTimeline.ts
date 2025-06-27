@@ -2,6 +2,7 @@ import { Rally } from "../core/Rally.ts";
 import { Timeline } from "../core/Timeline";
 
 export function introTimeline(onComplete?: () => void) {
+    
     const tl = Timeline({
     playback: "serial",
     playables: [
@@ -11,17 +12,17 @@ export function introTimeline(onComplete?: () => void) {
         motions: [
           {
             split: 'words',
-            splitDelay: 0.15,
+            splitDelay: 0.2,
             randomOrder: true,
-            duration: 0.8,
+            duration: 0.5,
             ease: "expo.out",
             opacity: { from: 0 },
             translateX: { from: 'random' },
             translateY: { from: 'random' },
           },
           {
-            delay: 0.8,
-            ease: "back.inOut",
+            delay: 0.5,
+            ease: "expo.in",
             duration: 0.5,
             opacity: { to: 0 },
             translateY: { to: "-30%"},

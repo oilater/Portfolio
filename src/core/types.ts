@@ -1,9 +1,9 @@
 export type MotionValue = {
-    from?: number | string;
-    to?: number | string;
-    duration?: number;
-    ease?: string;
-  };
+  from?: number | string;
+  to?: number | string;
+  duration?: number;
+  ease?: string;
+};
 
 export type SplitType = 'lines' | 'words' | 'chars';
 

@@ -1,44 +1,30 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { css } from "@emotion/react";
-import { useGSAP } from "@gsap/react";
 import { Header } from "../components/Header";
-import { Button } from "../components/Button";
 import { Intro } from "./Intro.tsx";
-import { introTimeline } from "../Timelines/IntroTimeline.ts";
+import { Introduce } from "./Introduce.tsx";
 
-type Step = 'init' | 'introduce' | 'projects' | 'contact';
+export type Step = 'init' | 'introduce' | 'projects' | 'contact';
+
+const githubUrl = 'https://github.com/oilater';
+const velogUrl = 'https://velog.io/@oilater';
 
 export default function Landing() {
   const [step, setStep] = useState<Step>('init');
-  const container = useRef<HTMLDivElement>(null!);
-
-  useGSAP(() => {
-    introTimeline(() => setStep('introduce')).play();
-  }, {scope: container});
 
   return (
-    <main ref={container} css={wrapper}>
-      {step === 'init' && <Intro />}
-
-      {step === 'introduce' && (
+    <div css={wrapper}>
+      {step !== 'init' && (
         <Header 
           className="header"
-          onGithub={() => {window.open('https://github.com/oilater', '_blank');}} 
-          onVelog={() => {window.open('https://velog.io/@oilater', '_blank');}} 
+          onGithub={() => {window.open(githubUrl, '_blank');}}
+          onVelog={() => {window.open(velogUrl, '_blank');}}
         />
       )}
-        {/* // <>
-          
-        //   <nav css={navigateSection}>
-        //     <Button className="button">
-        //       Projects
-        //     </Button>
-        //     <Button className="button">
-        //       Contact
-        //     </Button>
-        //   </nav>
-        // </> */}
-    </main>
+
+      {step === 'init' && <Intro onComplete={setStep} />}
+      {step === 'introduce' && <Introduce />}
+    </div>
   );
 };
 
@@ -46,12 +32,12 @@ export default function Landing() {
 const wrapper = css`
   width: 100%;
   height: 100%;
+  max-width: 980px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  text-align: center;
 `;
 
 const navigateSection = css`
@@ -62,3 +48,13 @@ const navigateSection = css`
   width: 100%;
   height: 5rem;
 `;
+
+
+{/* <nav css={navigateSection}>
+<Button className="button">
+  Projects
+</Button>
+<Button className="button">
+  Contact
+</Button>
+</nav> */}
