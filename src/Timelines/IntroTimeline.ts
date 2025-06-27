@@ -1,5 +1,5 @@
-import { Rally } from "../core/Rally.ts";
-import { Timeline } from "../core/Timeline";
+const { Rally } = await import('../core/Rally');
+const { Timeline } = await import('../core/Timeline');
 
 export function introTimeline(onComplete?: () => void) {
     

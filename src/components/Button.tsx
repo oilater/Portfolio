@@ -1,20 +1,20 @@
 import { css } from "@emotion/react";
-import { forwardRef, type ButtonHTMLAttributes } from "react";
+import { type ButtonHTMLAttributes } from "react";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ children, onClick, ...props }, ref) => {
+export const Button = ({ children, onClick, ...props }: ButtonProps) => {
   return <button 
-      role="button" 
+      role="button"
+      type="button"
       aria-label={`${children}으로 이동`} 
       css={button} 
       onClick={onClick}
-      ref={ref} 
       {...props}
       >
         {children}
       </button>;
-});
+};
 
 const button = css`
   color: white;

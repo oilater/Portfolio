@@ -8,13 +8,13 @@ type HeaderProps = {
     className: string;
 };
 
-export function Header({ onVelog, onGithub, className }: HeaderProps) {
+export default function Header({ onVelog, onGithub, className }: HeaderProps) {
     return (
     <header className={className} css={header}>
-        <button type="button" onClick={onVelog}>
+        <button type="button" onClick={onVelog} aria-label="Velog로 이동">
         <VelogIcon />
         </button>
-        <button type="button" onClick={onGithub}>
+        <button type="button" onClick={onGithub} aria-label="Github로 이동">
         <GithubIcon />
         </button>
     </header>

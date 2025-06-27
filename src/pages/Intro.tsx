@@ -1,14 +1,14 @@
 import { css } from "@emotion/react";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { introTimeline } from "../Timelines/IntroTimeline";
 import type { Step } from "./Landing";
+import { introTimeline } from "../Timelines/IntroTimeline";
 
 type IntroProps = {
   onComplete: (step: Step) => void;
 };
 
-export function Intro({ onComplete }: IntroProps) {
+export default function Intro({ onComplete }: IntroProps) {
   const introScope = useRef<HTMLDivElement>(null!);
 
   useGSAP(() => {

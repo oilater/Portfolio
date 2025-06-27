@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export function GithubIcon() {
     return (
-        <svg 
+        <svg
             css={githubIcon}
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0,0,256,256"

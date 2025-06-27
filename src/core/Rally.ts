@@ -1,7 +1,6 @@
 import { gsap } from "gsap";
 import { DEFAULTS, type AddMotionsProps, type ElementType, type GetMotionTlProps, type Motion, type MotionValueType, type SplitType } from "./types";
-import { SplitText } from "gsap/SplitText";
-
+const { SplitText } = await import('gsap/SplitText');
 gsap.registerPlugin(SplitText);
 
 type RallyProps = {
@@ -29,10 +28,22 @@ export function Rally({
 }
 
 function addMotions({ tl, target, motions }: AddMotionsProps): void {
+  const splitCache: Partial<Record<SplitType, ElementType[]>> = {};
+
+
   for (const motion of motions) {
     const motionTl = gsap.timeline();
+    
+    let elements: ElementType[];
+    if (motion.split) {
+      if (!splitCache[motion.split]) {
+        splitCache[motion.split] = getSplitElements(target, motion.split);
+      }
+      elements = splitCache[motion.split]!;
+    } else {
+      elements = [target];
+    }
 
-    let elements: ElementType[] = motion.split ? getSplitElements(target, motion.split) : [target];
     if (motion.randomOrder) elements = gsap.utils.shuffle(elements);    
     
     const gsapMotion = motionToGSAP(motion);

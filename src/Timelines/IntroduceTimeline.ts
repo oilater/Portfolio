@@ -5,7 +5,7 @@ export function introduceTimeline(length: number) {
   
   const titleTimeline = Timeline({
     playback: "stagger",
-    staggerDelay: 0.5,
+    staggerDelay: 0.1,
     playables: [
       Rally({
         target: ".topTitle",
@@ -70,8 +70,8 @@ export function introduceTimeline(length: number) {
             target: `.listRowDescription-${index}`,
             motions: [
               {
-                split: 'chars',
-                splitDelay: 0.015,
+                split: 'lines',
+                splitDelay: 0.2,
                 duration: 0.3,
                 ease: "power2.in",
                 opacity: { from: 0 },
@@ -89,7 +89,7 @@ export function introduceTimeline(length: number) {
     playables: [
       titleTimeline,
       listRowSectionRally,
-      listRowTl.delay(0.8),
+      listRowTl.delay(0.5),
     ],
   });
 

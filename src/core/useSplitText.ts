@@ -1,10 +1,10 @@
 import { gsap } from "gsap";
-import { SplitText } from "gsap/SplitText";
 import { useCallback, useEffect, useRef } from "react";
 
 type SplitType = 'words' | 'lines' | 'chars';
 
-export function useSplitText() {
+export async function useSplitText() {
+    const { SplitText } = await import('gsap/SplitText');
     gsap.registerPlugin(SplitText);
     
     const splitRef = useRef<SplitText>(null);
@@ -12,6 +12,7 @@ export function useSplitText() {
     useEffect(() => {
         return () => {
             if (splitRef.current) splitRef.current.revert();
+            splitRef.current = null;
         }
     }, []);
     

@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { lazy, useState, Suspense } from "react";
 import { css } from "@emotion/react";
-import { Header } from "../components/Header";
-import { Intro } from "./Intro.tsx";
-import { Introduce } from "./Introduce.tsx";
+import Skeleton from 'react-loading-skeleton';
+
+const Header = lazy(() => import("../components/Header"));
+const Intro = lazy(() => import("./Intro"));
+const Introduce = lazy(() => import("./Introduce"));
 
 export type Step = 'init' | 'introduce' | 'projects' | 'contact';
 
@@ -15,15 +17,19 @@ export default function Landing() {
   return (
     <div css={wrapper}>
       {step !== 'init' && (
-        <Header 
-          className="header"
-          onGithub={() => {window.open(githubUrl, '_blank');}}
-          onVelog={() => {window.open(velogUrl, '_blank');}}
-        />
+        <Suspense fallback={<Skeleton count={10} />}>
+          <Header 
+            className="header"
+            onGithub={() => {window.open(githubUrl, '_blank');}}
+            onVelog={() => {window.open(velogUrl, '_blank');}}
+          />
+        </Suspense>
       )}
 
-      {step === 'init' && <Intro onComplete={setStep} />}
-      {step === 'introduce' && <Introduce />}
+      <Suspense fallback={<Skeleton count={10} />}>
+        {step === 'init' && <Intro onComplete={setStep} />}
+        {step === 'introduce' && <Introduce />}
+      </Suspense>
     </div>
   );
 };
