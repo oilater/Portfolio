@@ -1,7 +1,6 @@
 import { gsap } from "gsap";
 import { DEFAULTS, type AddMotionsProps, type ElementType, type GetMotionTlProps, type Motion, type MotionValueType, type SplitType } from "./types";
-const { SplitText } = await import('gsap/SplitText');
-gsap.registerPlugin(SplitText);
+import { SplitText } from "gsap/SplitText";
 
 type RallyProps = {
   target: string;
