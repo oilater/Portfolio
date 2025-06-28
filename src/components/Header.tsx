@@ -3,9 +3,9 @@ import { GithubIcon } from './GithubIcon';
 import { VelogIcon } from './VelogIcon';
 
 type HeaderProps = {
+    className: string;
     onVelog: () => void;
     onGithub: () => void;
-    className: string;
 };
 
 export default function Header({ onVelog, onGithub, className }: HeaderProps) {
@@ -22,17 +22,12 @@ export default function Header({ onVelog, onGithub, className }: HeaderProps) {
 };
 
 const header = css`
-//   z-index: 100;
-//   position: fixed;
-//   top: 0;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 10px;
   width: 100%;
   max-width: 960px;
-  align-items: center;
-  padding-top: 20px;
-  padding-bottom: 10px;
-  padding-right: 20px;
+  padding: 20px 20px 10px 0;
   transition: opacity 0.3s ease-in-out;
 `;

@@ -15,6 +15,7 @@ export default function Portfolio() {
 
   return (
     <div css={wrapper}>
+      {/* Header */}
       {step !== 'init' && (
         <Header 
           className="header"
@@ -23,6 +24,7 @@ export default function Portfolio() {
         />
       )}
 
+      {/* Pages */}
       {step === 'init' && <Intro onComplete={setStep} />}
       {step === 'introduce' && <Introduce />}
       {step === 'introduce' && <Project />}
@@ -30,7 +32,6 @@ export default function Portfolio() {
   );
 }
 
-// Styles
 const wrapper = css`
   width: 100%;
   height: 100%;

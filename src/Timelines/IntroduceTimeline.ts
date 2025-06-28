@@ -2,7 +2,7 @@ import { Rally } from "../core/Rally";
 import { Timeline } from "../core/Timeline";
 
 export function introduceTimeline(length: number) {
-  
+
   const titleTimeline = Timeline({
     playback: "stagger",
     staggerDelay: 0.2,
