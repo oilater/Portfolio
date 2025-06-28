@@ -43,6 +43,13 @@ export type GetMotionTlProps = {
   motion: Motion;
 };
 
+export type PreviousMotionValueType = {
+  [key: string]: {
+    from: number | string;
+    to: number | string;
+  };
+}
+
 export type MotionValueType = gsap.TweenVars | number | boolean | string | undefined;
 export type ElementType = string | Element;
 export type SplitType = 'lines' | 'words' | 'chars';

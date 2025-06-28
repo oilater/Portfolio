@@ -1,6 +1,4 @@
-import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { getMotionTimeline } from '../utils/motion-timeline';
 
 type ScrollTriggerOptions = {
   start: string;
@@ -11,7 +9,7 @@ type ScrollTriggerOptions = {
 
 type AnimateScrollProps = {
   target: string;
-  motion: gsap.TweenVars;
+  timeline: gsap.core.Timeline;
   options?: ScrollTriggerOptions;
 };
 
@@ -19,7 +17,7 @@ export function useScrollTrigger() {
   function animateScroll(
     {
       target,
-      motion,
+      timeline,
       options = {
       start: "top 80%",
       end: "bottom 20%",
@@ -28,14 +26,12 @@ export function useScrollTrigger() {
     }
   }: AnimateScrollProps) {
     const { start, end, scrub, markers } = options;
-    gsap.set(target, { opacity: 0, y: 30 });
-    const animation = getMotionTimeline({ element: target, motion });
 
     return ScrollTrigger.create({
       trigger: target,
       start,
       end,
-      animation,
+      animation: timeline,
       scrub,
       markers,
     });

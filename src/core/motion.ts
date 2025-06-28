@@ -24,7 +24,7 @@ export function addMotions({ rally, target, motions }: AddMotionsProps): void {
       const gsapMotion: Motion = motionToGSAP(motion);  
       
       // 모션을 적용할 elements
-      let elements: ElementType[] = motion.split ? getSplitElements(target, motion.split, splitCache) : [target]  
+      let elements: ElementType[] = motion.split ? getSplitElements(target, motion.split, splitCache) : [target];
       
       // 모션의 randomOrder 속성이 있는 경우
       if (motion.randomOrder) 
@@ -40,9 +40,3 @@ export function addMotions({ rally, target, motions }: AddMotionsProps): void {
       rally.add(motionTimeline, ">" + (motion.delay ?? 0));
     }
   }
-  
-  /**
-   * motion 객체마다 각자의 ease, duration, delay 등 속성이 있을 수 있으므로
-   * innerMotionTl을 생성하고 합쳐서 motionTl에 추가 후 반환
-   * TODO: 로직 리팩토링 및 util로 분리 필요
-   */

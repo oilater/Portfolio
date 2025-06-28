@@ -9,19 +9,16 @@ export default function Project() {
   const projectScope = useRef<HTMLDivElement>(null!);
   
   useGSAP(() => {
-    animateScroll({
-      target: '.topTitle',
-      motion: {
-        opacity: 1,
-        translateY: 0,
-      },
-      options: {
-        start: 'top 100%',
-        end: 'bottom 100%',
-        scrub: true,
-        markers: true,
-      },
-    });
+    // animateScroll({
+    //   target: '.topTitle',
+    //   timeline: 
+    //   options: {
+    //     start: 'top 90%',
+    //     end: 'bottom 100%',
+    //     scrub: false,
+    //     markers: true,
+    //   },
+    // });
   }, {scope: projectScope});
 
   return (
@@ -29,14 +26,14 @@ export default function Project() {
         <Top.Root 
           title={
             <Top.Paragraph>
-              <span className="topTitle">프로젝트 소개 </span>
+              <span className="topTitle">Projects </span>
             </Top.Paragraph>
           }
         />
 
       <div css={mainDescription}>
-        <p className="mainDescription">이런 프로젝트를 만들었습니다.</p>
-        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로 사용자의 입장에서 UI를 개발해왔습니다.</p>
+        <p className="mainDescription">새로운 것을 배우면, 항상 무언가를 만들어봅니다.</p>
+        <p className="mainDescription2">처음하는 것에도 금방 익숙해질 수 있는 <span css={highlight}>적응력</span>과 <span css={highlight}>빠른 실행력</span>이 저의 강점입니다.</p>
       </div>
 
       <div className="listRowSection" css={projectListSection}>
@@ -55,7 +52,7 @@ const projectListSection = css`
   background: rgb(36, 36, 38);
   border-radius: 12px;
   padding: 10px;
-  margin: 0 24px;
+  margin: 0 16px;
   margin-top: 1rem;
 `;
 
@@ -63,7 +60,7 @@ const mainDescription = css`
   font-size: 1.3rem;
   font-weight: 500;
   color: white;
-  padding: 10px 24px;
+  padding: 10px 16px;
   line-height: 1.65;
 `;
 

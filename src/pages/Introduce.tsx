@@ -24,14 +24,14 @@ export default function Introduce() {
         <Top.Root 
           title={
             <Top.Paragraph>
-              <span className="topTitle">안녕하세요 🤗 </span>
+              <span className="topTitle">About me 🤗 </span>
             </Top.Paragraph>
           }
         />
 
       <div css={mainDescription}>
-        <p className="mainDescription">인터렉션을 통해 가치를 전달하고 싶은 지원자 김성현이라고 합니다.</p>
-        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로 사용자의 입장에서 UI를 개발해왔습니다.</p>
+        <p className="mainDescription">안녕하세요, 인터렉션으로 가치를 전달하고 싶은 지원자 김성현입니다.</p>
+        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로, 항상 사용자의 입장에서 UI를 개발하고 있습니다.</p>
       </div>
 
       <div className="listRowSection" css={listSection}>
@@ -59,25 +59,26 @@ const myData: MyData[] = [
   {
     id: 2,
     title: '🧚🏻 인터렉션 시스템을 개발했습니다',
-    description: 'SLASH 23에서 토스 인터렉션 팀의 Rally를 보고 저만의 인터렉션 시스템을 만들어보고 싶었습니다. 여러 시행착오 끝에 사용하기 쉽고 확장성이 좋은 Rally의 구조를 따라 만들게 되었습니다. 이 포트폴리오도 Rally를 사용해 제작했습니다 😀',
+    description: 'SLASH에서 토스 인터렉션 팀의 Rally를 보고 저만의 인터렉션 시스템을 만들어보고 싶었습니다. 여러 시행착오 끝에 사용하기 쉽고 확장성이 좋은 Rally의 구조를 따라 만들게 되었습니다. 이 포트폴리오도 Rally를 사용해 제작했습니다 😀',
   },
   {
     id: 3,
     title: '👨🏼‍💻 토스에서 함께 일하고 싶습니다',
-    description: '업무에 불필요한 일을 줄이고, 개발에 몰입하여 최고의 서비스를 만드는 토스에서 함께 성장하고 싶습니다. UI 개발이라면 밤도 거뜬히 샐 수 있는 저의 열정을 토스에서 발휘하겠습니다.',
+    description: '개발에 몰입하는 환경에서 사용자들에게 즐거움과 와우 모먼트를 동시에 제공하는 서비스를 만들고 싶습니다. UI 개발이라면 밤도 거뜬히 샐 수 있는 저의 열정을 토스에서 발휘하겠습니다.',
   },
 ];
 
 const introduceWrapper = css`
   width: 100%;
-  height: 850px;
+  height: auto;
+  margin-bottom: 3rem;
 `;
 
 const listSection = css`
-  background: rgba(26, 30, 36);
-  border-radius: 12px;
+  background: #2c2c35;
+  border-radius: 16px;
   padding: 10px;
-  margin: 0 24px;
+  margin: 0 16px;
   margin-top: 2rem;
 `;
 
@@ -86,7 +87,7 @@ const listWrapper = css`
   flex-direction: column;
   align-items: flex-start;
   gap: 1.3rem;
-  padding: 18px;
+  padding: 8px;
 `;
 
 const listRowTitle = css`
@@ -110,11 +111,11 @@ const mainDescription = css`
   font-size: 1.3rem;
   font-weight: 500;
   color: white;
-  padding: 10px 24px;
+  padding: 10px 16px;
   line-height: 1.65;
 `;
 
 const highlight = css`
-  color:rgb(187, 215, 255);
+  color:#c8e7ff;
   font-weight: 700;
 `;

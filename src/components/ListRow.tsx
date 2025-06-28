@@ -10,5 +10,9 @@ export function ListRow({ children }: ListRowProps) {
 }
 
 const listRow = css`
-  padding: 10px 10px;
+  padding: 15px 15px 25px;
+
+  &:last-child {
+    padding-bottom: 15px;
+  }
 `;

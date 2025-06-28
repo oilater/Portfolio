@@ -1,4 +1,4 @@
-import { DEFAULTS, type GetMotionTlProps } from "../core/types";
+import { DEFAULTS, type GetMotionTlProps, type PreviousMotionValueType } from "../core/types";
 import gsap from "gsap";
 
 export function getMotionTimeline({
@@ -7,7 +7,7 @@ export function getMotionTimeline({
   }: GetMotionTlProps): gsap.core.Timeline {
     const innerMotionTimeline = gsap.timeline();
     
-    const previous: Record<string, { from: number | string, to: number | string }> = {};
+    const previous: PreviousMotionValueType = {};
     
     let { delay, duration, ease, ...properties } = motion;
 

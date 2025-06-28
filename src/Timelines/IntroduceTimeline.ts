@@ -5,7 +5,7 @@ export function introduceTimeline(length: number) {
 
   const titleTimeline = Timeline({
     playback: "stagger",
-    staggerDelay: 0.2,
+    staggerDelay: 0.15,
     playables: [
       Rally({
         target: ".topTitle",
@@ -13,7 +13,7 @@ export function introduceTimeline(length: number) {
           {
             delay: 0.1,
             duration: 0.6,
-            ease: "power2.out",
+            ease: "expo.inOut",
             opacity: { from: 0 },
             translateY: { from: -10 },
           },
