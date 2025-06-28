@@ -1,12 +1,6 @@
 import { gsap } from "gsap";
 import { addMotions } from "./motion";
-import { type Motion, type PlayCountType } from "./types";
-
-type RallyProps = {
-  target: string;
-  playCount?: PlayCountType;
-  motions: Motion[];
-};
+import { type RallyProps } from "./types";
 
 /**
  * Rally 함수

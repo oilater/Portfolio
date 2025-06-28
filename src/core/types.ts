@@ -6,16 +6,30 @@ export type MotionValue = {
 };
 
 // Timeline
+export type TimelineProps = {
+  playback: PlaybackType;
+  playables: PlayableType[];
+  staggerDelay?: number;
+};
+
 export type PlaybackType = "parallel" | "serial" | "stagger";
 export type PlayableType = gsap.core.Timeline | gsap.core.Tween;
 
 // Rally
+export type RallyProps = {
+  target: string;
+  playCount?: PlayCountType;
+  motions: Motion[];
+};
+
 export type PlayCountType = number | 'infinite';
 
 // Motion
-export type SplitType = 'lines' | 'words' | 'chars';
-export type MotionValueType = gsap.TweenVars | number | boolean | string | undefined;
-export type ElementType = string | Element;
+export type AddMotionsProps = {
+  rally: gsap.core.Timeline;
+  target: string;
+  motions: Motion[];
+}
 
 export type Motion = {
   [key: string]: MotionValueType;
@@ -29,12 +43,11 @@ export type GetMotionTlProps = {
   motion: Motion;
 };
 
-export type AddMotionsProps = {
-  rally: gsap.core.Timeline;
-  target: string;
-  motions: Motion[];
-}
+export type MotionValueType = gsap.TweenVars | number | boolean | string | undefined;
+export type ElementType = string | Element;
+export type SplitType = 'lines' | 'words' | 'chars';
 
+// 모션 기본값
 export type DefaultValues = {
   [key: string]: number | string | {
     from: number;

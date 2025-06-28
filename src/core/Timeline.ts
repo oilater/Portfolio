@@ -1,11 +1,5 @@
 import { gsap } from "gsap";
-import { type PlayableType, type PlaybackType } from "./types";
-
-type TimelineProps = {
-  playback: PlaybackType;
-  playables: PlayableType[];
-  staggerDelay?: number;
-};
+import { type TimelineProps } from "./types";
 
 /**
  * Timeline 함수
