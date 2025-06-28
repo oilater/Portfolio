@@ -20,11 +20,11 @@ export type Motion = {
 
 export type GetMotionTlProps = {
   element: string | Element;
-  gsapMotion: Motion;
+  motion: Motion;
 };
 
 export type AddMotionsProps = {
-  tl: gsap.core.Timeline;
+  rally: gsap.core.Timeline;
   target: string;
   motions: Motion[];
 }

@@ -20,9 +20,9 @@ export function Rally({
   playCount = 1,
   motions,
 }: RallyProps): gsap.core.Timeline {
-  const rallyTl = gsap.timeline({paused: true});
-  addMotions({ tl: rallyTl, target, motions });
+  const rally = gsap.timeline({paused: true});
+  addMotions({ rally, target, motions });
 
   const repeatCount = playCount !== "infinite" ? playCount - 1 : -1;
-  return rallyTl.repeat(repeatCount);
+  return rally.repeat(repeatCount);
 }
