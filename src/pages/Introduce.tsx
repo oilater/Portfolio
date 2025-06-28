@@ -59,12 +59,12 @@ const myData: MyData[] = [
   {
     id: 2,
     title: '🧚🏻 인터렉션 시스템을 개발했습니다',
-    description: 'SLASH에서 토스 인터렉션 팀의 Rally를 보고 저만의 인터렉션 시스템을 만들어보고 싶었습니다. 여러 시행착오 끝에 사용하기 쉽고 확장성이 좋은 Rally의 구조를 따라 만들게 되었습니다. 이 포트폴리오도 Rally를 사용해 제작했습니다 😀',
+    description: 'SLASH에서 토스 인터렉션 팀의 Rally를 보고 저만의 인터렉션 시스템을 만들어보고 싶었습니다. 여러 시행착오 끝에 사용하기 쉽고 확장성이 좋은 Rally의 구조를 따라 만들게 되었습니다.',
   },
   {
     id: 3,
     title: '👨🏼‍💻 토스에서 함께 일하고 싶습니다',
-    description: '개발에 몰입하는 환경에서 사용자들에게 즐거움과 와우 모먼트를 동시에 제공하는 서비스를 만들고 싶습니다. UI 개발이라면 밤도 거뜬히 샐 수 있는 저의 열정을 토스에서 발휘하겠습니다.',
+    description: '개발에 몰입하는 환경에서 사용자들에게 즐거움과 와우 모먼트를 제공하는 서비스를 만들고 싶습니다. UI 개발이라면 밤도 거뜬히 샐 수 있는 저의 열정을 토스에서 발휘하겠습니다.',
   },
 ];
 
@@ -93,14 +93,14 @@ const listWrapper = css`
 const listRowTitle = css`
   font-size: 1.5rem;
   font-weight: 600;
-  color: white;
+  color: #E4E4E5;
 `;
 
 const listRowDescription = css`
   padding-left: 30px;
   font-size: 1.3rem;
   font-weight: 500;
-  color: white;
+  color: #E4E4E5;
   line-height: 1.65;
   word-wrap: break-word;
   max-width: 100%;
@@ -110,7 +110,7 @@ const listRowDescription = css`
 const mainDescription = css`
   font-size: 1.3rem;
   font-weight: 500;
-  color: white;
+  color: #E4E4E5;
   padding: 10px 16px;
   line-height: 1.65;
 `;
@@ -118,4 +118,5 @@ const mainDescription = css`
 const highlight = css`
   color:#c8e7ff;
   font-weight: 700;
+  border-radius: 4px;
 `;

@@ -33,7 +33,7 @@ export default function Intro({ onComplete }: IntroProps) {
 
 const introWrapper = css`
   width: 100%;
-  height: 100%;
+  height: 100vh;
 `;
 
 const introTitleSection = css`
@@ -47,7 +47,7 @@ const introTitleSection = css`
 const title = css`
   position: absolute;
   font-size: calc(1.5rem + 2vw);
-  color: white;
+  color: #E4E4E5;
   text-align: center;
 `;
 

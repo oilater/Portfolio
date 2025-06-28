@@ -6,10 +6,10 @@ export function GithubIcon() {
             css={githubIcon}
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0,0,256,256"
-            fill="#FFFFFF"
+            fill="#E4E4E5"
         >
             <g 
-                fill="#ffffff" 
+                fill="#E4E4E5" 
                 fillRule="nonzero" 
                 stroke="none" 
                 strokeWidth="1" 

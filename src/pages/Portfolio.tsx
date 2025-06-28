@@ -26,8 +26,12 @@ export default function Portfolio() {
 
       {/* Pages */}
       {step === 'init' && <Intro onComplete={setStep} />}
-      {step === 'introduce' && <Introduce />}
-      {step === 'introduce' && <Project />}
+      {step === 'introduce' &&
+        <>
+          <Introduce />
+          <Project />
+        </>
+      }
     </div>
   );
 }

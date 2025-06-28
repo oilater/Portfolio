@@ -2,7 +2,7 @@ import { Rally } from "../core/rally";
 import { Timeline } from "../core/timeline";
 
 export function introTimeline(onComplete?: () => void) {  
-  const TEXT_GRAY = '#666666';
+  const TEXT_GRAY = '#9E9EA4';
 
   const introTl = Timeline({
     playback: "serial",
@@ -10,7 +10,7 @@ export function introTimeline(onComplete?: () => void) {
       
       Timeline({
         playback: "stagger",
-        staggerDelay: 0.5,
+        staggerDelay: 0.6,
         playables: [
           Rally({
             target: ".introTitle",
