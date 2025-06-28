@@ -5,8 +5,10 @@ import type { Motion } from "../core/types";
  */
 export function motionToGSAP(motion: Motion): Motion {
     const motionValue: Motion = {};
+
+    let { split, splitDelay, randomOrder, ...properties } = motion;
   
-      for (const [key, value] of Object.entries(motion)) {
+      for (const [key, value] of Object.entries(properties)) {
         if (!value) continue;
         const gsapKey = getGSAPKey(key);
         motionValue[gsapKey] = value;
@@ -23,5 +25,5 @@ export function motionToGSAP(motion: Motion): Motion {
 function getGSAPKey(key: string): string {
 if (key.includes('X')) return 'x';
 if (key.includes('Y')) return 'y';
-return key.toLowerCase();
+return key;
 }
