@@ -1,8 +1,9 @@
 import { gsap } from "gsap";
+import { type PlayableType, type PlaybackType } from "./types";
 
 type TimelineProps = {
-  playback: "parallel" | "serial" | "stagger";
-  playables: gsap.core.Timeline[];
+  playback: PlaybackType;
+  playables: PlayableType[];
   staggerDelay?: number;
 };
 

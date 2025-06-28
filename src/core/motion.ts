@@ -21,7 +21,7 @@ export function addMotions({ rally, target, motions }: AddMotionsProps): void {
       const motionTl = gsap.timeline();
 
       // 모션을 적용할 element 배열 
-      // split 속성이 있는 경우 splitType에 따라 forEach를 돌기 때문에 target이 className으로 들어온 경우에도 배열로 변환
+      // split 속성이 있는 경우 forEach로 순회하기 때문에, target이 className으로 들어온 경우에도 배열로 변환
       let elements: ElementType[];
      
       // 모션의 split 속성이 있는 경우
@@ -101,11 +101,12 @@ export function addMotions({ rally, target, motions }: AddMotionsProps): void {
     return innerMotionTl;
   }
   
-  // 모션의 기본값 반환(from, to 속성이 없는 경우)
-  function getDefaultValue(key: string, type: 'from' | 'to') {
-    if (typeof DEFAULTS[key] === 'object') {
-      return DEFAULTS[key][type];
-    } 
-  
-    return DEFAULTS[key];
-  }
+// 모션의 기본값 반환(from, to 속성이 없는 경우)
+function getDefaultValue(key: string, type: 'from' | 'to') {
+  if (typeof DEFAULTS[key] === 'object') {
+    return DEFAULTS[key][type];
+  } 
+
+  return DEFAULTS[key];
+}
+

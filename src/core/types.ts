@@ -5,10 +5,16 @@ export type MotionValue = {
   ease?: string;
 };
 
+// Timeline
+export type PlaybackType = "parallel" | "serial" | "stagger";
+export type PlayableType = gsap.core.Timeline | gsap.core.Tween;
+
+// Rally
+export type PlayCountType = number | 'infinite';
+
+// Motion
 export type SplitType = 'lines' | 'words' | 'chars';
-
 export type MotionValueType = gsap.TweenVars | number | boolean | string | undefined;
-
 export type ElementType = string | Element;
 
 export type Motion = {

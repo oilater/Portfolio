@@ -1,17 +1,17 @@
 import { gsap } from "gsap";
 import { addMotions } from "./motion";
-import { type Motion } from "./types";
+import { type Motion, type PlayCountType } from "./types";
 
 type RallyProps = {
   target: string;
-  playCount?: number | 'infinite';
+  playCount?: PlayCountType;
   motions: Motion[];
 };
 
 /**
  * Rally 함수
  * @param target - 대상 요소
- * @param playCount - 반복 횟수 (기본값: 1)
+ * @param playCount - 모션 반복 횟수 (기본값: 1)
  * @param motions - 모션 배열
  * @returns - Rally 타임라인 반환
  */
