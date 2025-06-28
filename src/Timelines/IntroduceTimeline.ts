@@ -5,12 +5,13 @@ export function introduceTimeline(length: number) {
   
   const titleTimeline = Timeline({
     playback: "stagger",
-    staggerDelay: 0.1,
+    staggerDelay: 0.2,
     playables: [
       Rally({
         target: ".topTitle",
         motions: [
           {
+            delay: 0.1,
             duration: 0.6,
             ease: "power2.out",
             opacity: { from: 0 },
@@ -18,17 +19,36 @@ export function introduceTimeline(length: number) {
           },
         ],
       }),
-      Rally({
-        target: ".mainDescription",
-        motions: [
-          {
-            split: 'chars',
-            splitDelay: 0.01,
-            duration: 0.3,
-            ease: "power2.in",
-            opacity: { from: 0 },
-          },
-        ],
+
+      Timeline({
+        playback: "stagger",
+        staggerDelay: 0.1,
+        playables: [
+          Rally({
+            target: ".mainDescription",
+            motions: [
+              {
+                split: 'chars',
+                splitDelay: 0.01,
+                duration: 0.8,
+                ease: "power2.in",
+                opacity: { from: 0 },
+              },
+            ],
+          }),
+          Rally({
+            target: ".mainDescription2",
+            motions: [
+              {
+                split: 'chars',
+                splitDelay: 0.01,
+                duration: 0.8,
+                ease: "power2.in",
+                opacity: { from: 0 },
+              },
+            ],
+          }),
+        ]
       }),
     ],
   });
@@ -37,7 +57,6 @@ export function introduceTimeline(length: number) {
     target: ".listRowSection",
     motions: [
       {
-        delay: 1,
         duration: 1,
         opacity: { from: 0, ease: "power2.in" },
         scale: { from: 0.95, ease: "back.out" },
@@ -61,7 +80,7 @@ export function introduceTimeline(length: number) {
                 duration: 0.7,
                 ease: "power2.out",
                 opacity: { from: 0 },
-                translateX: { from: -5 },
+                translateX: { from: -3 },
               }
             ]
           }),
@@ -71,7 +90,7 @@ export function introduceTimeline(length: number) {
             motions: [
               {
                 split: 'lines',
-                splitDelay: 0.2,
+                splitDelay: 0.1,
                 duration: 0.3,
                 ease: "power2.in",
                 opacity: { from: 0 },
@@ -85,7 +104,7 @@ export function introduceTimeline(length: number) {
 
   const mainTl = Timeline({
     playback: "stagger",
-    staggerDelay: 0.8,
+    staggerDelay: 0.7,
     playables: [
       titleTimeline,
       listRowSectionRally,

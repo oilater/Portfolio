@@ -18,8 +18,7 @@ export function Rally({
   playCount = 1,
   motions,
 }: RallyProps): gsap.core.Timeline {
-  const rallyTl = gsap.timeline();
-  
+  const rallyTl = gsap.timeline({paused: true});
   addMotions({ tl: rallyTl, target, motions });
 
   const repeatCount = playCount !== "infinite" ? playCount - 1 : -1;
@@ -28,7 +27,6 @@ export function Rally({
 
 function addMotions({ tl, target, motions }: AddMotionsProps): void {
   const splitCache: Partial<Record<SplitType, ElementType[]>> = {};
-
 
   for (const motion of motions) {
     const motionTl = gsap.timeline();
@@ -42,7 +40,7 @@ function addMotions({ tl, target, motions }: AddMotionsProps): void {
     } else {
       elements = [target];
     }
-
+    
     if (motion.randomOrder) elements = gsap.utils.shuffle(elements);    
     
     const gsapMotion = motionToGSAP(motion);
@@ -100,12 +98,12 @@ function getMotionTl({
     let to = value.to ?? previousValues[key]?.from ?? getDefaultValue(key, "to");
     
     if (from === 'random') {
-      from = gsap.utils.random(-400, 400);
+      from = gsap.utils.random(-100, 100);
       to = 0;
     }
 
     if (to === 'random') {
-      to = gsap.utils.random(-400, 400);
+      to = gsap.utils.random(-100, 100);
       from = 0;
     }
     

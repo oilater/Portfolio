@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import type { Step } from "./Portfolio";
-import { introTimeline } from "../Timelines/IntroTimeline";
+import { introTimeline } from "../timelines/IntroTimeline";
 
 type IntroProps = {
   onComplete: (step: Step) => void;
@@ -16,16 +16,36 @@ export default function Intro({ onComplete }: IntroProps) {
   }, {scope: introScope});
   
   return (
-    <div ref={introScope}>
-      <h1 className="introTitle" css={title}>
-        아이디어를 만드는<br />
-        <span className="subTitle" css={subTitle}>프론트엔드 개발자</span> 김성현입니다
-      </h1>    
+    <div ref={introScope} css={introWrapper}>
+      <div className="introTitleSection" css={introTitleSection}>
+        <h1 className="introTitle" css={title}>
+          아이디어를 만드는<br />
+          <span className="subTitle" css={subTitle}>프론트엔드 개발자</span> 김성현입니다
+        </h1>
+        <h1 className="introTitleFill" css={title}>
+          아이디어를 만드는<br />
+          <span css={subTitle}>프론트엔드 개발자</span> 김성현입니다
+        </h1>
+      </div> 
     </div>
   );
 }
 
+const introWrapper = css`
+  width: 100%;
+  height: 100%;
+`;
+
+const introTitleSection = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const title = css`
+  position: absolute;
   font-size: calc(1.5rem + 2vw);
   color: white;
   text-align: center;
