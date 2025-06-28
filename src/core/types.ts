@@ -46,6 +46,7 @@ export type GetMotionTlProps = {
 export type MotionValueType = gsap.TweenVars | number | boolean | string | undefined;
 export type ElementType = string | Element;
 export type SplitType = 'lines' | 'words' | 'chars';
+export type SplitCacheType = Partial<Record<SplitType, ElementType[]>>;
 
 // 모션 기본값
 export type DefaultValues = {

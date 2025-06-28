@@ -1,5 +1,5 @@
-import { Rally } from "../core/Rally";
-import { Timeline } from "../core/Timeline";
+import { Rally } from "../core/rally";
+import { Timeline } from "../core/timeline";
 
 export function introTimeline(onComplete?: () => void) {  
   const TEXT_GRAY = '#888888';

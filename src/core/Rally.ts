@@ -3,7 +3,7 @@ import { addMotions } from "./motion";
 import { type RallyProps } from "./types";
 
 /**
- * Rally 함수
+ * Rally
  * @param target - 대상 요소
  * @param playCount - 모션 반복 횟수 (기본값: 1)
  * @param motions - 모션 배열
