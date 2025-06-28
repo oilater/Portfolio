@@ -1,17 +1,19 @@
 import { gsap } from "gsap";
-import { DEFAULTS, type AddMotionsProps, type ElementType, type GetMotionTlProps, type Motion, type MotionValueType, type SplitType } from "./types";
-import { SplitText } from "gsap/SplitText";
+import { addMotions } from "./motion";
+import { type Motion } from "./types";
 
 type RallyProps = {
   target: string;
   playCount?: number | 'infinite';
   motions: Motion[];
-  exitMotions?: Motion[];
 };
 
 /**
- * Rally 훅
- * @returns - Rally 생성 함수
+ * Rally 함수
+ * @param target - 대상 요소
+ * @param playCount - 반복 횟수 (기본값: 1)
+ * @param motions - 모션 배열
+ * @returns - Rally 타임라인 반환
  */
 export function Rally({
   target,
@@ -24,115 +26,3 @@ export function Rally({
   const repeatCount = playCount !== "infinite" ? playCount - 1 : -1;
   return rallyTl.repeat(repeatCount);
 }
-
-function addMotions({ tl, target, motions }: AddMotionsProps): void {
-  const splitCache: Partial<Record<SplitType, ElementType[]>> = {};
-
-  for (const motion of motions) {
-    const motionTl = gsap.timeline();
-    
-    let elements: ElementType[];
-    if (motion.split) {
-      if (!splitCache[motion.split]) {
-        splitCache[motion.split] = getSplitElements(target, motion.split);
-      }
-      elements = splitCache[motion.split]!;
-    } else {
-      elements = [target];
-    }
-    
-    if (motion.randomOrder) elements = gsap.utils.shuffle(elements);    
-    
-    const gsapMotion = motionToGSAP(motion);
-    
-    for (const element of elements) {
-      const innerMotionTl = getMotionTl({ element, gsapMotion });
-      motionTl.add(innerMotionTl, "<" + (motion?.splitDelay ?? 0));
-    }
-    tl.add(motionTl, ">" + (motion.delay ?? 0));
-  }
-}
-
-/**
- * gsap 형식으로 모션 변환
- */
-function motionToGSAP(motion: Motion): Motion {
-  const motionValue: Motion = {};
-
-    for (const [key, value] of Object.entries(motion)) {
-      if (!value) continue;
-      const gsapKey = getGSAPKey(key);
-      motionValue[gsapKey] = value;
-    }
-
-  return motionValue;
-}
-
-function getGSAPKey(key: string): string {
-  if (key.includes('X')) return 'x';
-  if (key.includes('Y')) return 'y';
-  return key.toLowerCase();
-}
-
-/**
- * motion마다 innerMotionTl을 생성하고 합쳐서 motionTl에 추가 후 반환
- */
-function getMotionTl({
-  element,
-  gsapMotion,
-}: GetMotionTlProps): gsap.core.Timeline {
-  const innerMotionTl = gsap.timeline();
-
-  const previousValues: Record<string, { from: MotionValueType, to: MotionValueType }> = {};
-  
-  let { delay, duration, ease, ...properties } = gsapMotion;
-
-  for (const [key, value] of Object.entries(properties)) {
-    if (typeof value !== 'object') continue;
-    // 개별 속성 우선
-    delay = value.delay ?? delay;
-    duration = value.duration ?? duration;
-    ease = value.ease ?? ease;
-    
-    let from = value.from ?? previousValues[key]?.to ?? getDefaultValue(key, "from");
-    let to = value.to ?? previousValues[key]?.from ?? getDefaultValue(key, "to");
-    
-    if (from === 'random') {
-      from = gsap.utils.random(-100, 100);
-      to = 0;
-    }
-
-    if (to === 'random') {
-      to = gsap.utils.random(-100, 100);
-      from = 0;
-    }
-    
-    previousValues[key] = { from, to };
-    
-    const tween = gsap.fromTo(
-      element,
-      { [key]: from },
-      { ease: ease as string, duration: duration as number, [key]: to }
-    );
-    innerMotionTl.add(tween, "<");
-  }
-  return innerMotionTl;
-}
-
-function getSplitElements(target: string, split: SplitType): ElementType[] {
-  const splitTarget = createSplit(target, split);
-  return splitTarget?.[split] || splitTarget?.lines;
-}
-
-function getDefaultValue(key: string, type: 'from' | 'to') {
-  if (typeof DEFAULTS[key] === 'object') {
-    return DEFAULTS[key][type];
-  } 
-
-  return DEFAULTS[key];
-}
-
-// useCallback 사용으로 불필요한 함수 재생성 방지
-const createSplit = (target: string, splitType: SplitType) => {
-  return SplitText.create(target, { type: splitType });
-};

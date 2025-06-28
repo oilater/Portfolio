@@ -27,7 +27,7 @@ export function useScrollTrigger() {
     }
   }: AnimateScrollProps) {
     const { start, end, scrub, markers } = options;
-    gsap.set(target, { opacity: 0, y: 50 });
+    gsap.set(target, { opacity: 0, y: 30 });
     const animation = gsap.to(target, motion);
 
     return ScrollTrigger.create({
