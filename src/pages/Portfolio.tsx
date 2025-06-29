@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { css } from "@emotion/react";
-import Project from "./Project";
+import { Project } from "./Project";
 import Header from "../components/Header";
 import Intro from "./Intro";
 import Introduce from "./Introduce";
@@ -12,7 +12,7 @@ const VELOG_URL = 'https://velog.io/@oilater';
 
 export default function Portfolio() {
   const [step, setStep] = useState<Step>('init');
-
+  
   return (
     <div css={wrapper}>
       {/* Header */}
@@ -25,7 +25,10 @@ export default function Portfolio() {
       )}
 
       {/* Pages */}
-      {step === 'init' && <Intro onComplete={setStep} />}
+      {step === 'init' && 
+        <Intro onComplete={setStep} />
+      }
+
       {step === 'introduce' &&
         <>
           <Introduce />

@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import { css } from "@emotion/react";
 import { Top } from "../components/Top";
-import { introduceTimeline } from "../timelines/IntroduceTimeline";
 import { ListRow } from "../components/ListRow";
-import { useGSAP } from "@gsap/react";
+import { useAnimation } from "../hooks/useTimeline";
+import { introduceTimeline } from "../timelines/introduceTimeline";
 
 type MyData = {
   id: number;
@@ -13,16 +13,11 @@ type MyData = {
 
 export default function Introduce() {
   const introduceScope = useRef<HTMLDivElement>(null!);
-  let introduceTl: gsap.core.Timeline;
-
-  useGSAP(() => {
-    introduceTl = introduceTimeline(myData.length).play();
-
-    introduceTl.eventCallback('onComplete', () => {
-      introduceTl.revert();
-    });
-
-  }, {scope: introduceScope});
+  
+  useAnimation({
+    timelineFn: () => introduceTimeline(myData.length),
+    scope: introduceScope,
+  });
 
   return (
     <div ref={introduceScope} css={introduceWrapper}>

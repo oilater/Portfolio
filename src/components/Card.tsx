@@ -4,13 +4,12 @@ type CardProps = {
   title: string;
   description: string;
   image: string;
-  link: string;
+  onClick?: () => void;
 };
 
-export function Card({ title, description, image, link }: CardProps) {
+export function Card({ title, description, image, onClick }: CardProps) {
   return (
-    <div css={card}>
-      <a css={cardLink} href={link} target="_blank" rel="noopener noreferrer">
+    <div css={card} onClick={onClick}>
         <div css={cardImageWrapper}>
           <img src={image} alt={title} css={cardImage} loading="lazy" />
         </div>
@@ -18,22 +17,10 @@ export function Card({ title, description, image, link }: CardProps) {
           <p css={cardTitle}>{title}</p>
           <p css={cardDescription}>{description}</p>
         </div>
-      </a>
     </div>
   );
 }
 
-const cardLink = css`
-  text-decoration: none;
-  color: inherit;
-  outline: none;
-  
-  &:visited,
-  &:active,
-  &:focus {
-    color: inherit;
-  }
-`;
 const card = css`
   display: flex;
   flex-direction: column;
@@ -44,7 +31,8 @@ const card = css`
   border-radius: 16px;
   color: #E4E4E5;
   transition: background 0.2s ease;
-
+  cursor: pointer;
+  
   &:hover {
     background: #1e1e23;
   }

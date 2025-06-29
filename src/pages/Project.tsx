@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import { css } from "@emotion/react";
 import { Top } from "../components/Top";
 import { useGSAP } from "@gsap/react";
@@ -10,11 +11,15 @@ import portfolio from "../assets/images/portfolio.jpg";
 import interactiveGraph from "../assets/gifs/interactive-graph.gif";
 import crewing from "../assets/gifs/crewing.gif";
 
-export default function Project() {
+const INTERACTIVE_GRAPH_URL = "https://velog.io/@oilater/interactive-graph";
+const CREWING_URL = "https://velog.io/@oilater/series/WorkoutTogether-%EA%B0%9C%EB%B0%9C-%EA%B3%BC%EC%A0%95";
+const HOMET_FRIEND_URL = "https://github.com/oilater/HomeTraining-Friend";
+
+export function Project() {
+  const navigate = useNavigate();
   const { animateScroll } = useScrollTrigger();
   const projectScope = useRef<HTMLDivElement>(null!);
   let projectTl: gsap.core.Timeline;
-  
   useGSAP(() => {
     projectTl = projectTimeline();
     animateScroll({
@@ -55,25 +60,25 @@ export default function Project() {
           title="Rally 만드는 김에 포트폴리오도 만들어보자"
           description="토스 인터렉션 팀의 Rally의 구조를 참고해 직접 만들어 본 인터렉션 시스템과 포트폴리오, 페이지 성능 개선을 위해 고민한 과정을 소개합니다."
           image={portfolio}
-          link="https://www.google.com"
+          onClick={() => navigate(`/project/rally-portfolio`)}
         />
         <Card 
           title="바닐라 JS로 상태관리 해보기"
           description="'데이터가 바뀌면 관련된 모든 UI가 바뀌어야 한다'를 목표로 만들어 본 인터렉티브 그래프를 소개합니다."
           image={interactiveGraph}
-          link="https://velog.io/@oilater/interactive-graph"
+          onClick={() => window.open(INTERACTIVE_GRAPH_URL, "_blank")}
         />
         <Card 
           title="SocketIO를 활용해 실시간 운동 친구 만들기"
           description="NextJS와 카카오 로그인, SocketIO를 활용해 실시간으로 운동 친구를 만들어 본 경험을 공유합니다."
           image={crewing}
-          link="https://velog.io/@oilater/series/WorkoutTogether-%EA%B0%9C%EB%B0%9C-%EA%B3%BC%EC%A0%95"
+          onClick={() => window.open(CREWING_URL, "_blank")}
         />
         <Card
           title="SwiftUI로 만들어 배포한 홈트친구"
           description="맨몸 운동의 동기부여를 위해 SwiftUI를 학습해 배포한 1인 앱 홈트친구를 소개합니다."
           image={hometFriendImage}
-          link="https://github.com/oilater/HomeTraining-Friend"
+          onClick={() => window.open(HOMET_FRIEND_URL, "_blank")}
         />
       </div>
     </div>
