@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { css } from "@emotion/react";
 import { Top } from "../components/Top";
-import { ListRow } from "../components/ListRow";
-import { useAnimation } from "../hooks/useTimeline";
 import { introduceTimeline } from "../timelines/introduceTimeline";
+import { ListRow } from "../components/ListRow";
+import { useGSAP } from "@gsap/react";
+import { useAtom } from "jotai";
+import { timelinePlayAtom } from "../stores/timelineStore";
 
 type MyData = {
   id: number;
@@ -12,12 +14,14 @@ type MyData = {
 };
 
 export default function Introduce() {
+  const [isPlayed, setIsPlayed] = useAtom(timelinePlayAtom);
   const introduceScope = useRef<HTMLDivElement>(null!);
-  
-  useAnimation({
-    timelineFn: () => introduceTimeline(myData.length),
-    scope: introduceScope,
-  });
+
+  useGSAP(() => {
+    if (isPlayed('introduce')) return;
+    let introduceTl = introduceTimeline(myData.length).play();
+    introduceTl.eventCallback('onComplete', () => setIsPlayed('introduce'));
+  }, { scope: introduceScope });
 
   return (
     <div ref={introduceScope} css={introduceWrapper}>
