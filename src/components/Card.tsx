@@ -7,12 +7,12 @@ type CardProps = {
   link: string;
 };
 
-export default function Card({ title, description, image, link }: CardProps) {
+export function Card({ title, description, image, link }: CardProps) {
   return (
     <div css={card}>
       <a css={cardLink} href={link} target="_blank" rel="noopener noreferrer">
         <div css={cardImageWrapper}>
-          <img src={image} alt={title} css={cardImage} />
+          <img src={image} alt={title} css={cardImage} loading="lazy" />
         </div>
         <div css={cardContent}>
           <p css={cardTitle}>{title}</p>
@@ -62,10 +62,10 @@ const cardImage = css`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease-out;
+  transition: transform 0.4s ease-out;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.08);
   }
 `;
 

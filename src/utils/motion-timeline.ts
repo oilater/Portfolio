@@ -20,20 +20,7 @@ export function getMotionTimeline({
       duration = value.duration ?? duration;
       ease = value.ease ?? ease;
       
-      let from = value.from ?? previous[key]?.to ?? getDefaultValue(key, "from");
-      let to = value.to ?? previous[key]?.from ?? getDefaultValue(key, "to");
-      
-      // TODO: 리팩토링 필요
-      if (from === 'random') {
-        from = gsap.utils.random(-100, 100);
-        to = 0;
-      }
-  
-      if (to === 'random') {
-        to = gsap.utils.random(-100, 100);
-        from = 0;
-      }
-      
+      const { from, to } = getFromTo(key, value, previous);
       previous[key] = { from, to };
       
       const tween = gsap.fromTo(
@@ -44,6 +31,25 @@ export function getMotionTimeline({
       innerMotionTimeline.add(tween, "<");
     }
     return innerMotionTimeline;
+  }
+
+  function getFromTo(
+    key: string,
+    value: any,
+    previous: PreviousMotionValueType
+  ) {
+    let from = value.from ?? previous[key]?.to ?? getDefaultValue(key, "from");
+    let to = value.to ?? previous[key]?.from ?? getDefaultValue(key, "to");
+  
+    if (from === 'random') {
+      from = gsap.utils.random(-100, 100);
+      to = 0;
+    }
+    if (to === 'random') {
+      to = gsap.utils.random(-100, 100);
+      from = 0;
+    }
+    return { from, to };
   }
 
 // 모션의 기본값 반환(from, to 속성이 없는 경우)

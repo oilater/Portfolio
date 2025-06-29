@@ -27,7 +27,7 @@ export const Top = {
 // style
 const rootStyle = css({
   width: '100%',
-  padding: '40px 16px 8px',
+  padding: '20px 16px 8px',
 });
 
 const paragraphStyle = css({
@@ -37,6 +37,6 @@ const paragraphStyle = css({
     height: '100%',
     fontSize: '2.5rem',
     fontWeight: '700',
-    color: '#E4E4E5',
+    color: '#C3C3C6',
   });
   

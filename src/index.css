@@ -1,8 +1,11 @@
-/* CSS Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -21,4 +24,3 @@ button {
     margin: 0;
     cursor: pointer;
 }
-  

@@ -17,6 +17,11 @@ export default function Introduce() {
 
   useGSAP(() => {
     introduceTl = introduceTimeline(myData.length).play();
+
+    introduceTl.eventCallback('onComplete', () => {
+      introduceTl.revert();
+    });
+
   }, {scope: introduceScope});
 
   return (
@@ -24,14 +29,14 @@ export default function Introduce() {
         <Top.Root 
           title={
             <Top.Paragraph>
-              <span className="topTitle">About me 🤗 </span>
+              <span className="topTitle">About Me 🤗 </span>
             </Top.Paragraph>
           }
         />
 
       <div css={mainDescription}>
         <p className="mainDescription">안녕하세요, 인터렉션으로 가치를 전달하고 싶은 지원자 김성현입니다.</p>
-        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로, 항상 사용자의 입장에서 UI를 개발하고 있습니다.</p>
+        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로, 사용자의 입장에서 UI를 개발하려고 노력합니다.</p>
       </div>
 
       <div className="listRowSection" css={listSection}>
@@ -71,7 +76,7 @@ const myData: MyData[] = [
 const introduceWrapper = css`
   width: 100%;
   height: auto;
-  margin-bottom: 3rem;
+  padding-bottom: 5rem;
 `;
 
 const listSection = css`
@@ -100,7 +105,7 @@ const listRowDescription = css`
   padding-left: 30px;
   font-size: 1.3rem;
   font-weight: 500;
-  color: #E4E4E5;
+  color: #C3C3C6;
   line-height: 1.65;
   word-wrap: break-word;
   max-width: 100%;
@@ -110,7 +115,7 @@ const listRowDescription = css`
 const mainDescription = css`
   font-size: 1.3rem;
   font-weight: 500;
-  color: #E4E4E5;
+  color: #C3C3C6;
   padding: 10px 16px;
   line-height: 1.65;
 `;

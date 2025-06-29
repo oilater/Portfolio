@@ -5,9 +5,9 @@ export function VelogIcon() {
         <svg 
             css={velogIcon}
             viewBox="0 0 192 192" 
-            fill="#E4E4E5"
+            fill="#C3C3C6"
         >
-            <circle cx="96" cy="96" r="96" fill="#E4E4E5"/>
+            <circle cx="96" cy="96" r="96" fill="#C3C3C6"/>
             <path 
                 fillRule="evenodd" 
                 clipRule="evenodd" 

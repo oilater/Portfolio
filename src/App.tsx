@@ -1,21 +1,24 @@
-import { lazy, Suspense, useEffect } from 'react';
-import Skeleton from 'react-loading-skeleton';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Portfolio from './pages/Portfolio';
+import { useEffect } from 'react';
+
+gsap.registerPlugin(SplitText, ScrollTrigger); 
 
 function App() {
-  const Portfolio = lazy(() => import('./pages/Portfolio'));
+  const onScroll = () => {};
 
   useEffect(() => {
-    gsap.registerPlugin(SplitText, ScrollTrigger); 
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
   }, [])
-  
+
   return (
-    <Suspense fallback={<Skeleton count={10} />}>
       <Portfolio />
-  </Suspense>
-  )
+  );
 }
 
 export default App;

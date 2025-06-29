@@ -17,7 +17,7 @@ export const Button = ({ children, onClick, ...props }: ButtonProps) => {
 };
 
 const button = css`
-  color: #E4E4E5;
+  color: #C3C3C6;
   font-size: 1.2rem;
   font-weight: 500;
   background: none;

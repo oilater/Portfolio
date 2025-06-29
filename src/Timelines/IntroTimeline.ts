@@ -34,7 +34,7 @@ export function introTimeline(onComplete?: () => void) {
             motions: [
               {
                 split: 'chars',
-                splitDelay: 0.03,
+                splitDelay: 0.05,
                 ease: "power2.in",
                 duration: 0.5,
                 opacity: { from: 0, to: 1 },
@@ -49,7 +49,7 @@ export function introTimeline(onComplete?: () => void) {
         target: ".introTitleSection",
         motions: [
           {
-            delay: 0.8,
+            delay: 0.5,
             duration: 0.6,
             ease: "back.in",
             opacity: { to: 0 },
