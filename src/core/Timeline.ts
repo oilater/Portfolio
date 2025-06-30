@@ -13,19 +13,21 @@ export function Timeline({
   playables,
   staggerDelay = 0,
 }: TimelineProps): gsap.core.Timeline {
-  const tl = gsap.timeline({ paused: true });
+  const timeline = gsap.timeline({ paused: true });
 
   playables.forEach((playable, i) => {
-    const at =
+    const position =
       playback === "stagger"
         ? i * staggerDelay
         : playback === "parallel"
         ? "<"
         : ">";
 
-    tl.add(playable, at);
-    playable.paused() && playable.play();
+    timeline.add(playable, position);
+
+    if (playable.paused())
+      playable.play();   
   });
 
-  return tl;
+  return timeline;
 }
