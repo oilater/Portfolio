@@ -1,9 +1,22 @@
-import type { ArticleData } from '../components/Article';
+import type { ReactNode } from 'react';
+import { ARTICLE_IMAGES, ARTICLE_KEYS } from "../constants/article";
+import PortfolioArticle from './PortfolioArticle';
 
-export const articleMap: Record<string, ArticleData> = {
-  "rally-portfolio": {
-    title: "인트로 아티클",
-    imageUrl: "https://via.placeholder.com/600x300",
-    content: <p>환영합니다! 이것은 인트로 페이지입니다.</p>,
+export type ArticleData = {
+  title: string;
+  date: string;
+  imageUrl: string;
+  content: ReactNode;
+}
+
+type ArticleMap = Record<string, ArticleData>;
+
+export const articleMap: ArticleMap = {
+  
+  [ARTICLE_KEYS.PORTFOLIO]: {
+    title: "Rally 만드는 김에 포트폴리오도 만들어보자",
+    date: "2025-06-30",
+    imageUrl: ARTICLE_IMAGES.PORTFOLIO_DETAIL,
+    content: <PortfolioArticle />
   },
 };

@@ -15,17 +15,16 @@ export function Timeline({
 }: TimelineProps): gsap.core.Timeline {
   const tl = gsap.timeline({ paused: true });
 
-  const isStagger = playback === "stagger";
-  const position = playback === "parallel" ? "<" : ">";
-
   playables.forEach((playable, i) => {
-    const at = isStagger ? i * staggerDelay : position;
-    
-    tl.add(playable, at);
+    const at =
+      playback === "stagger"
+        ? i * staggerDelay
+        : playback === "parallel"
+        ? "<"
+        : ">";
 
-    if (playable.paused()) {
-      playable.play();
-    }
+    tl.add(playable, at);
+    playable.paused() && playable.play();
   });
 
   return tl;

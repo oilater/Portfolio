@@ -44,7 +44,6 @@ export function introTimeline(onComplete?: () => void) {
         ]
       }),
       
-
       Rally({
         target: ".introTitleSection",
         motions: [

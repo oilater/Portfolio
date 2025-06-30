@@ -17,11 +17,13 @@ export const Button = ({ children, onClick, ...props }: ButtonProps) => {
 };
 
 const button = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #C3C3C6;
   font-size: 1.2rem;
   font-weight: 500;
   background: none;
   border: none;
-  padding: 10px 20px;
   cursor: pointer;
 `;
