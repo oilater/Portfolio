@@ -5,7 +5,7 @@ import { introduceTimeline } from "../timelines/introduceTimeline";
 import { ListRow } from "../components/ListRow";
 import { useGSAP } from "@gsap/react";
 import { useAtom } from "jotai";
-import { timelinePlayAtom } from "../stores/timelineStore";
+import { animationPlayStateAtom } from "../stores/timelineStore";
 
 type MyData = {
   id: number;
@@ -14,7 +14,7 @@ type MyData = {
 };
 
 export default function Introduce() {
-  const [isPlayed, setIsPlayed] = useAtom(timelinePlayAtom);
+  const [isPlayed, setIsPlayed] = useAtom(animationPlayStateAtom);
   const introduceScope = useRef<HTMLDivElement>(null!);
 
   useGSAP(() => {

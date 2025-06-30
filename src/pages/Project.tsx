@@ -10,6 +10,8 @@ import hometFriendImage from "../assets/images/hometfriend.jpg";
 import portfolio from "../assets/images/portfolio.jpg";
 import interactiveGraph from "../assets/gifs/interactive-graph.gif";
 import crewing from "../assets/gifs/crewing.gif";
+import { useAtom } from "jotai";
+import { animationPlayStateAtom } from "../stores/timelineStore";
 
 const INTERACTIVE_GRAPH_URL = "https://velog.io/@oilater/interactive-graph";
 const CREWING_URL = "https://velog.io/@oilater/series/WorkoutTogether-%EA%B0%9C%EB%B0%9C-%EA%B3%BC%EC%A0%95";
@@ -17,11 +19,14 @@ const HOMET_FRIEND_URL = "https://github.com/oilater/HomeTraining-Friend";
 
 export function Project() {
   const navigate = useNavigate();
+  const [isPlayed, setIsPlayed] = useAtom(animationPlayStateAtom);
   const { animateScroll } = useScrollTrigger();
   const projectScope = useRef<HTMLDivElement>(null!);
   let projectTl: gsap.core.Timeline;
   useGSAP(() => {
-    projectTl = projectTimeline();
+    if (isPlayed('project')) return;
+    projectTl = projectTimeline().eventCallback('onComplete', () => setIsPlayed('project'));
+    
     animateScroll({
       target: '.hr',
       timeline: projectTl,
@@ -32,11 +37,6 @@ export function Project() {
         markers: true,
       },
     });
-
-    projectTl.eventCallback('onComplete', () => {
-      projectTl.revert();
-    });
-
   }, {scope: projectScope});
 
   return (
@@ -60,7 +60,7 @@ export function Project() {
           title="Rally 만드는 김에 포트폴리오도 만들어보자"
           description="토스 인터렉션 팀의 Rally의 구조를 참고해 직접 만들어 본 인터렉션 시스템과 포트폴리오, 페이지 성능 개선을 위해 고민한 과정을 소개합니다."
           image={portfolio}
-          onClick={() => navigate(`/project/rally-portfolio`)}
+          onClick={() => navigate(`/article/rally-portfolio`)}
         />
         <Card 
           title="바닐라 JS로 상태관리 해보기"

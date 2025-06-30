@@ -98,19 +98,3 @@ const articleHeader = css`
   background-color: green;
   color: #fff;
 `;
-
-/**
- * <Article.Root
- *   header={
- *     <Article.Header
- *       title="Article Title"
- *       imageUrl="https://via.placeholder.com/150"
- *     />
- *   }
- *   content={
- *     <Article.Content
- *       content={}
- *     />
- *   }
- * />
- */
