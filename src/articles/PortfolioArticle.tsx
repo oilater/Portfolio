@@ -196,7 +196,7 @@ export default function PortfolioArticle() {
         
         <article>
           <h4>접근성</h4>
-          <p>시맨틱 태그를 적절히 사용하고, aria-label을 적용해 접근성을 높였습니다.</p>
+          <p>시맨틱 태그를 적절히 사용하고, aria-label을 적용해 접근성을 높였습니다. 또한 모바일에서도 볼 수 있도록 기기별 반응형 CSS를 적용했습니다.</p>
         </article>
       </section>
 
