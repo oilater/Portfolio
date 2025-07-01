@@ -46,9 +46,10 @@ function ArticleRoot({ header, content }: ArticleRootProps) {
 
 function ArticleHeader({ title, date, imageUrl }: ArticleHeaderProps) {
   const onScrollDown = () => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    window.scrollTo(0, window.innerHeight - 100);
-    setTimeout(() => document.documentElement.style.scrollBehavior = 'auto', 1000);
+    window.scrollTo({
+      top: window.innerHeight - 100,
+      behavior: 'smooth'
+    });
   };
 
   return (
