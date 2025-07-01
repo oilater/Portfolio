@@ -35,7 +35,7 @@ export default function Introduce() {
 
       <div css={mainDescription}>
         <p className="mainDescription">안녕하세요, 인터렉션으로 가치를 전달하고 싶은 지원자 김성현입니다.</p>
-        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로, 항상 사용자의 경험을 생각하며 개발하려고 노력합니다.</p>
+        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로, 사용자의 경험을 생각하며 개발합니다.</p>
       </div>
 
       <div className="listRowSection" css={listSection}>
