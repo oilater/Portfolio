@@ -35,7 +35,7 @@ export default function Introduce() {
 
       <div css={mainDescription}>
         <p className="mainDescription">안녕하세요, 인터렉션으로 가치를 전달하고 싶은 지원자 김성현입니다.</p>
-        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로, 사용자의 경험을 생각하며 UI를 개발합니다.</p>
+        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로, 항상 사용자의 경험을 생각하며 개발하려고 노력합니다.</p>
       </div>
 
       <div className="listRowSection" css={listSection}>
@@ -57,18 +57,18 @@ export default function Introduce() {
 const myData: MyData[] = [
   {
     id: 1,
-    title: '📚 성장하기 위해 노력합니다',
-    description: '공식문서를 꼼꼼히 읽으며 React의 기본기를 다졌습니다. TypeScript를 통해 타입 안전성을 높이고 이해하기 쉬운 코드를 만들기 위해 노력합니다.',
+    title: '📚 기본기를 쌓는 개발자',
+    description: '공식문서를 꼼꼼히 학습하며 React스러운 코딩을 하기 위해 노력했습니다. TypeScript를 통해 타입 안전성을 높이고 이해하기 쉬운 코드를 만들기 위해 노력합니다.',
   },
   {
     id: 2,
-    title: '🧚🏻 인터렉션 시스템을 개발했습니다',
-    description: 'SLASH에서 토스 인터렉션 팀의 Rally를 보고 저만의 인터렉션 시스템을 개발했습니다. 여러 시행착오 끝에 사용성고 확장성이 좋은 Rally의 구조를 참고했습니다.',
+    title: '🧚🏻 인터렉션 시스템 개발',
+    description: 'SLASH에서 토스 인터렉션 팀의 Rally를 접하고, 저만의 인터렉션 시스템을 만들어보고 싶었습니다. 확장성이 좋은 Rally의 구조를 참고하여 구현해 포트폴리오에 적용해보았습니다.',
   },
   {
     id: 3,
-    title: '👨🏼‍💻 토스에서 함께 성장하고 싶습니다',
-    description: '개발에 몰입하는 환경에서 성장하고 싶습니다. 또한 사용자들에게 즐거움과 와우 모먼트를 제공하는 서비스를 만들고 싶습니다. UI 개발이라면 밤도 거뜬히 샐 수 있는 저의 열정을 토스에서 발휘하겠습니다.',
+    title: '👨🏼‍💻 토스 Frontend Assistant로 함께 성장하고 싶습니다',
+    description: '좋은 코드를 만드는 개발자가 되고 싶습니다. 아직 기술적 역량이 뛰어나진 않지만, 빠르게 익숙해지고 적용하는 실행력이 저의 강점이라고 생각합니다. 함께 일하게 된다면 빠르게 업무를 익히고, 효율적인 서비스를 만들기 위해 최선을 다하겠습니다.',
   },
 ];
 

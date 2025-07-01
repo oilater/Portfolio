@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import type { ReactNode } from "react";
 import type { ArticleData } from "../articles/articleData.ts";
 import { useSetAtom } from "jotai";
-import { lazy, Suspense, useLayoutEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Button } from "./Button.tsx";
 import { ArrowDownIcon } from "./ArrowDownIcon.tsx";
 import { stepAtom } from "../stores/step-store.ts";
@@ -26,7 +26,7 @@ function ArticleRoot({ header, content }: ArticleRootProps) {
   const ScrollProgressBar = lazy(() => import('./ScrollProgressBar'));
   const setStep = useSetAtom(stepAtom);
   
-  useLayoutEffect(() => {
+  useEffect(() => {
     setStep('introduce');
     window.scrollTo(0, 0);
   }, []);

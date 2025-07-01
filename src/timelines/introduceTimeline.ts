@@ -58,7 +58,7 @@ export function introduceTimeline(length: number) {
       {
         duration: 1,
         opacity: { from: 0, ease: "power2.in" },
-        scale: { from: 0.95, ease: "back.out" },
+        scale: { from: 1.1, ease: "back.out" },
       }
     ]
   })

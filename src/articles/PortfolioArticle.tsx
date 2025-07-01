@@ -12,21 +12,26 @@ export default function PortfolioArticle() {
     <div>
       <section css={section}>
         <p>
-          토스의 Rally 구조를 참고하여 인터렉션 시스템을 개발했습니다. 아직 개선할 부분이 많지만, 편하게 애니메이션 타임라인을 만들 수 있었습니다.
-          또한 <span css={highlightText}>토스피드 컨셉으로 포트폴리오를 구성하면서 사용자 경험과 성능 최적화를 위해 고민했던 과정</span>을 소개합니다 😀
+          Rally의 구조를 참고해 인터렉션 시스템을 만들어보았습니다. 
+          개선할 부분이 많지만, 애니메이션 타임라인을 이용해 편하게 포트폴리오를 만들 수 있었습니다.
+          또한 <span css={highlightText}>토스피드 컨셉으로 포트폴리오를 구성하면서 
+            사용자 경험과 성능 최적화를 위해 고민했던 과정</span>을 소개합니다.
         </p>
       </section>
 
-      <h1>1. 내가 만든 렐리</h1>
+      <h1>1. 인터렉션</h1>
 
       <section css={section}>
         <header>
-          <h3 css={sectionTitle}>1) Text Fill 애니메이션을 만들어보자</h3>
+          <h3 css={sectionTitle}>1) 인트로 애니메이션</h3>
         </header>
 
         <p>
-          토스 Simplicity 세션에서 보았던 <span css={highlightText}>자막 색상을 물결처럼 채우는 인터렉션</span>이 너무 멋져서 만들어보고 싶었습니다.
-          글자가 날아오면 동일한 위치에 있는 두번째 텍스트의 opacity를 풀어주는 방식으로 눈속임 효과를 주었습니다.
+          토스 Simplicity에서 보았던 <span css={highlightText}>자막 색상을 물결처럼 채우는 
+          인터렉션</span>이 너무 멋져서 만들어보고 싶었습니다.
+          이미 words 단위로 쪼개져 날라온 텍스트를 다시 chars 단위로 나누기가 어려웠습니다.
+          타겟을 미리 모든 단위의 Split 엘리먼트로 캐싱 해놓는 것은 과하다는 생각이 들어서,
+          날아온 글자와 같은 위치에 있는 원래 텍스트의 opacity를 풀어주는 방식으로 눈속임 효과를 주었습니다.
         </p>
 
         <figure css={figure}>
@@ -34,13 +39,11 @@ export default function PortfolioArticle() {
             src={introAnimation} 
             alt="Intro 애니메이션" 
             css={image} 
-            style={{ height: '400px', objectFit: 'scale-down' }} 
+            style={{ height: '600px', objectFit: 'contain' }} 
             loading="lazy" 
           />
           <figcaption css={captionStyle}>Intro 애니메이션</figcaption>
         </figure>
-
-        <p>Intro 타임라인은 아래와 같이 구성했습니다.</p>
 
         <figure css={figure}>
           <img 
@@ -49,27 +52,23 @@ export default function PortfolioArticle() {
             css={[image, {height: '800px', objectFit: 'contain'}]} 
             loading="lazy" 
           />
-          <figcaption css={captionStyle}>Intro 화면의 애니메이션 타임라인</figcaption>
+          <figcaption css={captionStyle}>Intro 화면의 타임라인</figcaption>
         </figure>
-
-        <p>
-          이미 words 단위로 나눈 텍스트를 다시 chars 단위로 나누려면 미리 모든 단위로 Split을 해놓은 뒤에 
-          사용해야 할텐데 성능상 좋은 방법이 아닌 것 같아서 두 개의 Rally를 사용했습니다.
-        </p>
       </section>
 
       <section css={section}>
         <header>
-          <h3 css={sectionTitle}>2) Timeline</h3>
+          <h3 css={sectionTitle}>2) Timeline 구현하기</h3>
         </header>
 
         <p>
-          타임라인은 playback의 타입에 따라 <span css={highlightText}>Rally 또는 중첩된 Timeline</span>을 실행합니다.
+          Timeline은 playback을 통해 실행 방식을 결정하고, playables 배열로 받은 Rally와 다른 Timeline을 실행합니다.
+          정지 상태로 생성된 playable을 실행 가능한 상태로 바꿔주었습니다.
         </p>
 
         <figure css={figure}>
           <img src={timelineLogic} alt="Timeline 구현 이미지" css={image} loading="lazy" />
-          <figcaption css={captionStyle}>Timeline 구현 로직</figcaption>
+          <figcaption css={captionStyle}>Timeline.tsx</figcaption>
         </figure>
       </section>
 
@@ -79,7 +78,11 @@ export default function PortfolioArticle() {
         </header>
 
         <p>
-          Rally는 타겟과 모션이 결합된 개념입니다. 여러 모션을 실행하고 반복할 수 있어야 하기 때문에, 하나의 timeline으로 생각했습니다.
+          Rally는 타겟과 모션이 결합된 개념입니다. 
+          처음에는 Rally가 tween이라고 생각했는데,
+          여러 모션을 실행하고 반복할 수 있어야 하기 때문에, 하나의 Timeline이라는 생각이 들었습니다.
+          처음엔 split 관련 부분을 Rally에서 처리했는데,
+          이후 같은 타겟에 대해 다르게 split 하고 싶어서 <span css={highlightText}>motions의 프로퍼티로 옮겼던 것이 아마도 실수였다는 생각이 듭니다.</span>
         </p>
 
         <figure css={figure}>
@@ -94,8 +97,13 @@ export default function PortfolioArticle() {
         </header>
 
         <p>
-          addMotions 함수는 타겟에 모션을 붙여줍니다.
-          각 프로퍼티마다 별도의 easing과 duration 설정할 수 있기 때문에 프로퍼티별로 타임라인을 생성해서 합치는 방식으로 구현했습니다.
+          모션은 가장 구현하기 까다롭고, for 문을 많이 돌아 성능적으로도 많이 아쉬움이 남았습니다.
+          먼저 translateX와 같은 프로퍼티의 키를 GSAP 키에 맞게 바꿔 타겟에 붙여주었습니다.
+          애니메이션은 GSAP의 fromTo 메서드를 사용했는데 사용자가 from, to 중 하나의 값만 설정해도
+          나머지 값을 계산할 수 있도록 <span css={highlightText}>previousValue 객체를 만들어 저장하였고, 
+          previousValue 값 마저 없다면 Default 값을 사용했습니다.</span> 또한 프로퍼티마다 
+          별도의 easing과 duration 설정할 수 있기 때문에,
+          프로퍼티별로 inner 타임라인을 생성한 뒤 상위의 모션 타임라인에 합쳐주었습니다.
         </p>
 
         <figure css={figure}>
@@ -158,14 +166,11 @@ export default function PortfolioArticle() {
         <header>
           <h3 css={sectionTitle}>4) 성능 및 접근성 개선</h3>
         </header>
-
-        <p>Lighthouse와 블로그 글들을 찾아보며 성능 및 접근성 개선을 위해 노력했습니다.</p>
-        <br />
         
         <article>
           {/* <h4>스크롤 최적화 및 GPU 가속</h4> */}
           <p>
-            컨텐츠 화면에서 스크롤이 버벅이는 문제를 해결하기 위해 찾아보던 중, <span css={highlightText}>브라우저가 
+            컨텐츠 화면에서 스크롤이 버벅이는 문제가 있었습니다. 해결하기 위해 찾아보던 중, <span css={highlightText}>브라우저가 
             스크롤 이벤트의 preventDefault 함수 호출을 기다리면서 
             스크롤이 지연된다는 것을 알게 되었습니다.</span>
           </p>
@@ -196,7 +201,7 @@ export default function PortfolioArticle() {
         </article>
       </section>
 
-      <h1>사용 기술 및 라이브러리</h1>
+      <h1>기술 스택</h1>
       <br />
 
       <section css={section}>
@@ -225,8 +230,6 @@ export default function PortfolioArticle() {
         </p>
         <br/>
       </section>
-
-
     </div>
   );
 }
@@ -251,7 +254,7 @@ const highlightText = css`
 `;
 
 const figure = css`
-  margin: 40px 0 20px 0;
+  margin: 60px 0 20px 0;
   text-align: center;
 `;
 
