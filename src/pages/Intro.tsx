@@ -32,7 +32,7 @@ export default function Intro() {
         </h1>
         <h1 className="introTitleFill" css={title}>
           아이디어를 만드는<br />
-          <span css={subTitle}>프론트엔드 개발자</span> 김성현입니다
+          <span className="subTitle" css={subTitle}>프론트엔드 개발자</span> 김성현입니다
         </h1>
       </div>
     </div>
@@ -54,9 +54,32 @@ const introTitleSection = css`
 
 const title = css`
   position: absolute;
-  font-size: calc(1.5rem + 2vw);
   color: #E4E4E5;
   text-align: center;
+  white-space: pre-line;
+  word-break: break-all;
+  line-height: 1.3;
+  font-size: 4rem;
+  width: 100vw;
+  max-width: 1000px;
+  
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+    width: 95vw;
+    max-width: 350px;
+  }
+  
+  @media (min-width: 481px) and (max-width: 768px) {
+    font-size: 1.8rem;
+    width: 90vw;
+    max-width: 500px;
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    font-size: 2.2rem;
+    width: 85vw;
+    max-width: 600px;
+  }
 `;
 
 const subTitle = css`

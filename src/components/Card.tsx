@@ -10,13 +10,13 @@ type CardProps = {
 export function Card({ title, description, image, onClick }: CardProps) {
   return (
     <div css={card} onClick={onClick}>
-        <div css={cardImageWrapper}>
-          <img src={image} alt={title} css={cardImage} loading="lazy" />
-        </div>
-        <div css={cardContent}>
-          <p css={cardTitle}>{title}</p>
-          <p css={cardDescription}>{description}</p>
-        </div>
+      <div css={cardImageWrapper}>
+        <img src={image} alt={title} css={cardImage} loading="lazy" />
+      </div>
+      <div css={cardContent}>
+        <p css={cardTitle}>{title}</p>
+        <p css={cardDescription}>{description}</p>
+      </div>
     </div>
   );
 }
@@ -24,9 +24,8 @@ export function Card({ title, description, image, onClick }: CardProps) {
 const card = css`
   display: flex;
   flex-direction: column;
-  flex-basis: calc(50% - 8px);
   vertical-align: top;
-  background: 'inherit';
+  background: inherit;
   border: 1px solid rgba(228, 228, 229, 0.5);
   border-radius: 16px;
   color: #E4E4E5;
@@ -35,6 +34,17 @@ const card = css`
 
   &:hover {
     background: #1e1e23;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    gap: 1rem;
+    padding: 6px;
+  }
+  
+  @media (min-width: 769px) {
+    flex-basis: calc(50% - 0.75rem);
+    max-width: calc(50% - 0.75rem);
   }
 `;
 

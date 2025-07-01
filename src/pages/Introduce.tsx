@@ -84,6 +84,20 @@ const listSection = css`
   padding: 10px;
   margin: 0 16px;
   margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 8px;
+    margin: 0 12px;
+    margin-top: 1.5rem;
+  }
+  
+  @media (min-width: 769px) {
+    gap: 1.5rem;
+  }
 `;
 
 const listWrapper = css`

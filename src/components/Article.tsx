@@ -183,6 +183,12 @@ const articleContent = css`
   white-space: pre-wrap;
   line-height: 1.68;
   margin-bottom: 10rem;
+  padding: 0 20px;
+  
+  @media (max-width: 768px) {
+    padding: 0 16px;
+    font-size: 18px;
+  }
 `;
 
 const scrollDownButton = css`
