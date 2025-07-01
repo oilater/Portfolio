@@ -3,7 +3,9 @@ import type { ReactNode } from "react";
 import type { ArticleData } from "../articles/articleData";
 import { Button } from "./Button";
 import { ArrowDownIcon } from "./ArrowDownIcon";
-import { lazy, Suspense, useLayoutEffect } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect } from 'react';
+import { useSetAtom } from "jotai";
+import { stepAtom } from "../stores/step-store";
 
 type ArticleRootProps = {
   header: ReactNode;
@@ -22,7 +24,11 @@ type ArticleContentProps = {
 
 function ArticleRoot({ header, content }: ArticleRootProps) {
   const ScrollProgressBar = lazy(() => import('./ScrollProgressBar'));
-  useLayoutEffect(() => window.scrollTo(0, 0), []);
+  const setStep = useSetAtom(stepAtom);
+  useLayoutEffect(() => {
+    setStep('introduce');
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

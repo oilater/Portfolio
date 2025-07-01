@@ -9,7 +9,7 @@ const VELOG_URL = 'https://velog.io/@oilater';
 export default function Layout() {
   const step = useAtomValue(stepAtom);
   const shouldShowHeader = step !== 'init';
-
+  
   return (
     <>
       {shouldShowHeader && <Header 

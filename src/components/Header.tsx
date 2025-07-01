@@ -12,7 +12,11 @@ type HeaderProps = {
 export default function Header({ onVelog, onGithub, className }: HeaderProps) {
 
   const onTop = () => {
-    document.body.setAttribute('data-scrolled', window.scrollY > 0 ? 'true' : 'false');
+    if (window.scrollY > 0) {
+      document.body.classList.add('active-border');
+    } else {
+      document.body.classList.remove('active-border');
+    }
   };
 
   useEffect(() => {
@@ -50,7 +54,7 @@ const header = css`
   padding: 10px 10px 10px 0;
   transition: opacity 0.3s ease-in-out;
   
-  body:not([data-scrolled="true"]) & {
+  body.active-border & {
     border-bottom: 1px solid #3c3c47;
   }
 `;
