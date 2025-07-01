@@ -9,6 +9,7 @@ import Layout from './pages/Layout';
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 function App() {
+  window.addEventListener('scroll', () => {}, { passive: true });
   return (
     <BrowserRouter>
       <Routes>
