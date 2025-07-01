@@ -49,6 +49,7 @@ export default function Header({ onVelog, onGithub, onHome, className }: HeaderP
 
 const header = css`
   z-index: 100;
+  transform: translateZ(0);
   background-color: rgba(18, 20, 23, 0.95);
   position: fixed;
   display: flex;

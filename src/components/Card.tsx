@@ -32,7 +32,7 @@ const card = css`
   color: #E4E4E5;
   transition: background 0.2s ease;
   cursor: pointer;
-  
+
   &:hover {
     background: #1e1e23;
   }
@@ -51,6 +51,7 @@ const cardImage = css`
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease-out;
+  transform: translateZ(0);
 
   &:hover {
     transform: scale(1.08);
