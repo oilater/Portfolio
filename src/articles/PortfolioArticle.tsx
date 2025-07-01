@@ -29,9 +29,8 @@ export default function PortfolioArticle() {
         <p>
           토스 Simplicity에서 보았던 <span css={highlightText}>자막 색상을 물결처럼 채우는 
           인터렉션</span>이 너무 멋져서 만들어보고 싶었습니다.
-          이미 words 단위로 쪼개져 날라온 텍스트를 다시 chars 단위로 나누기가 어려웠습니다.
-          타겟을 미리 모든 단위의 Split 엘리먼트로 캐싱 해놓는 것은 과하다는 생각이 들어서,
-          날아온 글자와 같은 위치에 있는 원래 텍스트의 opacity를 풀어주는 방식으로 눈속임 효과를 주었습니다.
+          이미 word 단위로 쪼개져 날라온 텍스트를 다시 char 단위로 색을 채우기는 쉽지 않았습니다.
+          따라서 날아온 글자와 같은 위치에 있는 텍스트의 opacity를 풀어주는 방식으로 눈속임 효과를 주었습니다.
         </p>
 
         <figure css={figure}>
@@ -58,7 +57,7 @@ export default function PortfolioArticle() {
 
       <section css={section}>
         <header>
-          <h3 css={sectionTitle}>2) Timeline 구현하기</h3>
+          <h3 css={sectionTitle}>2) Timeline</h3>
         </header>
 
         <p>
