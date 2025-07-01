@@ -163,9 +163,18 @@ export default function PortfolioArticle() {
         <br />
         
         <article>
-          <h4>스크롤 및 GPU 가속</h4>
+          {/* <h4>스크롤 최적화 및 GPU 가속</h4> */}
           <p>
-            CSS 설정을 통해 스크롤 속도를 개선하였고, CSS transition이 적용된 요소나 fixed position을 가진 요소에는 GPU 가속을 적용해 리플로우를 방지했습니다.
+            컨텐츠 화면에서 스크롤이 버벅이는 문제를 해결하기 위해 찾아보던 중, <span css={highlightText}>브라우저가 
+            스크롤 이벤트의 preventDefault 함수 호출을 기다리면서 
+            스크롤이 지연된다는 것을 알게 되었습니다.</span>
+          </p>
+          <br/>
+          <p>
+            현재는 preventDefault를 사용하지 않고 있어서 스크롤 이벤트리스너에 
+            'passive: true' 옵션을 추가하니 스크롤 반응 속도가 눈에 띄게 개선되었습니다.
+            간단한 CSS 애니메이션을 적용했거나 fixed position을 가진 요소는 <span css={highlightText}>스크롤을 할 때마다 다시 렌더링되기 때문에
+            'translateZ(0)'으로 GPU 가속을 적용해서 리플로우를 방지했습니다.</span> 
           </p>
         </article>
         
@@ -174,8 +183,8 @@ export default function PortfolioArticle() {
         <article>
           <h4>이미지, GIF</h4>
           <p>
-            이미지를 AVIF로 변환하니 화질이 너무 떨어져서 JPG 크기를 30-60% 가량 줄여 사용했고, 
-            lazy loading을 적용했습니다.
+            모든 이미지 파일의 크기는 화질을 크게 해치지 않는 선에서 30-60% 가량 줄여 사용했습니다.
+            이미지를 AVIF로 변환하니 화질이 너무 떨어져서 JPG를 사용하였고, Lazy loading을 적용했습니다. 
           </p>
         </article>
         
@@ -183,7 +192,7 @@ export default function PortfolioArticle() {
         
         <article>
           <h4>접근성</h4>
-          <p>시맨틱 태그, aria-label을 적용해 접근성을 높였습니다.</p>
+          <p>시맨틱 태그를 적절히 사용하고, aria-label을 적용해 접근성을 높였습니다.</p>
         </article>
       </section>
 
