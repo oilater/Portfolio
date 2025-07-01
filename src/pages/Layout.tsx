@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
-import { stepAtom } from '../stores/step-store';
-import Header from '../components/Header';
+import { stepAtom } from '../stores/step-store.ts';
+import Header from '../components/Header.tsx';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 const GITHUB_URL = 'https://github.com/oilater';

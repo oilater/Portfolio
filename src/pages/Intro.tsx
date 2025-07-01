@@ -2,9 +2,9 @@ import { css } from "@emotion/react";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { useAtom, useSetAtom } from "jotai";
-import { stepAtom } from "../stores/step-store";
-import { animationPlayStateAtom } from "../stores/timelineStore";
-import { introTimeline } from "../timelines/IntroTimeline";
+import { stepAtom } from "../stores/step-store.ts";
+import { animationPlayStateAtom } from "../stores/timelineStore.ts";
+import { introTimeline } from "../timelines/IntroTimeline.ts";
 
 export default function Intro() {
   const introScope = useRef<HTMLDivElement>(null!);

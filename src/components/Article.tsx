@@ -1,11 +1,11 @@
 import { css } from "@emotion/react";
 import type { ReactNode } from "react";
-import type { ArticleData } from "../articles/articleData";
-import { Button } from "./Button";
-import { ArrowDownIcon } from "./ArrowDownIcon";
-import { lazy, Suspense, useLayoutEffect } from 'react';
+import type { ArticleData } from "../articles/articleData.ts";
 import { useSetAtom } from "jotai";
-import { stepAtom } from "../stores/step-store";
+import { lazy, Suspense, useLayoutEffect } from 'react';
+import { Button } from "./Button.tsx";
+import { ArrowDownIcon } from "./ArrowDownIcon.tsx";
+import { stepAtom } from "../stores/step-store.ts";
 
 type ArticleRootProps = {
   header: ReactNode;

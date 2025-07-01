@@ -1,8 +1,8 @@
 import { gsap } from "gsap";
-import { motionToGSAP } from "../utils/motion-to-gsap";
-import { getSplitElements } from "../utils/split-text";
-import { type AddMotionsProps, type ElementType, type Motion, type SplitCacheType } from "./types";
-import { getMotionTimeline } from "../utils/motion-timeline";
+import { motionToGSAP } from "../utils/motion-to-gsap.ts";
+import { getSplitElements } from "../utils/split-text.ts";
+import { type AddMotionsProps, type ElementType, type Motion, type SplitCacheType } from "./types.ts";
+import { getMotionTimeline } from "../utils/motion-timeline.ts";
 
 const splitCache: SplitCacheType = {};
 

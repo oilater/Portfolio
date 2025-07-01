@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { createArticle } from '../components/Article';
-import { articleMap } from '../articles/articleData';
+import { createArticle } from '../components/Article.tsx';
+import { articleMap } from '../articles/articleData.tsx';
 
 export default function ArticlePage() {
   const { id } = useParams<{ id: string }>();

@@ -1,11 +1,11 @@
 import { useRef } from "react";
-import { css } from "@emotion/react";
-import { Top } from "../components/Top";
-import { introduceTimeline } from "../timelines/introduceTimeline";
-import { ListRow } from "../components/ListRow";
 import { useGSAP } from "@gsap/react";
 import { useAtom } from "jotai";
-import { animationPlayStateAtom } from "../stores/timelineStore";
+import { css } from "@emotion/react";
+import { Top } from "../components/Top.tsx";
+import { ListRow } from "../components/ListRow.tsx";
+import { animationPlayStateAtom } from "../stores/timelineStore.ts";
+import { introduceTimeline } from "../timelines/introduceTimeline.ts";
 
 type MyData = {
   id: number;

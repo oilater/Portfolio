@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
-import { addMotions } from "./motion";
-import { type RallyProps } from "./types";
+import { addMotions } from "./motion.ts";
+import { type RallyProps } from "./types.ts";
 
 /**
  * Rally

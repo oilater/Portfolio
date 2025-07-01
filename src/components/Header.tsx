@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { GithubIcon } from './GithubIcon';
-import { VelogIcon } from './VelogIcon';
 import { useEffect } from 'react';
-import { HomeIcon } from './HomeIcon';
+import { css } from '@emotion/react';
+import { HomeIcon } from './HomeIcon.tsx';
+import { GithubIcon } from './GithubIcon.tsx';
+import { VelogIcon } from './VelogIcon.tsx';
 
 type HeaderProps = {
     className: string;

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { ARTICLE_IMAGES, ARTICLE_KEYS } from "../constants/article";
-import PortfolioArticle from './PortfolioArticle';
+import PortfolioArticle from './PortfolioArticle.tsx';
+import { ARTICLE_IMAGES, ARTICLE_KEYS } from "../constants/article.ts";
 
 export type ArticleData = {
   title: string;
