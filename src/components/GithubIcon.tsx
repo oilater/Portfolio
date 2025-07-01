@@ -33,8 +33,8 @@ export function GithubIcon() {
 }
 
 const githubIcon = css`
-    width: 52px;
-    height: 52px;
+    width: 36px;
+    height: 36px;
     display: block;
     transition: transform 0.3s ease-in-out;
     

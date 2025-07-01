@@ -16,17 +16,25 @@ export function addMotions({ rally, target, motions }: AddMotionsProps): void {
   for (const motion of motions) {
     if (!motion) continue;
     
+    // 모션 타임라인 생성
     const motionTimeline = createMotionTimeline(target, motion);
+    // 완성된 모션을 Rally에 추가
     rally.add(motionTimeline, ">" + (motion.delay ?? 0));
   }
 }
 
 function createMotionTimeline(target: string, motion: Motion): gsap.core.Timeline {
-  const motionTimeline = gsap.timeline();
+  // 모든 모션을 취합할 타임라인 생성
+    const motionTimeline = gsap.timeline();
+    
+  // 모션 키를 GSAP 형식으로 변환
   const gsapMotion = motionToGSAP(motion);
-  const elements = getElementsToAnimate(target, motion);
+  
+  // split 옵션에 따라 여러 요소로 분할
+  const elements = getElements(target, motion);
   
   for (const element of elements) {
+    // 각 요소에 모션을 붙임
     const innerMotionTimeline = getMotionTimeline({ element, motion: gsapMotion });
     motionTimeline.add(innerMotionTimeline, "<" + (motion.splitDelay ?? 0));
   }
@@ -34,7 +42,7 @@ function createMotionTimeline(target: string, motion: Motion): gsap.core.Timelin
   return motionTimeline;
 }
 
-function getElementsToAnimate(target: string, motion: Motion): ElementType[] {
+function getElements(target: string, motion: Motion): ElementType[] {
   let elements = motion.split 
     ? getSplitElements(target, motion.split, splitCache) 
     : [target];

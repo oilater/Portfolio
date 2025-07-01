@@ -19,8 +19,8 @@ export function VelogIcon() {
 }
 
 const velogIcon = css`
-    width: 42px;
-    height: 42px;
+    width: 30px;
+    height: 30px;
     display: block;
     transition: transform 0.3s ease-in-out;
     

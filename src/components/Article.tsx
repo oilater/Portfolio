@@ -163,9 +163,9 @@ const articleContent = css`
   width: 100%;
   max-width: 800px;
   height: 100%;
-  font-size: 19px;
+  font-size: 20px;
   white-space: pre-wrap;
-  line-height: 1.6;
+  line-height: 1.68;
   margin-bottom: 10rem;
 `;
 

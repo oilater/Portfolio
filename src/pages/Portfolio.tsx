@@ -1,43 +1,32 @@
-import { useState } from "react";
 import { css } from "@emotion/react";
 import { Project } from "./Project";
-import Header from "../components/Header";
 import Intro from "./Intro";
 import Introduce from "./Introduce";
-
-export type Step = 'init' | 'introduce' | 'projects';
-
-const GITHUB_URL = 'https://github.com/oilater';
-const VELOG_URL = 'https://velog.io/@oilater';
+import { stepAtom } from "../stores/step-store";
+import { useAtom } from "jotai";
 
 export default function Portfolio() {
-  const [step, setStep] = useState<Step>('init');
-  
+  const [step] = useAtom(stepAtom);
+
   return (
-    <div css={wrapper}>
-      {/* Header */}
-      {step !== 'init' && (
-        <Header 
-          className="header"
-          onGithub={() => {window.open(GITHUB_URL, '_blank');}}
-          onVelog={() => {window.open(VELOG_URL, '_blank');}}
-        />
-      )}
+    <div css={container}>
+      <main css={wrapper}>
+        {step === 'init' && <Intro />}
 
-      {/* Pages */}
-      {step === 'init' && 
-        <Intro onComplete={setStep} />
-      }
-
-      {step === 'introduce' &&
-        <>
-          <Introduce />
-          <Project />
-        </>
-      }
+        {step === 'introduce' &&
+          <div css={pages}>
+            <Introduce />
+            <Project />
+          </div>
+        }
+      </main>
     </div>
   );
 }
+
+const container = css`
+  width: 100%;
+`;
 
 const wrapper = css`
   width: 100%;
@@ -47,4 +36,8 @@ const wrapper = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const pages = css`
+  padding-top: 60px;
 `;

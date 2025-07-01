@@ -65,7 +65,7 @@ export function introduceTimeline(length: number) {
   
   const listRowTl = Timeline({
     playback: "stagger",
-    staggerDelay: 0.3,
+    staggerDelay: 0.2,
     playables: Array(length).fill(0).map((_, index) =>
       
       Timeline({
@@ -79,7 +79,7 @@ export function introduceTimeline(length: number) {
                 duration: 0.7,
                 ease: "power2.out",
                 opacity: { from: 0 },
-                translateX: { from: -3 },
+                translateY: { from: -3 },
               }
             ]
           }),

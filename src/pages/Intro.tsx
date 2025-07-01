@@ -1,20 +1,28 @@
 import { css } from "@emotion/react";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import type { Step } from "./Portfolio";
+import { useAtom, useSetAtom } from "jotai";
+import { stepAtom } from "../stores/step-store";
+import { animationPlayStateAtom } from "../stores/timelineStore";
 import { introTimeline } from "../timelines/IntroTimeline";
 
-type IntroProps = {
-  onComplete: (step: Step) => void;
-};
-
-export default function Intro({ onComplete }: IntroProps) {
+export default function Intro() {
   const introScope = useRef<HTMLDivElement>(null!);
+  const setStep = useSetAtom(stepAtom);
+  const [isPlayed, setIsPlayed] = useAtom(animationPlayStateAtom);
 
   useGSAP(() => {
-    introTimeline(() => onComplete('introduce')).play();
-  }, {scope: introScope});
-  
+    if (isPlayed('intro')) {
+      setStep('introduce');
+      return;
+    }
+
+    introTimeline(() => {
+      setIsPlayed('intro');
+      setStep('introduce');
+    }).play();
+  }, { scope: introScope });
+
   return (
     <div ref={introScope} css={introWrapper}>
       <div className="introTitleSection" css={introTitleSection}>
@@ -26,7 +34,7 @@ export default function Intro({ onComplete }: IntroProps) {
           아이디어를 만드는<br />
           <span css={subTitle}>프론트엔드 개발자</span> 김성현입니다
         </h1>
-      </div> 
+      </div>
     </div>
   );
 }

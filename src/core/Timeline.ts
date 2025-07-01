@@ -15,18 +15,16 @@ export function Timeline({
 }: TimelineProps): gsap.core.Timeline {
   const timeline = gsap.timeline({ paused: true });
 
-  playables.forEach((playable, i) => {
-    const position =
-      playback === "stagger"
-        ? i * staggerDelay
-        : playback === "parallel"
-        ? "<"
-        : ">";
+  playables.forEach((playable, playableIndex) => {
+    // playables 실행 위치 지정
+    const position = 
+      playback === "stagger" ? playableIndex * staggerDelay :
+      playback === "parallel" ? "<" : ">";
 
     timeline.add(playable, position);
 
-    if (playable.paused())
-      playable.play();   
+    // 내부의 타임라인이 paused 상태라면 실행 가능한 상태로 바꿔두기
+    if (playable.paused()) playable.play();
   });
 
   return timeline;

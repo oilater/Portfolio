@@ -17,6 +17,7 @@ export function Project() {
   const { animateScroll } = useScrollTrigger();
   const projectScope = useRef<HTMLDivElement>(null!);
   let projectTl: gsap.core.Timeline;
+
   useGSAP(() => {
     if (isPlayed('project')) return;
     projectTl = projectTimeline().eventCallback('onComplete', () => setIsPlayed('project'));
@@ -46,7 +47,6 @@ export function Project() {
 
       <div className="mainDescription" css={mainDescription}>
         <p>새로운 것을 배우면 재밌는 서비스로 만들어봅니다.</p>
-        {/* <p>처음하는 것들에 금방 익숙해지는 <span css={highlight}>적응력</span>과 <span css={highlight}>빠른 실행력</span>이 저의 강점입니다.</p> */}
       </div>
 
       <div className="projectSection" css={projectSection}>
@@ -79,20 +79,6 @@ export function Project() {
   );
 }
 
-const mainDescription = css`
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #7E7E87;
-  padding: 0 16px;
-  line-height: 1.65;
-  margin-bottom: 3.5rem;
-`;
-
-const highlight = css`
-  color: rgb(187, 215, 255);
-  font-weight: 500;
-`;
-
 const projectWrapper = css`
   width: 100%;
   height: 100%;
@@ -104,6 +90,15 @@ const projectSection = css`
   flex-wrap: wrap;
   gap: 54px 16px;
   padding: 0 16px;
+`;
+
+const mainDescription = css`
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #7E7E87;
+  padding: 0 16px;
+  line-height: 1.65;
+  margin-bottom: 3.5rem;
 `;
 
 const hr = css`
