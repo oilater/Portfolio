@@ -2,14 +2,16 @@ import { css } from '@emotion/react';
 import { GithubIcon } from './GithubIcon';
 import { VelogIcon } from './VelogIcon';
 import { useEffect } from 'react';
+import { HomeIcon } from './HomeIcon';
 
 type HeaderProps = {
     className: string;
     onVelog: () => void;
     onGithub: () => void;
+    onHome: () => void;
 };
 
-export default function Header({ onVelog, onGithub, className }: HeaderProps) {
+export default function Header({ onVelog, onGithub, onHome, className }: HeaderProps) {
 
   const onTop = () => {
     if (window.scrollY > 0) {
@@ -30,6 +32,9 @@ export default function Header({ onVelog, onGithub, className }: HeaderProps) {
     <header className={className} css={header}>
       <nav css={nav}>
         <div css={innerNav}>
+          <button type="button" onClick={onHome} aria-label="홈으로 이동">
+            <HomeIcon />
+          </button>
           <button type="button" onClick={onVelog} aria-label="Velog로 이동">
             <VelogIcon />
           </button>

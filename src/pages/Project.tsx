@@ -29,7 +29,7 @@ export function Project() {
         start: 'top 85%',
         end: 'bottom 100%',
         scrub: false,
-        markers: true,
+        markers: false,
       },
     });
   }, {scope: projectScope});

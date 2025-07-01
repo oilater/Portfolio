@@ -35,7 +35,7 @@ export default function Introduce() {
 
       <div css={mainDescription}>
         <p className="mainDescription">안녕하세요, 인터렉션으로 가치를 전달하고 싶은 지원자 김성현입니다.</p>
-        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로, 사용자의 입장에서 UI를 개발하려고 노력합니다.</p>
+        <p className="mainDescription2"><span css={highlight}>디테일이 완성도를 만든다</span>는 생각으로, 사용자의 경험을 생각하며 UI를 개발합니다.</p>
       </div>
 
       <div className="listRowSection" css={listSection}>
@@ -63,7 +63,7 @@ const myData: MyData[] = [
   {
     id: 2,
     title: '🧚🏻 인터렉션 시스템을 개발했습니다',
-    description: 'SLASH에서 토스 인터렉션 팀의 Rally를 보고 저만의 인터렉션 시스템을 개발했습니다. 여러 시행착오 끝에 사용성고 확장성이 좋은 Rally의 구조를 따라 만들게 되었습니다.',
+    description: 'SLASH에서 토스 인터렉션 팀의 Rally를 보고 저만의 인터렉션 시스템을 개발했습니다. 여러 시행착오 끝에 사용성고 확장성이 좋은 Rally의 구조를 참고했습니다.',
   },
   {
     id: 3,
