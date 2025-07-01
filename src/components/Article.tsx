@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import type { ArticleData } from "../articles/articleData";
 import { Button } from "./Button";
 import { ArrowDownIcon } from "./ArrowDownIcon";
-import { lazy, Suspense, useEffect, useLayoutEffect } from 'react';
+import { lazy, Suspense, useLayoutEffect } from 'react';
 import { useSetAtom } from "jotai";
 import { stepAtom } from "../stores/step-store";
 
@@ -25,6 +25,7 @@ type ArticleContentProps = {
 function ArticleRoot({ header, content }: ArticleRootProps) {
   const ScrollProgressBar = lazy(() => import('./ScrollProgressBar'));
   const setStep = useSetAtom(stepAtom);
+  
   useLayoutEffect(() => {
     setStep('introduce');
     window.scrollTo(0, 0);
@@ -39,7 +40,7 @@ function ArticleRoot({ header, content }: ArticleRootProps) {
         {header}
         {content}
       </article>
-      </>
+    </>
   );
 }
 
@@ -55,10 +56,17 @@ function ArticleHeader({ title, date, imageUrl }: ArticleHeaderProps) {
     <div css={articleHeader}>
       <div css={articleHeaderTitleSection}>
         <div css={articleHeaderTitle}>{title}</div>
-        <time dateTime={date} css={articleHeaderDate}>{date} ∙ 김성현</time>
+        <time dateTime={date} css={articleHeaderDate}>
+          {date} ∙ 김성현
+        </time>
       </div>
       <div css={imageContainer}>
-        <img src={imageUrl} alt={title + "이미지"} css={articleHeaderImage} loading="lazy" />
+        <img 
+          src={imageUrl} 
+          alt={title + "이미지"} 
+          css={articleHeaderImage} 
+          loading="lazy" 
+        />
         <div css={imageGradient} />
       </div>
       <Button css={scrollDownButton} onClick={onScrollDown}>
@@ -124,12 +132,14 @@ const articleHeaderTitleSection = css`
   text-align: center;
   z-index: 2;
 `;
+
 const articleHeaderTitle = css`
   font-size: calc(1rem + 2vw);
   font-weight: 600;
   line-height: 1.4;
   margin-bottom: 20px;
 `;
+
 const articleHeaderDate = css`
   font-size: 18px;
   font-weight: 400;
