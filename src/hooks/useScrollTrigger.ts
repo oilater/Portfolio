@@ -3,8 +3,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 type ScrollTriggerOptions = {
   start: string;
   end: string;
-  scrub: boolean | number;
-  markers: boolean;
+  scrub?: boolean | number;
+  markers?: boolean;
 };
 
 type AnimateScrollProps = {

@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Project } from "./Project";
+import { Content } from "./Content";
 import Intro from "./Intro";
 import Introduce from "./Introduce";
 import { stepAtom } from "../stores/step-store";
@@ -16,7 +16,7 @@ export default function Portfolio() {
         {step === 'introduce' &&
           <div css={pages}>
             <Introduce />
-            <Project />
+            <Content />
           </div>
         }
       </main>

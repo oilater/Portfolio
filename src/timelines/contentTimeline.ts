@@ -1,15 +1,15 @@
 import { Rally } from "../core/rally.ts";
 import { Timeline } from "../core/timeline.ts";
 
-export function projectTimeline() {
+export function contentTimeline() {
 
-  const projectTl = Timeline({
+  const contentTl = Timeline({
     playback: "stagger",
     staggerDelay: 0.2,
     playables: [
 
       Rally({
-        target: ".hr",
+        target: ".topHr",
         motions: [
           {
             duration: 0.4,
@@ -58,5 +58,5 @@ export function projectTimeline() {
     ],
   });
 
-  return projectTl;
+  return contentTl;
 }

@@ -4,39 +4,37 @@ import { css } from "@emotion/react";
 import { Top } from "../components/Top";
 import { useGSAP } from "@gsap/react";
 import { useScrollTrigger } from "../hooks/useScrollTrigger";
-import { projectTimeline } from "../timelines/projectTimeline";
+import { contentTimeline } from "../timelines/contentTimeline";
 import { Card } from "../components/Card";
 import { ARTICLE_IMAGES } from "../constants/article";
 import { useAtom } from "jotai";
 import { animationPlayStateAtom } from "../stores/timelineStore";
 import { INTERACTIVE_GRAPH_URL, CREWING_URL, HOMET_FRIEND_URL } from "../constants/url";  
 
-export function Project() {
+export function Content() {
   const navigate = useNavigate();
   const [isPlayed, setIsPlayed] = useAtom(animationPlayStateAtom);
   const { animateScroll } = useScrollTrigger();
-  const projectScope = useRef<HTMLDivElement>(null!);
-  let projectTl: gsap.core.Timeline;
+  const contentContainer = useRef<HTMLDivElement>(null!);
+  let contentTl: gsap.core.Timeline;
 
   useGSAP(() => {
     if (isPlayed('project')) return;
-    projectTl = projectTimeline().eventCallback('onComplete', () => setIsPlayed('project'));
+    contentTl = contentTimeline().eventCallback('onComplete', () => setIsPlayed('project'));
     
     animateScroll({
-      target: '.hr',
-      timeline: projectTl,
+      target: '.topHr',
+      timeline: contentTl,
       options: {
         start: 'top 85%',
         end: 'bottom 100%',
-        scrub: false,
-        markers: false,
       },
     });
-  }, {scope: projectScope});
+  }, {scope: contentContainer});
 
   return (
-    <div ref={projectScope} css={projectWrapper}>
-      <hr css={hr} className="hr" />
+    <div ref={contentContainer} css={wrapper}>
+      <hr css={hr} className="topHr" />
       <Top.Root 
         title={
           <Top.Paragraph>
@@ -49,7 +47,7 @@ export function Project() {
         <p>새로운 것을 배우면 재밌는 서비스로 만들어봅니다.</p>
       </div>
 
-      <div className="projectSection" css={projectSection}>
+      <div className="projectSection" css={contentSection}>
         <Card 
           title="Rally 만드는 김에 포트폴리오도 만들어보자"
           description="토스 인터렉션 팀의 Rally의 구조를 참고해 직접 만들어 본 인터렉션 시스템과 포트폴리오, 페이지 성능 개선을 위해 고민한 과정을 소개합니다."
@@ -79,13 +77,13 @@ export function Project() {
   );
 }
 
-const projectWrapper = css`
+const wrapper = css`
   width: 100%;
   height: 100%;
-  padding-bottom: 3rem;
+  padding-bottom: 8rem;
 `;
 
-const projectSection = css`
+const contentSection = css`
   display: flex;
   flex-wrap: wrap;
   gap: 54px 16px;

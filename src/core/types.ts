@@ -6,23 +6,25 @@ export type MotionValue = {
 };
 
 // Timeline
+export type Playback = "parallel" | "serial" | "stagger";
+export type Playable = gsap.core.Timeline | gsap.core.Tween;
+
 export type TimelineProps = {
-  playback: PlaybackType;
-  playables: PlayableType[];
+  playback: Playback;
+  playables: Playable[];
   staggerDelay?: number;
 };
 
-export type PlaybackType = "parallel" | "serial" | "stagger";
-export type PlayableType = gsap.core.Timeline | gsap.core.Tween;
 
 // Rally
+export type PlayCount = number | 'infinite';
+
 export type RallyProps = {
   target: string;
-  playCount?: PlayCountType;
+  playCount?: PlayCount;
   motions: Motion[];
 };
 
-export type PlayCountType = number | 'infinite';
 
 // Motion
 export type AddMotionsProps = {
