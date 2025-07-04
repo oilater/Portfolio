@@ -45,7 +45,7 @@ export function contentTimeline() {
       }),
 
       Rally({
-        target: ".projectSection",
+        target: ".contentSection",
         motions: [
           {
             duration: 0.8,
