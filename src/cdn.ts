@@ -16,6 +16,7 @@ export const CDN_IMAGES = {
     INTERACTIVE_GRAPH: `${CDN_BASE_URL}/assets/gifs/interactive-graph.gif`,
     CREWING: `${CDN_BASE_URL}/assets/gifs/crewing.gif`,
     INTRO_ANIMATION: `${CDN_BASE_URL}/assets/gifs/intro-animation.gif`,
+    FIVA_AVATAR_MOVE: `${CDN_BASE_URL}/assets/gifs/avatar-move.gif`,
     
     // 기타 이미지
     PORTFOLIO_DETAIL: `${CDN_BASE_URL}/assets/images/portfolio-detail.jpg`,
@@ -25,4 +26,12 @@ export const CDN_IMAGES = {
     MOTION_LOGIC: `${CDN_BASE_URL}/assets/images/motion-logic.jpg`,
     TIMELINE_LOGIC: `${CDN_BASE_URL}/assets/images/timeline-logic.jpg`,
     RALLY_STRUCTURE: `${CDN_BASE_URL}/assets/images/rally-structure.jpg`,
+    FIVA_AVATAR: `${CDN_BASE_URL}/assets/images/fiva_avatar.jpg`,
+    FIVA_CHALLENGE_CALENDAR: `${CDN_BASE_URL}/assets/images/fiva-challenge-calendar.jpg`,
+    FIVA_CHALLENGE_LIST: `${CDN_BASE_URL}/assets/images/fiva-challenge-list.jpg`,
+    FIVA_CHALLENGE_POPUP: `${CDN_BASE_URL}/assets/images/fiva-challenge-popup.jpg`,
+    FIVA_COIN_POPUP: `${CDN_BASE_URL}/assets/images/fiva-coin-popup.jpg`,
+    FIVA_COLLABORATION: `${CDN_BASE_URL}/assets/images/fiva-collaboration.jpg`,
+    FIVA_EXERCISE: `${CDN_BASE_URL}/assets/images/fiva-exercise.jpg`,
+    FIVA_NO_CHALLENGE: `${CDN_BASE_URL}/assets/images/fiva-no-challenge.jpg`,
   } as const;

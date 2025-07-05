@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import PortfolioArticle from './PortfolioArticle.tsx';
 import { ARTICLE_KEYS } from '../constants/article.ts';
 import { CDN_IMAGES } from '../cdn.ts';
+import FivaArticle from './FivaArticle.tsx';
 
 export type ArticleData = {
   title: string;
@@ -19,5 +20,11 @@ export const articleMap: ArticleMap = {
     date: "2025-06-30",
     imageUrl: CDN_IMAGES.PORTFOLIO_DETAIL,
     content: <PortfolioArticle />
+  },
+  [ARTICLE_KEYS.FIVA]: {
+    title: "Unity로 개발한 FIVA 이야기",
+    date: "2025-07-05",
+    imageUrl: CDN_IMAGES.FIVA,
+    content: <FivaArticle />
   },
 };
