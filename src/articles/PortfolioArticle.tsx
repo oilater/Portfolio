@@ -6,7 +6,7 @@ export default function PortfolioArticle() {
     <div>
       <section css={section}>
         <p>
-          Rally의 구조를 참고해 인터렉션 시스템을 만들어보았습니다. 
+          토스 UX 인터렉션 팀의 Rally의 구조를 참고해 인터렉션 시스템을 만들어보았습니다. 
           개선할 부분이 많지만, 애니메이션 타임라인을 이용해 편하게 포트폴리오를 만들 수 있었습니다.
           또한 <span css={highlightText}>토스피드 컨셉으로 포트폴리오를 구성하면서 
             사용자 경험과 성능 최적화를 위해 고민했던 과정</span>을 소개합니다.
@@ -21,7 +21,7 @@ export default function PortfolioArticle() {
         </header>
 
         <p>
-          토스 Simplicity에서 보았던 <span css={highlightText}>자막 색상을 물결처럼 채우는 
+          토스 디자인 컨퍼런스 Simplicity에서 보았던 <span css={highlightText}>자막 색상을 물결처럼 채우는 
           인터렉션</span>이 너무 멋져서 만들어보고 싶었습니다.
           이미 word 단위로 쪼개져 날라온 텍스트를 다시 char 단위로 색을 채우기는 쉽지 않았습니다.
           따라서 날아온 글자와 같은 위치에 있는 텍스트의 opacity를 풀어주는 방식으로 눈속임 효과를 주었습니다.
