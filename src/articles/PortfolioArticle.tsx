@@ -1,11 +1,5 @@
 import { css } from "@emotion/react";
-import timelineLogic from "../assets/images/timeline-logic.jpg";
-import rallyLogic from "../assets/images/rally-logic.jpg";
-import motionLogic from "../assets/images/motion-logic.jpg";
-import introTimeline from "../assets/images/intro-timeline.jpg";
-import introAnimation from "../assets/gifs/intro-animation.gif";
-import componentComposition from "../assets/images/component-composition.jpg";
-import articleMap from "../assets/images/article-map.jpg";
+import { CDN_IMAGES } from "../cdn";
 
 export default function PortfolioArticle() {
   return (
@@ -35,7 +29,7 @@ export default function PortfolioArticle() {
 
         <figure css={figure}>
           <img 
-            src={introAnimation} 
+            src={CDN_IMAGES.INTRO_ANIMATION} 
             alt="Intro 애니메이션" 
             css={image} 
             style={{ height: '600px', objectFit: 'contain' }} 
@@ -46,7 +40,7 @@ export default function PortfolioArticle() {
 
         <figure css={figure}>
           <img 
-            src={introTimeline} 
+            src={CDN_IMAGES.INTRO_TIMELINE} 
             alt="Timeline 구현 이미지" 
             css={[image, {height: '800px', objectFit: 'contain'}]} 
             loading="lazy" 
@@ -66,7 +60,7 @@ export default function PortfolioArticle() {
         </p>
 
         <figure css={figure}>
-          <img src={timelineLogic} alt="Timeline 구현 이미지" css={image} loading="lazy" />
+          <img src={CDN_IMAGES.TIMELINE_LOGIC} alt="Timeline 구현 이미지" css={image} loading="lazy" />
           <figcaption css={captionStyle}>Timeline.tsx</figcaption>
         </figure>
       </section>
@@ -85,7 +79,7 @@ export default function PortfolioArticle() {
         </p>
 
         <figure css={figure}>
-          <img src={rallyLogic} alt="Rally 구현 이미지" css={image} loading="lazy" />
+          <img src={CDN_IMAGES.RALLY_LOGIC} alt="Rally 구현 이미지" css={image} loading="lazy" />
           <figcaption css={captionStyle}>Rally 구현 로직</figcaption>
         </figure>
       </section>
@@ -106,7 +100,7 @@ export default function PortfolioArticle() {
         </p>
 
         <figure css={figure}>
-          <img src={motionLogic} alt="Timeline 구현 이미지" css={image} loading="lazy" />
+          <img src={CDN_IMAGES.MOTION_LOGIC} alt="Timeline 구현 이미지" css={image} loading="lazy" />
           <figcaption css={captionStyle}>Motion 구현 로직</figcaption>
         </figure>
       </section>
@@ -127,7 +121,7 @@ export default function PortfolioArticle() {
           <div css={imageContainer}>
             <figure css={figure}>
               <img 
-                src={componentComposition} 
+                src={CDN_IMAGES.COMPONENT_COMPOSITION} 
                 alt="컴포넌트 합성 패턴 이미지" 
                 css={[image, containerImage]} 
                 loading="lazy" 
@@ -136,7 +130,7 @@ export default function PortfolioArticle() {
 
             <figure css={figure}>
               <img 
-                src={articleMap} 
+                src={CDN_IMAGES.ARTICLE_MAP} 
                 alt="아티클 맵 이미지" 
                 css={image} 
                 loading="lazy" 
