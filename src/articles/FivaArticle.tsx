@@ -139,93 +139,74 @@ export default function FivaArticle() {
         </header>
 
         <p>
-          토스피드의 아티클 페이지를 컨셉으로 구현해보았습니다. 아티클을 추가할 때마다 
-          매번 레이아웃을 만드는 것은 번거로워서, <span css={highlightText}>Component Composition 패턴을 사용해 미리 만들어 둔 레이아웃에 데이터를 넣어주는 방식</span>으로 구현했습니다.
+          사수 분이 구현하신 동작인식 AI 기능을 이용해 두 가지의 3D 미니 게임을 개발했습니다. <span css={highlightText}>게임들의 로직이 비슷해서, 
+          BaseGameManager 클래스에 공통 로직을 만들고 게임 별로 차이가 있는 부분은 오버라이딩하여 구현했습니다.</span> 에러 발생 시 빠른 대응을 위해 
+          게임에 사용하는 값들은 Firebase Realtime DB에 GameConfig 객체로 저장하여 <span css={highlightText}>앱 업데이트 없이 실시간으로 반영되도록 했습니다.</span>
         </p>
 
+        <figure css={figure}>
+          <img src={CDN_IMAGES.FIVA_SKI_GAME} alt="스쿼트 스키 게임 이미지" css={[image, {objectFit: 'contain'}]} loading="lazy" />
+          <figcaption css={captionStyle}>스쿼트 스키 게임</figcaption>
+        </figure>
 
-      </section>
-      
-      <section css={section}>
-        <header>
-          <h3 css={sectionTitle}>2) 눈 아픈 포트폴리오</h3>
-        </header>
-
-        <p>
-          포트폴리오 페이지를 만들면서 검은 화면에 흰 글씨를 보려니 눈이 너무 아팠습니다. 이후 토스피드 페이지를 참고하면서
-          배경에는 '#121417', 텍스트에는 '#E4E4E5', <span style={{color: '#C3C3C6'}}>'#C3C3C6'</span> 등의 색상을 사용하고 
-          줄 간격을 조정해 눈에 부담이 덜 가도록 신경썼습니다. 
-        </p>
-        <br />
+        <figure css={figure}>
+          <img src={CDN_IMAGES.FIVA_ARM_GAME} alt="팔 운동 비행 게임 이미지" css={[image, {objectFit: 'contain'}]} loading="lazy" />
+          <figcaption css={captionStyle}>팔 운동 비행 게임</figcaption>
+        </figure>
       </section>
 
       <section css={section}>
         <header>
-          <h3 css={sectionTitle}>4) 성능 및 접근성 개선</h3>
+          <h3 css={sectionTitle}>활발한 코드 리뷰 문화</h3>
         </header>
         
         <article>
-          {/* <h4>스크롤 최적화 및 GPU 가속</h4> */}
           <p>
-            컨텐츠 화면에서 스크롤이 버벅이는 문제가 있었습니다. 해결하기 위해 찾아보던 중, <span css={highlightText}>브라우저가 
-            스크롤 이벤트의 preventDefault 함수 호출을 기다리면서 
-            스크롤이 지연된다는 것을 알게 되었습니다.</span>
+            <span css={highlightText}>회사 생활을 하면서 가장 좋았던 것은 코드 리뷰 문화가 활발했다는 점입니다.</span> 모든 기능 구현 시 PR을 통해 코드 리뷰를 받았고,
+            정말 감사하게도 사수분들께서 Line by Line으로 꼼꼼히 코드 리뷰를 해주셨습니다.
+            입사 초반에는 한 PR에 코멘트가 20개 넘게 달린 적도 있어서 슬프기도 했지만, <span css={highlightText}>덕분에 꼼꼼히 코드를 작성하는 습관이 생겼고, 
+            한 번 리뷰받은 부분은 다시 실수하지 않도록 노력하며 더 나은 코드를 작성하기 위해 고민했습니다.</span> 그리고 원활한 코드 리뷰를 위해 기능 별로 커밋하고, 
+            이해하기 쉬운 함수 및 변수명을 사용하려고 노력했습니다.
           </p>
+
+          <figure css={figure}>
+            <img src={CDN_IMAGES.FIVA_CODE_REVIEW} alt="한 코드 리뷰" css={[image, {height: '300px', objectFit: 'contain'}]} loading="lazy" />
+            <figcaption css={captionStyle}>입사 초빈에 받았던 코드 리뷰</figcaption>
+          </figure>
+
+          <figure css={figure}>
+            <img src={CDN_IMAGES.FIVA_CODE_REVIEW_COMMENT} alt="코드 리뷰 코멘트 이미지" css={[image, {height: '200px', objectFit: 'contain'}]} loading="lazy" />
+            <figcaption css={captionStyle}>뿌듯했던 코멘트</figcaption>
+          </figure>
           <br/>
-          <p>
-            현재는 preventDefault를 사용하지 않고 있어서 스크롤 이벤트리스너에 
-            'passive: true' 옵션을 추가하니 스크롤 반응 속도가 눈에 띄게 개선되었습니다.
-            간단한 CSS 애니메이션을 적용했거나 fixed position을 가진 요소는 <span css={highlightText}>스크롤을 할 때마다 다시 렌더링되기 때문에
-            'translateZ(0)'으로 GPU 가속을 적용해서 리플로우를 방지했습니다.</span> 
-          </p>
+
         </article>
         
         <br />
         
         <article>
-          <h4>이미지, GIF</h4>
+          <header>
+            <h3 css={sectionTitle}>FIVA 서비스 종료</h3>
+          </header>
           <p>
-            모든 이미지 파일의 크기는 화질을 크게 해치지 않는 선에서 30-60% 가량 줄여 사용했습니다.
-            이미지를 AVIF로 변환하니 화질이 너무 떨어져서 JPG를 사용하였고, Lazy loading을 적용했습니다. 
-          </p>
+            2025년 3월 15일, FIVA 서비스가 종료되었습니다. 종료되기 전부터 유저 리텐션이 떨어져 다같이 회의하며 노력했지만 결국 서비스를 멈추게 되었습니다.
+            정말 첫 회사에서 좋은 팀원 분들을 만나 즐거웠던 시간이었습니다. 마지막에 팀원들과 메시지를 주고 받았는데, 모든 분들에게 분위기 메이커라는 얘기를 들어서 좋았습니다.
+            슬랙이 사라지는 바람에 하나밖에 안남아서 아쉽네요 🥹
+          </p>  
+          
+          <figure css={figure}>
+              <img src={CDN_IMAGES.FIVA_SLACK_MESSAGE} alt="FIVA 슬랙 메시지" css={[image, {height: '700px', objectFit: 'contain'}]} loading="lazy" />
+              <figcaption css={captionStyle}>UX/UI 디자이너분께 받은 메시지</figcaption>
+          </figure>
+
+          <p>
+            그리고 Unity 개발을 해보니, 저는 게임보단 웹 개발이 더 재밌어서 다시 웹으로 전향하게 되었습니다.
+            차근차근, 꾸준히 공부하며 좋은 개발자가 되어야겠씁니다.
+            읽어주셔서 감사합니다!
+          </p>  
+            
+          
         </article>
-        
-        <br />
-        
-        <article>
-          <h4>접근성</h4>
-          <p>시맨틱 태그를 적절히 사용하고, aria-label을 적용해 접근성을 높였습니다. 또한 모바일에서도 볼 수 있도록 기기별 반응형 CSS를 적용했습니다.</p>
-        </article>
-      </section>
-
-      <h1>기술 스택</h1>
-      <br />
-
-      <section css={section}>
-        <span css={highlightText}>React</span>
-        <p>컴포넌트 기반 아키텍처로 UI를 구현하기 위해 사용했습니다.</p>
-        <br />
-
-        <span css={highlightText}>TypeScript</span>
-        <p>타입 안정성으로 런타임 에러를 사전에 방지하고, 개발 생산성 향상을 위해 사용했습니다.</p>
-        <br />
-
-        <span css={highlightText}>Emotion</span>
-        <p>CSS-in-JS로 사용하기 편리하고, 컴포넌트별로 스타일을 캡슐화할 수 있어 사용했습니다.</p>
-        <br/>
-
-        <span css={highlightText}>GSAP</span>
-        <p>
-          useGSAP 훅, SplitText, ScrollTrigger 등의 기능을 통해 
-          인터렉션 시스템을 구현하기 적합하다고 판단해 사용했습니다.
-        </p>
-        <br/>
-
-        <span css={highlightText}>Jotai</span>
-        <p>
-          애니메이션 재생 상태와 Step을 효율적으로 관리하기 위해 사용했습니다.
-        </p>
-        <br/>
       </section>
     </div>
   );

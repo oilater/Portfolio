@@ -34,4 +34,9 @@ export const CDN_IMAGES = {
     FIVA_COLLABORATION: `${CDN_BASE_URL}/assets/images/fiva-collaboration.jpg`,
     FIVA_EXERCISE: `${CDN_BASE_URL}/assets/images/fiva-exercise.jpg`,
     FIVA_NO_CHALLENGE: `${CDN_BASE_URL}/assets/images/fiva-no-challenge.jpg`,
+    FIVA_SKI_GAME: `${CDN_BASE_URL}/assets/images/fiva-ski-game.jpg`,
+    FIVA_ARM_GAME: `${CDN_BASE_URL}/assets/images/fiva-arm-game.jpg`,
+    FIVA_CODE_REVIEW: `${CDN_BASE_URL}/assets/images/code-review.jpg`,
+    FIVA_CODE_REVIEW_COMMENT: `${CDN_BASE_URL}/assets/images/code-review-comment.jpg`,
+    FIVA_SLACK_MESSAGE: `${CDN_BASE_URL}/assets/images/fiva-slack-message.jpg`,
   } as const;
