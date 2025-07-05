@@ -4,6 +4,7 @@ import Intro from "./Intro";
 import Introduce from "./Introduce";
 import { stepAtom } from "../stores/step-store";
 import { useAtom } from "jotai";
+import { Work } from "./Work";
 
 export default function Portfolio() {
   const [step] = useAtom(stepAtom);
@@ -17,6 +18,7 @@ export default function Portfolio() {
           <div css={pages}>
             <Introduce />
             <Content />
+            <Work />
           </div>
         }
       </main>

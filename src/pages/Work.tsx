@@ -6,11 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { useScrollTrigger } from "../hooks/useScrollTrigger";
 import { contentTimeline } from "../timelines/contentTimeline";
 import { animationPlayStateAtom } from "../stores/timelineStore";
-import { CONTENT_DATA } from "../constants/content-data";
 import { Top } from "../components/Top";
-import { Card } from "../components/Card";
+import { WideCard } from "../components/WideCard";
+import { WORK_DATA } from "../constants/work-data.ts";
 
-export function Content() {
+export function Work() {
   const navigate = useNavigate();
   const [isPlayed, setIsPlayed] = useAtom(animationPlayStateAtom);
   const { animateScroll } = useScrollTrigger();
@@ -37,34 +37,33 @@ export function Content() {
       <Top.Root 
         title={
           <Top.Paragraph>
-            <span className="topTitle">콘텐츠 </span>
+            <span className="topTitle">IN START-UP</span>
           </Top.Paragraph>
         }
       />
 
       <div className="mainDescription" css={mainDescription}>
-        <p>새로운 것을 배우면 재밌는 서비스로 만들어봅니다.</p>
+        <p>스타트업에서의 개발 경험을 소개합니다.</p>
       </div>
 
       <div className="contentSection" css={contentSection}>
-        {CONTENT_DATA.map((content) => {
-          if (!content) return null;
+        {WORK_DATA?.map((work) => {
+          if (!work) return null;
           
           return (
-          <Card 
-            key={content.id}
-            title={content.title}
-            description={content.description}
-            image={content.image}
-            onClick={() => {
-              if (content.isInternal) {
-                navigate(content.link);
-              } else {
-                window.open(content.link, "_blank");
-              }
-            }}
-          />
-        )})}
+            <WideCard 
+              key={work.id}
+              title={work.title}
+              description={work.description}
+              image={work.image}
+              onClick={() => {
+                if (work.link) {
+                  navigate(work.link);
+                }
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );

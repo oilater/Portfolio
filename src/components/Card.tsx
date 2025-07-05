@@ -60,7 +60,7 @@ const cardImage = css`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease-out;
+  transition: transform 0.2s ease-out;
   transform: translateZ(0);
 
   &:hover {

@@ -11,6 +11,7 @@ type ContentData = {
 }
 
 export const CONTENT_DATA: ContentData[] = [
+    // Article
     {
         id: 'rally-portfolio',
         title: 'Rally 만드는 김에 포트폴리오도 만들어보자',
@@ -42,5 +43,5 @@ export const CONTENT_DATA: ContentData[] = [
         image: CDN_IMAGES.HOMET_FRIEND,
         link: LINK_URL.HOMET_FRIEND,
         isInternal: false,
-    }
+    },
 ]
