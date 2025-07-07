@@ -41,6 +41,10 @@ const wideCard = css`
   &:hover h3 {
     color: #3182f6;
   }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
 `;
 
 const cardImageWrapper = css`
@@ -63,10 +67,6 @@ const cardImage = css`
   object-fit: cover;
   transition: transform 0.2s ease-out;
   transform: translateZ(0);
-
-  &:hover {
-    transform: scale(1.05);
-  }
 
   @media (max-width: 768px) {
     position: absolute;
