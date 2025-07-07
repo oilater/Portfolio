@@ -44,4 +44,12 @@ export const CONTENT_DATA: ContentData[] = [
         link: LINK_URL.HOMET_FRIEND,
         isInternal: false,
     },
+    {
+        id: 'rally-refactoring',
+        title: 'TypeScript로 Rally 개선해보기',
+        description: 'TypeScript 공식 문서를 기반으로 Rally 구현 과정에서 아쉬웠던 부분들을 하나씩 개선해봅니다.',
+        image: CDN_IMAGES.RALLY_REFACTORING,
+        link: LINK_URL.RALLY_REFACTORING,
+        isInternal: true,
+    },
 ]

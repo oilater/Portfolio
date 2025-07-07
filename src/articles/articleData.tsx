@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react';
-import PortfolioArticle from './PortfolioArticle.tsx';
 import { ARTICLE_KEYS } from '../constants/article.ts';
 import { CDN_IMAGES } from '../cdn.ts';
 import FivaArticle from './FivaArticle.tsx';
+import PortfolioArticle from './PortfolioArticle.tsx';
+import RallyRefactoringArticle from './RallyRefactoringArticle.tsx';
 
 export type ArticleData = {
   title: string;
@@ -26,5 +27,11 @@ export const articleMap: ArticleMap = {
     date: "2025-07-05",
     imageUrl: CDN_IMAGES.FIVA,
     content: <FivaArticle />
+  },
+  [ARTICLE_KEYS.RALLY_REFACTORING]: {
+    title: "TypeScript로 Rally 개선해보기",
+    date: "2025-07-07",
+    imageUrl: CDN_IMAGES.RALLY_REFACTORING,
+    content: <RallyRefactoringArticle />
   },
 };

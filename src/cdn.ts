@@ -11,6 +11,7 @@ export const CDN_IMAGES = {
     HOMET_LOGO: `${CDN_BASE_URL}/assets/images/hometfriend-logo.jpg`,
     RALLY_LOGIC: `${CDN_BASE_URL}/assets/images/rally-logic.jpg`,
     FIVA: `${CDN_BASE_URL}/assets/images/fiva_thumbnail.jpg`,
+    RALLY_REFACTORING: `${CDN_BASE_URL}/assets/images/typescript-refactoring.jpg`,
     
     // GIF
     INTERACTIVE_GRAPH: `${CDN_BASE_URL}/assets/gifs/interactive-graph.gif`,

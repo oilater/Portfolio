@@ -17,8 +17,8 @@ export default function Portfolio() {
         {step === 'introduce' &&
           <div css={pages}>
             <Introduce />
-            <Content />
             <Work />
+            <Content />
           </div>
         }
       </main>

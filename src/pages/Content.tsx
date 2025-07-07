@@ -49,7 +49,6 @@ export function Content() {
       <div className="contentSection" css={contentSection}>
         {CONTENT_DATA.map((content) => {
           if (!content) return null;
-          
           return (
           <Card 
             key={content.id}
@@ -79,8 +78,26 @@ const wrapper = css`
 const contentSection = css`
   display: flex;
   flex-wrap: wrap;
-  gap: 54px 16px;
+  gap: 54px 0;
   padding: 0 16px;
+
+  & > * {
+    @media (min-width: 769px) {
+      flex-basis: calc((100% - 40px) / 3);
+      max-width: calc((100% - 40px) / 3);
+      height: 507px;
+      margin-right: 20px;
+      
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
 `;
 
 const mainDescription = css`

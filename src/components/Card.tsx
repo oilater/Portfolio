@@ -35,22 +35,11 @@ const card = css`
   &:hover {
     background: #1e1e23;
   }
-
-  @media (max-width: 768px) {
-    width: 100%;
-    gap: 1rem;
-    padding: 6px;
-  }
-  
-  @media (min-width: 769px) {
-    flex-basis: calc(50% - 0.75rem);
-    max-width: calc(50% - 0.75rem);
-  }
 `;
 
 const cardImageWrapper = css`
   width: 100%;
-  aspect-ratio: 1.4;
+  aspect-ratio: 1;
   border-radius: 16px 16px 0 0;
   overflow: hidden;
   padding: 0;
@@ -76,13 +65,13 @@ const cardContent = css`
 `;
 
 const cardTitle = css`
-  font-size: 1.4rem;
+  font-size: 20px;
   font-weight: 600;
   color: #E4E4E5;
 `;
 
 const cardDescription = css`
-  font-size: 1.05rem;
+  font-size: 15px;
   font-weight: 400;
   color: #9E9EA4;
 `;
