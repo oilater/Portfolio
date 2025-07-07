@@ -1,6 +1,11 @@
 import { gsap } from "gsap";
 import { type Playable, type SerialOrParallelTimeline, type StaggerTimeline, type Timeline } from "./types";
 
+const PlaybackPosition = {
+  Parallel: "<",
+  Serial: ">",
+} as const;
+
 export function Timeline(props: SerialOrParallelTimeline): gsap.core.Timeline;
 export function Timeline(props: StaggerTimeline): gsap.core.Timeline;
 
@@ -20,7 +25,7 @@ export function Timeline(props: Timeline): gsap.core.Timeline {
 
     case "parallel": {
       playables.forEach((playable) => {
-        timeline.add(playable, "<");
+        timeline.add(playable, PlaybackPosition.Parallel);
         setPlayable(playable);
       });
       break;
@@ -28,7 +33,7 @@ export function Timeline(props: Timeline): gsap.core.Timeline {
 
     case "serial": {
       playables.forEach((playable) => {
-        timeline.add(playable, ">");
+        timeline.add(playable, PlaybackPosition.Serial);
         setPlayable(playable);
       });
       break;
