@@ -15,7 +15,7 @@ export function Rally({
   motions,
 }: RallyProps): gsap.core.Timeline {
   const rally = gsap.timeline({paused: true});
-  const repeatCount = playCount !== "infinite" ? playCount - 1 : -1;
+  const repeatCount = playCount === "infinite" ? -1 : playCount - 1;
   
   addMotions({ rally, target, motions });
 
