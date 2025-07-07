@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { addMotions } from "./motion.ts";
-import { type RallyProps } from "./types.ts";
+import { type PlayCount, type RallyProps } from "./types.ts";
 
 /**
  * Rally
@@ -15,9 +15,13 @@ export function Rally({
   motions,
 }: RallyProps): gsap.core.Timeline {
   const rally = gsap.timeline({paused: true});
-  const repeatCount = playCount === "infinite" ? -1 : playCount - 1;
+  const repeatCount = isInfinite(playCount) ? -1 : playCount - 1;
   
   addMotions({ rally, target, motions });
 
   return rally.repeat(repeatCount);
+}
+
+function isInfinite(playCount: PlayCount): playCount is "infinite" {
+  return playCount === "infinite";
 }
