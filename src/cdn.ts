@@ -40,4 +40,5 @@ export const CDN_IMAGES = {
     FIVA_CODE_REVIEW: `${CDN_BASE_URL}/assets/images/code-review.jpg`,
     FIVA_CODE_REVIEW_COMMENT: `${CDN_BASE_URL}/assets/images/code-review-comment.jpg`,
     FIVA_SLACK_MESSAGE: `${CDN_BASE_URL}/assets/images/fiva-slack-message.jpg`,
+    REACT_TRIP: `${CDN_BASE_URL}/assets/images/react-trip.jpg`,
   } as const;

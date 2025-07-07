@@ -45,8 +45,16 @@ export const CONTENT_DATA: ContentData[] = [
         isInternal: false,
     },
     {
+        id: 'react-trip',
+        title: '첫 React 프로젝트 여행의 민족',
+        description: '삼성 청년 SW 아카데미 1학기 최종 프로젝트로, React로 처음 만들어 본 여행의 민족을 소개합니다.',
+        image: CDN_IMAGES.REACT_TRIP,
+        link: LINK_URL.REACT_TRIP,
+        isInternal: false,
+    },
+    {
         id: 'rally-refactoring',
-        title: 'TypeScript로 Rally 개선해보기',
+        title: 'TypeScript로 Rally 개선하기',
         description: 'TypeScript 공식 문서를 기반으로 Rally 구현 과정에서 아쉬웠던 부분들을 하나씩 개선해봅니다.',
         image: CDN_IMAGES.RALLY_REFACTORING,
         link: LINK_URL.RALLY_REFACTORING,
