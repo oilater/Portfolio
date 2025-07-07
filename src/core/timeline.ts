@@ -11,24 +11,10 @@ export function Timeline(props: StaggerTimelineProps): gsap.core.Timeline;
 
 export function Timeline(props: TimelineProps): gsap.core.Timeline {
   const timeline = gsap.timeline({ paused: true });
-  const { playables, playback } = props;
-
-  // playable 위치 계산 함수
-  const getPosition = (index: number) => {
-    switch (playback) {
-      case "stagger":
-        return props.staggerDelay * index;
-
-      case "parallel":
-        return PlaybackPosition.Parallel;
-
-      case "serial":
-        return PlaybackPosition.Serial;
-    }
-  };
+  const { playables } = props;
 
   playables.forEach((playable, playableIndex) => {
-    const position = getPosition(playableIndex);
+    const position = getPosition(props, playableIndex);
     timeline.add(playable, position);
     setPlayable(playable);
   });
@@ -36,6 +22,25 @@ export function Timeline(props: TimelineProps): gsap.core.Timeline {
   return timeline;
 }
 
+// 각 playable을 실행 가능한 상태로 만들어주는 함수
 function setPlayable(playable: Playable) {
   if (playable.paused()) playable.play();
+}
+
+// playable 위치 계산 함수
+function getPosition(props: TimelineProps, index: number) {
+  switch (props.playback) {
+    case "stagger":
+      return props.staggerDelay * index;
+
+    case "parallel":
+      return PlaybackPosition.Parallel;
+
+    case "serial":
+      return PlaybackPosition.Serial;
+
+    default:
+      const exhaustiveCheck: never = props;
+      return exhaustiveCheck;
+  }
 }
