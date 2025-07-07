@@ -13,36 +13,25 @@ export function Timeline(props: TimelineProps): gsap.core.Timeline {
   const timeline = gsap.timeline({ paused: true });
   const { playables, playback } = props;
 
-  switch (playback) {
-    case "stagger": {
-      playables.forEach((playable, playableIndex) => {
-        const position = props.staggerDelay * playableIndex;
-        timeline.add(playable, position);
-        setPlayable(playable);
-      });
-      break;
-    }
+  // playable 위치 계산 함수
+  const getPosition = (index: number) => {
+    switch (playback) {
+      case "stagger":
+        return props.staggerDelay * index;
 
-    case "parallel": {
-      playables.forEach((playable) => {
-        timeline.add(playable, PlaybackPosition.Parallel);
-        setPlayable(playable);
-      });
-      break;
-    }
+      case "parallel":
+        return PlaybackPosition.Parallel;
 
-    case "serial": {
-      playables.forEach((playable) => {
-        timeline.add(playable, PlaybackPosition.Serial);
-        setPlayable(playable);
-      });
-      break;
+      case "serial":
+        return PlaybackPosition.Serial;
     }
+  };
 
-    default:
-      const exhaustiveCheck: never = props;
-      return exhaustiveCheck;
-  }
+  playables.forEach((playable, playableIndex) => {
+    const position = getPosition(playableIndex);
+    timeline.add(playable, position);
+    setPlayable(playable);
+  });
 
   return timeline;
 }
