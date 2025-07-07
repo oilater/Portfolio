@@ -30,8 +30,8 @@ export const CONTENT_DATA: ContentData[] = [
     },
     {
         id: 'crewing',
-        title: 'SocketIO를 활용해 실시간 운동 친구 만들기',
-        description: 'NextJS와 카카오 로그인, SocketIO를 활용해 실시간으로 운동 친구를 만들어 본 경험을 공유합니다.',
+        title: 'SocketIO로 실시간 운동 친구 만들기',
+        description: 'NextJS와 카카오 로그인, Node JS, SocketIO를 활용해 실시간 연동 기능을 구현한 과정을 공유합니다.',
         image: CDN_IMAGES.CREWING,
         link: LINK_URL.CREWING,
         isInternal: false,
