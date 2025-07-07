@@ -1,31 +1,47 @@
 import { gsap } from "gsap";
-import { type TimelineProps } from "./types";
+import { type Playable, type SerialOrParallelTimeline, type StaggerTimeline, type Timeline } from "./types";
 
-/**
- * Timeline
- * @param playback - 타임라인 재생 방식 (동시, 순차, 연달아 실행)
- * @param playables - 타임라인에 추가할 타임라인 배열
- * @param staggerDelay - playback 타입이 'stagger'인 경우 각 Rally 사이의 딜레이 (기본값: 0)
- * @returns - Timeline 타임라인 반환
- */
-export function Timeline({
-  playback,
-  playables,
-  staggerDelay = 0,
-}: TimelineProps): gsap.core.Timeline {
+export function Timeline(props: SerialOrParallelTimeline): gsap.core.Timeline;
+export function Timeline(props: StaggerTimeline): gsap.core.Timeline;
+
+export function Timeline(props: Timeline): gsap.core.Timeline {
   const timeline = gsap.timeline({ paused: true });
+  const { playables, playback } = props;
 
-  playables.forEach((playable, playableIndex) => {
-    // playables 실행 위치 지정
-    const position = 
-      playback === "stagger" ? playableIndex * staggerDelay :
-      playback === "parallel" ? "<" : ">";
+  switch (playback) {
+    case "stagger": {
+      playables.forEach((playable, playableIndex) => {
+        const position = props.staggerDelay * playableIndex;
+        timeline.add(playable, position);
+        setPlayable(playable);
+      });
+      break;
+    }
 
-    timeline.add(playable, position);
+    case "parallel": {
+      playables.forEach((playable) => {
+        timeline.add(playable, "<");
+        setPlayable(playable);
+      });
+      break;
+    }
 
-    // 내부의 타임라인이 paused 상태라면 실행 가능한 상태로 바꿔두기
-    if (playable.paused()) playable.play();
-  });
+    case "serial": {
+      playables.forEach((playable) => {
+        timeline.add(playable, ">");
+        setPlayable(playable);
+      });
+      break;
+    }
+
+    default:
+      const exhaustiveCheck: never = props;
+      return exhaustiveCheck;
+  }
 
   return timeline;
+}
+
+function setPlayable(playable: Playable) {
+  if (playable.paused()) playable.play();
 }

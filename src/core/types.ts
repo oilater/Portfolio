@@ -6,14 +6,22 @@ export type MotionValue = {
 };
 
 // Timeline
-export type Playback = "parallel" | "serial" | "stagger";
 export type Playable = gsap.core.Timeline | gsap.core.Tween;
 
-export type TimelineProps = {
-  playback: Playback;
+interface BaseTimeline {
   playables: Playable[];
-  staggerDelay?: number;
-};
+}
+
+export interface SerialOrParallelTimeline extends BaseTimeline {
+  playback: 'serial' | 'parallel';
+}
+
+export interface StaggerTimeline extends BaseTimeline {
+  playback: "stagger";
+  staggerDelay: number;
+}
+
+export type Timeline = SerialOrParallelTimeline | StaggerTimeline;
 
 
 // Rally
