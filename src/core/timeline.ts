@@ -1,13 +1,10 @@
 import { gsap } from "gsap";
-import { type SerialOrParallelTimelineProps, type StaggerTimelineProps, type TimelineProps } from "./types";
+import { type TimelineProps } from "./types";
 
 const PlaybackPosition = {
   Parallel: "<",
   Serial: ">",
 } as const;
-
-export function Timeline(props: SerialOrParallelTimelineProps): gsap.core.Timeline;
-export function Timeline(props: StaggerTimelineProps): gsap.core.Timeline;
 
 export function Timeline(props: TimelineProps): gsap.core.Timeline {
   const timeline = gsap.timeline({ paused: true });
