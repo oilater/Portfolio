@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { type Playable, type SerialOrParallelTimelineProps, type StaggerTimelineProps, type TimelineProps } from "./types";
+import { type SerialOrParallelTimelineProps, type StaggerTimelineProps, type TimelineProps } from "./types";
 
 const PlaybackPosition = {
   Parallel: "<",
@@ -16,15 +16,12 @@ export function Timeline(props: TimelineProps): gsap.core.Timeline {
   playables.forEach((playable, playableIndex) => {
     const position = getPosition(props, playableIndex);
     timeline.add(playable, position);
-    setPlayable(playable);
+    
+    // 각 playable을 실행 가능한 상태로 만들어줌
+    playable.play();
   });
 
   return timeline;
-}
-
-// 각 playable을 실행 가능한 상태로 만들어주는 함수
-function setPlayable(playable: Playable) {
-  if (playable.paused()) playable.play();
 }
 
 // playable 위치 계산 함수
