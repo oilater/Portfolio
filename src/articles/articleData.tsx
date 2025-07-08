@@ -17,7 +17,7 @@ type ArticleMap = Record<string, ArticleData>;
 export const articleMap: ArticleMap = {
   
   [ARTICLE_KEYS.PORTFOLIO]: {
-    title: "Rally 만드는 김에 포트폴리오도 만들어보자",
+    title: "나만의 인터렉션 시스템 Rally 만들기",
     date: "2025-06-30",
     imageUrl: CDN_IMAGES.PORTFOLIO_DETAIL,
     content: <PortfolioArticle />

@@ -14,7 +14,7 @@ export const CONTENT_DATA: ContentData[] = [
     // Article
     {
         id: 'rally-portfolio',
-        title: 'Rally 만드는 김에 포트폴리오도 만들어보자',
+        title: '나만의 인터렉션 시스템 Rally 만들기',
         description: '토스 인터렉션 팀의 Rally의 구조를 참고해 직접 만들어 본 인터렉션 시스템과 포트폴리오, 페이지 성능 개선을 위해 고민한 과정을 소개합니다.',
         image: CDN_IMAGES.PORTFOLIO,
         link: LINK_URL.PORTFOLIO,
