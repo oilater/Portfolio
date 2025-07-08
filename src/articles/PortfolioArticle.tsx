@@ -60,7 +60,7 @@ export default function PortfolioArticle() {
         </p>
 
         <figure css={figure}>
-          <img src={CDN_IMAGES.TIMELINE_LOGIC} alt="Timeline 구현 이미지" css={image} loading="lazy" />
+          <img src={CDN_IMAGES.TIMELINE_LOGIC_REFACTOR} alt="Timeline 구현 이미지" css={image} loading="lazy" />
           <figcaption css={captionStyle}>Timeline.tsx</figcaption>
         </figure>
       </section>

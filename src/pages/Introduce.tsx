@@ -28,7 +28,7 @@ export default function Introduce() {
         <Top.Root 
           title={
             <Top.Paragraph>
-              <span className="topTitle">About Me 🤗 </span>
+              <span className="topTitle">About me 🤗 </span>
             </Top.Paragraph>
           }
         />
@@ -57,7 +57,7 @@ export default function Introduce() {
 const myData: MyData[] = [
   {
     id: 1,
-    title: '📚 기본기를 쌓는 개발자',
+    title: '📚 좋은 코드를 위해 고민하는 개발자',
     description: '공식문서를 꼼꼼히 학습하며 React스러운 코딩을 하기 위해 노력했습니다. TypeScript를 통해 타입 안전성을 높이고 이해하기 쉬운 코드를 만들기 위해 노력합니다.',
   },
   {

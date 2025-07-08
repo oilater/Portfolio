@@ -25,7 +25,7 @@ export const CDN_IMAGES = {
     COMPONENT_COMPOSITION: `${CDN_BASE_URL}/assets/images/component-composition.jpg`,
     INTRO_TIMELINE: `${CDN_BASE_URL}/assets/images/intro-timeline.jpg`,
     MOTION_LOGIC: `${CDN_BASE_URL}/assets/images/motion-logic.jpg`,
-    TIMELINE_LOGIC: `${CDN_BASE_URL}/assets/images/timeline-logic.jpg`,
+    TIMELINE_LOGIC_REFACTOR: `${CDN_BASE_URL}/assets/images/timeline-logic-refactor.jpg`,
     RALLY_STRUCTURE: `${CDN_BASE_URL}/assets/images/rally-structure.jpg`,
     FIVA_AVATAR: `${CDN_BASE_URL}/assets/images/fiva_avatar.jpg`,
     FIVA_CHALLENGE_CALENDAR: `${CDN_BASE_URL}/assets/images/fiva-challenge-calendar.jpg`,
