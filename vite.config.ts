@@ -22,7 +22,6 @@ export default defineConfig({
           
           // 스타일링
           styling: ['@emotion/react', '@emotion/styled', '@emotion/css'],
-          font: ['Pretendard'],
         },
       },
     },
