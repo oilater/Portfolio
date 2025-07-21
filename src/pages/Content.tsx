@@ -88,7 +88,7 @@ const contentSection = css`
       height: 507px;
       margin-right: 20px;
       
-      &:nth-child(3n) {
+      &:nth-of-type(3n) {
         margin-right: 0;
       }
     }

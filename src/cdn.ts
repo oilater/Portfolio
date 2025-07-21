@@ -7,6 +7,9 @@ export const CDN_BASE_URL = `https://cdn.jsdelivr.net/gh/${GITHUB_USERNAME}/${RE
 export const CDN_IMAGES = {
     // 메인 썸네일
     PORTFOLIO: `${CDN_BASE_URL}/assets/images/portfolio.avif`,
+    LANGUAGES: `${CDN_BASE_URL}/assets/images/languages.jpg`,
+    PERFORMANCE: `${CDN_BASE_URL}/assets/images/performance.jpg`,
+    COMMUNICATION: `${CDN_BASE_URL}/assets/images/communication.jpg`,
     HOMET_FRIEND: `${CDN_BASE_URL}/assets/images/hometfriend.avif`,
     HOMET_LOGO: `${CDN_BASE_URL}/assets/images/hometfriend-logo.jpg`,
     RALLY_LOGIC: `${CDN_BASE_URL}/assets/images/rally-logic.jpg`,

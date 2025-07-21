@@ -1,14 +1,14 @@
 import { css } from "@emotion/react";
 import { Colors } from "../theme/theme.ts";
 
-type CardProps = {
+type InfoCardProps = {
   title: string;
   description: string;
   image: string;
   onClick?: () => void;
 };
 
-export function Card({ title, description, image, onClick }: CardProps) {
+export function InfoCard({ title, description, image, onClick }: InfoCardProps) {
   return (
     <div css={card} onClick={onClick}>
       <div css={cardImageWrapper}>
@@ -27,20 +27,13 @@ const card = css`
   flex-direction: column;
   vertical-align: top;
   background: inherit;
-  border: 1px solid rgba(228, 228, 229, 0.5);
-  border-radius: 16px;
-  transition: background 0.2s ease;
-  cursor: pointer;
-
-  &:hover {
-    background: #1e1e23;
-  }
+  border-radius: 8px;
 `;
 
 const cardImageWrapper = css`
   width: 100%;
   aspect-ratio: 1;
-  border-radius: 16px 16px 0 0;
+  border-radius: 8px;
   overflow: hidden;
   padding: 0;
 `;
@@ -61,7 +54,7 @@ const cardContent = css`
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 24px;
+  padding-top: 10px;
 `;
 
 const cardTitle = css`

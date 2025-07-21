@@ -50,7 +50,8 @@ export default function Header({ onVelog, onGithub, onHome, className }: HeaderP
 const header = css`
   z-index: 100;
   transform: translateZ(0);
-  background-color: rgba(18, 20, 23, 0.95);
+  // background-color: rgba(18, 20, 23, 0.95);
+  background-color: #fff;
   position: fixed;
   display: flex;
   justify-content: center;
@@ -75,5 +76,5 @@ const innerNav = css`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 10px;
+  gap: 13px;
 `;

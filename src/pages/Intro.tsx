@@ -1,38 +1,28 @@
 import { css } from "@emotion/react";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { useAtom, useSetAtom } from "jotai";
-import { stepAtom } from "../stores/step-store.ts";
-import { animationPlayStateAtom } from "../stores/timelineStore.ts";
 import { introTimeline } from "../timelines/IntroTimeline.ts";
+import { Colors } from "../theme/theme.ts";
 
 export default function Intro() {
   const introScope = useRef<HTMLDivElement>(null!);
-  const setStep = useSetAtom(stepAtom);
-  const [isPlayed, setIsPlayed] = useAtom(animationPlayStateAtom);
 
   useGSAP(() => {
-    if (isPlayed('intro')) {
-      setStep('introduce');
-      return;
-    }
-
-    introTimeline(() => {
-      setIsPlayed('intro');
-      setStep('introduce');
-    }).play();
+    introTimeline().play();
   }, { scope: introScope });
 
   return (
     <div ref={introScope} css={introWrapper}>
       <div className="introTitleSection" css={introTitleSection}>
-        <h1 className="introTitle" css={title}>
-          아이디어를 만드는<br />
-          <span className="subTitle" css={subTitle}>프론트엔드 개발자</span> 김성현입니다
+        <h1 className="introTitle" css={[baseTitle, titleOrigin]}>
+          안녕하세요,<br />
+          프론트엔드 개발자<br/> 
+          <span className="subTitle">김성현</span>입니다.
         </h1>
-        <h1 className="introTitleFill" css={title}>
-          아이디어를 만드는<br />
-          <span className="subTitle" css={subTitle}>프론트엔드 개발자</span> 김성현입니다
+        <h1 className="introTitleFill" css={[baseTitle, title]}>
+          안녕하세요,<br />
+          프론트엔드 개발자<br/> 
+          <span className="subTitle" css={subTitle}>김성현</span>입니다.
         </h1>
       </div>
     </div>
@@ -41,7 +31,8 @@ export default function Intro() {
 
 const introWrapper = css`
   width: 100%;
-  height: 100vh;
+  height: 20vh;
+  margin-top: 5rem;
 `;
 
 const introTitleSection = css`
@@ -52,17 +43,16 @@ const introTitleSection = css`
   align-items: center;
 `;
 
-const title = css`
+const baseTitle = css`
   position: absolute;
-  color: #E4E4E5;
   text-align: center;
   white-space: pre-line;
   word-break: break-all;
   line-height: 1.3;
-  font-size: 4rem;
+  font-size: 48px;
   width: 100vw;
   max-width: 1000px;
-  
+
   @media (max-width: 480px) {
     font-size: 1.2rem;
     width: 95vw;
@@ -82,6 +72,14 @@ const title = css`
   }
 `;
 
+const titleOrigin = css`
+  color: ${Colors.grey400};
+`;
+
+const title = css`
+  color: #292929;
+`;
+
 const subTitle = css`
-  color: #3182f6;
+  color: ${Colors.blue500};
 `;

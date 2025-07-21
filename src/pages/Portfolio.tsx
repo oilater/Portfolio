@@ -2,25 +2,16 @@ import { css } from "@emotion/react";
 import { Content } from "./Content";
 import Intro from "./Intro";
 import Introduce from "./Introduce";
-import { stepAtom } from "../stores/step-store";
-import { useAtom } from "jotai";
 import { Work } from "./Work";
 
 export default function Portfolio() {
-  const [step] = useAtom(stepAtom);
-
   return (
     <div css={container}>
       <main css={wrapper}>
-        {step === 'init' && <Intro />}
-
-        {step === 'introduce' &&
-          <div css={pages}>
-            <Introduce />
-            <Work />
-            <Content />
-          </div>
-        }
+          <Intro />
+          <Introduce />
+          <Work />
+          <Content />
       </main>
     </div>
   );
@@ -38,8 +29,5 @@ const wrapper = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const pages = css`
   padding-top: 60px;
 `;

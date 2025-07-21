@@ -7,13 +7,12 @@ const GITHUB_URL = 'https://github.com/oilater';
 const VELOG_URL = 'https://velog.io/@oilater';
 
 export default function Layout() {
-  const [step, setStep] = useAtom(stepAtom);
-  const shouldShowHeader = step !== 'init';
+  const [, setStep] = useAtom(stepAtom);
   const navigate = useNavigate();
 
   return (
     <>
-      {shouldShowHeader && <Header 
+      {<Header 
         className="header"
         onGithub={() => {window.open(GITHUB_URL, '_blank');}}
         onVelog={() => {window.open(VELOG_URL, '_blank');}}

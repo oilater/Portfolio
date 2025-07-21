@@ -9,7 +9,7 @@ export function GithubIcon() {
             fill="#C3C3C6"
         >
             <g 
-                fill="#C3C3C6" 
+                fill="#6b7684" 
                 fillRule="nonzero" 
                 stroke="none" 
                 strokeWidth="1" 

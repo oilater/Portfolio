@@ -19,7 +19,6 @@ const section = css`
 const highlightText = css`
   color: #fff;
   background-color: rgba(63, 213, 153, 0.21);
-  // padding: 2px 4px;
   border-radius: 2px;
   letter-spacing: 0em;
 `;
