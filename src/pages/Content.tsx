@@ -10,7 +10,6 @@ import { CONTENT_DATA } from "../constants/content-data";
 import { Top } from "../components/Top";
 import { Card } from "../components/Card.tsx";
 import Tag from "../components/Tag.tsx";
-import { Colors } from "../theme/theme.ts";
 
 export function Content() {
   const navigate = useNavigate();
