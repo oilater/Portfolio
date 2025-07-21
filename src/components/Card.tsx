@@ -74,6 +74,10 @@ const cardImageWrapper = css`
   border-radius: 16px 16px 0 0;
   overflow: hidden;
   padding: 0;
+
+  @media (min-width: 1024px) {
+    max-height: 260px;
+  } 
 `;
 
 const cardImage = css`
