@@ -9,6 +9,7 @@ export function introTimeline() {
         target: ".introTitleFill",
         motions: [
           {
+            delay: 0.06,
             split: "chars",
             splitDelay: 0.08,
             duration: 0.65,
