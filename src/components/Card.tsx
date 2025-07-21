@@ -1,27 +1,58 @@
 import { css } from "@emotion/react";
 import { Colors } from "../theme/theme.ts";
+import type { ReactNode } from "react";
 
-type CardProps = {
-  title: string;
-  description: string;
+type CardRootProps = {
   image: string;
   onClick?: () => void;
+  children: ReactNode;
 };
 
-export function Card({ title, description, image, onClick }: CardProps) {
+type CardTitleProps = {
+  children: ReactNode;
+};
+
+type CardDescriptionProps = {
+  children: ReactNode;
+};
+
+type CardTagsProps = {
+  children: ReactNode;
+};
+
+function CardRoot({ image, onClick, children }: CardRootProps) {
   return (
     <div css={card} onClick={onClick}>
       <div css={cardImageWrapper}>
-        <img src={image} alt={title} css={cardImage} loading="lazy" />
+        <img src={image} alt="" css={cardImage} loading="lazy" />
       </div>
       <div css={cardContent}>
-        <p css={cardTitle}>{title}</p>
-        <p css={cardDescription}>{description}</p>
+        {children}
       </div>
     </div>
   );
 }
 
+function CardTitle({ children }: CardTitleProps) {
+  return <p css={cardTitle}>{children}</p>;
+}
+
+function CardDescription({ children }: CardDescriptionProps) {
+  return <p css={cardDescription}>{children}</p>;
+}
+
+function CardTags({ children }: CardTagsProps) {
+  return <div css={cardTags}>{children}</div>;
+}
+
+export const Card = {
+  Root: CardRoot,
+  Title: CardTitle,
+  Description: CardDescription,
+  Tags: CardTags,
+};
+
+// 스타일 정의
 const card = css`
   display: flex;
   flex-direction: column;
@@ -74,4 +105,11 @@ const cardDescription = css`
   font-size: 15px;
   font-weight: 400;
   color: ${Colors.grey600};
+`;
+
+const cardTags = css`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
 `;

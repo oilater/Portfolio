@@ -8,6 +8,7 @@ type ContentData = {
     image: string;
     link: string;
     isInternal: boolean;
+    tags: string[];
 }
 
 export const CONTENT_DATA: ContentData[] = [
@@ -19,6 +20,7 @@ export const CONTENT_DATA: ContentData[] = [
         image: CDN_IMAGES.PORTFOLIO,
         link: LINK_URL.PORTFOLIO,
         isInternal: true,
+        tags: ['React', 'TypeScript', 'Emotion', 'GSAP', 'Jotai'],
     },
     {
         id: 'interactive-graph',
@@ -27,6 +29,7 @@ export const CONTENT_DATA: ContentData[] = [
         image: CDN_IMAGES.INTERACTIVE_GRAPH,
         link: LINK_URL.INTERACTIVE_GRAPH,
         isInternal: false,
+        tags: ['HTML5', 'CSS3', 'JavaScript'],
     },
     {
         id: 'crewing',
@@ -35,6 +38,7 @@ export const CONTENT_DATA: ContentData[] = [
         image: CDN_IMAGES.CREWING,
         link: LINK_URL.CREWING,
         isInternal: false,
+        tags: ['NextJS', 'Firebase', 'SocketIO', 'SCSS'],
     },
     {
         id: 'homet-friend',
@@ -43,6 +47,7 @@ export const CONTENT_DATA: ContentData[] = [
         image: CDN_IMAGES.HOMET_FRIEND,
         link: LINK_URL.HOMET_FRIEND,
         isInternal: false,
+        tags: ['SwiftUI', 'SwiftData'],
     },
     {
         id: 'react-trip',
@@ -51,6 +56,7 @@ export const CONTENT_DATA: ContentData[] = [
         image: CDN_IMAGES.REACT_TRIP,
         link: LINK_URL.REACT_TRIP,
         isInternal: false,
+        tags: ['React', 'Recoil'],
     },
     {
         id: 'rally-refactoring',
@@ -59,5 +65,6 @@ export const CONTENT_DATA: ContentData[] = [
         image: CDN_IMAGES.RALLY_REFACTORING,
         link: LINK_URL.RALLY_REFACTORING,
         isInternal: true,
+        tags: ['React', 'TypeScript'],
     },
 ]

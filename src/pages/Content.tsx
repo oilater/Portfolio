@@ -8,7 +8,9 @@ import { contentTimeline } from "../timelines/contentTimeline";
 import { animationPlayStateAtom } from "../stores/timelineStore";
 import { CONTENT_DATA } from "../constants/content-data";
 import { Top } from "../components/Top";
-import { Card } from "../components/Card";
+import { Card } from "../components/Card.tsx";
+import Tag from "../components/Tag.tsx";
+import { Colors } from "../theme/theme.ts";
 
 export function Content() {
   const navigate = useNavigate();
@@ -50,10 +52,8 @@ export function Content() {
         {CONTENT_DATA.map((content) => {
           if (!content) return null;
           return (
-          <Card 
+          <Card.Root 
             key={content.id}
-            title={content.title}
-            description={content.description}
             image={content.image}
             onClick={() => {
               if (content.isInternal) {
@@ -62,7 +62,15 @@ export function Content() {
                 window.open(content.link, "_blank");
               }
             }}
-          />
+          >
+            <Card.Title>{content.title}</Card.Title>
+            <Card.Description>{content.description}</Card.Description>
+            <Card.Tags>
+              {content.tags.map((tag) => (
+                <Tag key={tag} text={tag} />
+              ))}
+            </Card.Tags>
+          </Card.Root>
         )})}
       </div>
     </div>
@@ -85,7 +93,7 @@ const contentSection = css`
     @media (min-width: 769px) {
       flex-basis: calc((100% - 40px) / 3);
       max-width: calc((100% - 40px) / 3);
-      height: 507px;
+      height: 480px;
       margin-right: 20px;
       
       &:nth-of-type(3n) {
