@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import { CDN_IMAGES } from "../cdn";
+import { Colors } from "../theme/theme";
 
 export default function PortfolioArticle() {
   return (
@@ -240,13 +241,12 @@ const sectionTitle = css`
   margin: 36px 0 36px;
   font-size: 25px;
   margin-bottom: 20px;
-  color: #fff;
+  color: ${Colors.grey800};
 `;
 
 const highlightText = css`
-  color: #fff;
-  background-color: rgba(63, 213, 153, 0.21);
-  // padding: 2px 4px;
+  color: ${Colors.grey800};
+  font-weight: bold;
   border-radius: 2px;
   letter-spacing: 0em;
 `;
@@ -264,7 +264,7 @@ const image = css`
 
 const captionStyle = css`
   font-size: 13px;  
-  color: #9E9EA4;
+  color: ${Colors.grey800};
   line-height: 1.2;
   margin: 0;
   margin-top: 6px;

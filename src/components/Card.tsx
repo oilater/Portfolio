@@ -27,13 +27,13 @@ const card = css`
   flex-direction: column;
   vertical-align: top;
   background: inherit;
-  border: 1px solid rgba(228, 228, 229, 0.5);
+  border: 1px solid ${Colors.grey300};
   border-radius: 16px;
   transition: background 0.2s ease;
   cursor: pointer;
 
   &:hover {
-    background: #1e1e23;
+    background: ${Colors.opacity50};
   }
 `;
 

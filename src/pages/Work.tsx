@@ -9,6 +9,7 @@ import { animationPlayStateAtom } from "../stores/timelineStore";
 import { Top } from "../components/Top";
 import { WideCard } from "../components/WideCard";
 import { WORK_DATA } from "../constants/work-data.ts";
+import { Colors } from "../theme/theme.ts";
 
 export function Work() {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ export function Work() {
       />
 
       <div className="mainDescription" css={mainDescription}>
-        <p>스타트업에서의 개발 경험을 소개합니다.</p>
+        <p>스타트업에서의 개발 경험을 공유합니다.</p>
       </div>
 
       <div className="contentSection" css={contentSection}>
@@ -53,6 +54,7 @@ export function Work() {
           return (
             <WideCard 
               key={work.id}
+              subTitle={work.subTitle}
               title={work.title}
               description={work.description}
               image={work.image}
@@ -72,7 +74,7 @@ export function Work() {
 const wrapper = css`
   width: 100%;
   height: 100%;
-  padding-bottom: 8rem;
+  padding-bottom: 6rem;
 `;
 
 const contentSection = css`
@@ -85,7 +87,7 @@ const contentSection = css`
 const mainDescription = css`
   font-size: 1.2rem;
   font-weight: 500;
-  color: #7E7E87;
+  color: ${Colors.grey500};
   padding: 0 16px;
   line-height: 1.65;
   margin-bottom: 3.5rem;

@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import { type ReactNode } from 'react';
+import { Colors } from "../theme/theme";
 
 type TopRootProps = {
   title: ReactNode;
@@ -37,6 +38,6 @@ const paragraphStyle = css({
     height: '100%',
     fontSize: '2.5rem',
     fontWeight: '700',
-    color: '#C3C3C6',
+    color: Colors.grey700,
   });
   

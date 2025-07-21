@@ -1,20 +1,22 @@
 import { css } from "@emotion/react";
+import { Colors } from "../theme/theme";
 
 type WideCardProps = {
   title: string;
+  subTitle: string;
   description: string;
   image: string;
   onClick?: () => void;
 };
 
-export function WideCard({ title, description, image, onClick }: WideCardProps) {
+export function WideCard({ title, description, image, subTitle, onClick }: WideCardProps) {
   return (
     <div css={wideCard} onClick={onClick}>
       <div css={cardImageWrapper}>
         <img src={image} alt={title} css={cardImage} loading="lazy" />
       </div>
       <div css={cardContent}>
-        <span css={categoryText}>FIVA 이야기</span>
+        <span css={categoryText}>{subTitle}</span>
         <h3 css={cardTitle}>{title}</h3>
         <p css={cardDescription}>{description}</p>
       </div>
@@ -27,7 +29,7 @@ const wideCard = css`
   width: 100%;
   height: auto;
   background: inherit;
-  color: #E4E4E5;
+  color: ${Colors.grey700};
   transition: background 0.2s ease;
   cursor: pointer;
   overflow: hidden;
@@ -39,7 +41,7 @@ const wideCard = css`
   }
 
   &:hover h3 {
-    color: #3182f6;
+    color: ${Colors.blue500};
   }
 
   &:hover img {
@@ -96,7 +98,7 @@ const cardContent = css`
 const categoryText = css`
   font-size: 20px;
   font-weight: 500;
-  color: #C3C3C6;
+  color: ${Colors.grey700};
   margin: 0;
   line-height: 1.2;
 
@@ -108,7 +110,7 @@ const categoryText = css`
 const cardTitle = css`
   font-size: 32px;
   font-weight: 600;
-  color: #E4E4E5;
+  color: ${Colors.grey700};
   margin: 0;
   line-height: 1.3;
   transition: color 0.2s ease;
@@ -121,7 +123,7 @@ const cardTitle = css`
 const cardDescription = css`
   font-size: 1.1rem;
   font-weight: 400;
-  color: #9E9EA4;
+  color: ${Colors.grey700};
   margin: 0;
   line-height: 1.6;
 

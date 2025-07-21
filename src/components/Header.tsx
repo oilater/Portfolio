@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { HomeIcon } from './HomeIcon.tsx';
 import { GithubIcon } from './GithubIcon.tsx';
 import { VelogIcon } from './VelogIcon.tsx';
+import { Colors } from '../theme/theme.ts';
 
 type HeaderProps = {
     className: string;
@@ -62,7 +63,7 @@ const header = css`
   transition: opacity 0.3s ease-in-out;
   
   body.active-border & {
-    border-bottom: 1px solid #3c3c47;
+    border-bottom: 1px solid ${Colors.grey300};
   }
 `;
 

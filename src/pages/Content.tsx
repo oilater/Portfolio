@@ -37,7 +37,7 @@ export function Content() {
       <Top.Root 
         title={
           <Top.Paragraph>
-            <span className="topTitle">콘텐츠 </span>
+            <span className="topTitle">CONTENT </span>
           </Top.Paragraph>
         }
       />
@@ -72,7 +72,7 @@ export function Content() {
 const wrapper = css`
   width: 100%;
   height: 100%;
-  padding-bottom: 8rem;
+  padding-bottom: 6rem;
 `;
 
 const contentSection = css`

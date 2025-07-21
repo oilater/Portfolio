@@ -5,7 +5,7 @@ export function contentTimeline() {
 
   const contentTl = Timeline({
     playback: "stagger",
-    staggerDelay: 0.2,
+    staggerDelay: 0.05,
     playables: [
 
       Rally({
@@ -15,7 +15,7 @@ export function contentTimeline() {
             duration: 0.4,
             ease: "power2.inOut",
             opacity: { from: 0 },
-            translateY: { from: '30%' },
+            translateY: { from: '20%' },
           }
         ],
       }),
@@ -27,7 +27,7 @@ export function contentTimeline() {
             duration: 0.6,
             ease: "power2.out",
             opacity: { from: 0 },
-            translateY: { from: '30%' }
+            translateY: { from: '20%' }
           }
         ],
       }),
@@ -39,7 +39,7 @@ export function contentTimeline() {
             duration: 0.7,
             ease: "power2.out",
             opacity: { from: 0 },
-            translateY: { from: '30%' }
+            translateY: { from: '20%' }
           }
         ],
       }),
@@ -49,8 +49,8 @@ export function contentTimeline() {
         motions: [
           {
             duration: 0.8,
-            ease: "power3.in",
-            translateY: { from: 10 },
+            ease: "power2.out",
+            translateY: { from: '5%' },
             opacity: { from: 0 }
           }
         ],

@@ -6,6 +6,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { Button } from "./Button.tsx";
 import { ArrowDownIcon } from "./ArrowDownIcon.tsx";
 import { stepAtom } from "../stores/step-store.ts";
+import { Colors } from "../theme/theme.ts";
 
 type ArticleRootProps = {
   header: ReactNode;
@@ -113,7 +114,7 @@ const articleRoot = css`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  color: #E4E4E5;
+  color: ${Colors.grey800};
 `;
 
 const articleHeader = css`
@@ -124,6 +125,7 @@ const articleHeader = css`
   flex-direction: column;
   align-items: center;
   margin-bottom: 120px;
+  color: #fff;
 `;
 
 const articleHeaderTitleSection = css`
