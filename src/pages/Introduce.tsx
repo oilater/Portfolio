@@ -86,7 +86,7 @@ const mainDescription = css`
   align-items: center;
   font-size: 1.3rem;
   font-weight: 500;
-  color: ${Colors.grey400};
+  color: ${Colors.grey500};
   padding: 10px 16px;
   line-height: 1.4;
 `;
