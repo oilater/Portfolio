@@ -6,13 +6,14 @@ type InfoCardProps = {
   description: string;
   image: string;
   onClick?: () => void;
+  isHighPriority?: boolean;
 };
 
-export function InfoCard({ title, description, image, onClick }: InfoCardProps) {
+export function InfoCard({ title, description, image, onClick, isHighPriority }: InfoCardProps) {
   return (
     <div css={card} onClick={onClick}>
       <div css={cardImageWrapper}>
-        <img src={image} alt={title} css={cardImage} />
+        <img src={image} alt={title} css={cardImage} fetchPriority={isHighPriority ? 'high' : 'auto'} />
       </div>
       <div css={cardContent}>
         <p css={cardTitle}>{title}</p>
