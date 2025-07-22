@@ -87,6 +87,7 @@ const contentSection = css`
   flex-wrap: wrap;
   gap: 54px 0;
   padding: 0 16px;
+  will-change: transform, opacity;
 
   & > * {
     @media (min-width: 769px) {

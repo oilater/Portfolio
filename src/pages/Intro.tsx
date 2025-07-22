@@ -45,13 +45,13 @@ const introTitleSection = css`
 
 const baseTitle = css`
   position: absolute;
+  max-width: 1000px;
+  width: 100vw;
   text-align: center;
   white-space: pre-line;
   word-break: break-all;
   line-height: 1.3;
   font-size: 48px;
-  width: 100vw;
-  max-width: 1000px;
 
   @media (max-width: 480px) {
     font-size: 1.2rem;
@@ -78,6 +78,7 @@ const titleOrigin = css`
 
 const title = css`
   color: #292929;
+  will-change: opacity;
 `;
 
 const subTitle = css`

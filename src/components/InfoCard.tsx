@@ -26,9 +26,9 @@ export function InfoCard({ title, description, image, onClick, isHighPriority }:
 const card = css`
   display: flex;
   flex-direction: column;
-  vertical-align: top;
   background: inherit;
   border-radius: 8px;
+  will-change: transform, opacity;
 `;
 
 const cardImageWrapper = css`
@@ -44,10 +44,9 @@ const cardImage = css`
   height: 100%;
   object-fit: cover;
   transition: transform 0.2s ease-out;
-  transform: translateZ(0);
 
   &:hover {
-    transform: scale(1.08);
+    transform: scale(1.08) translateZ(0);
   }
 `;
 
