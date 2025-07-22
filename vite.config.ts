@@ -8,6 +8,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           react: ['react', 'react-dom'],
+          libraries: ['gsap', '@gsap/react', 'jotai', '@emotion/react', '@emotion/styled'],
         },
       },
     },
