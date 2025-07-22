@@ -12,7 +12,7 @@ export function InfoCard({ title, description, image, onClick }: InfoCardProps) 
   return (
     <div css={card} onClick={onClick}>
       <div css={cardImageWrapper}>
-        <img src={image} alt={title} css={cardImage} loading="lazy" />
+        <img src={image} alt={title} css={cardImage} />
       </div>
       <div css={cardContent}>
         <p css={cardTitle}>{title}</p>
