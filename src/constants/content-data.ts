@@ -14,8 +14,17 @@ type ContentData = {
 export const CONTENT_DATA: ContentData[] = [
     // Article
     {
+        id: 'portfolio-performance',
+        title: '포트폴리오 성능 개선하기',
+        description: '웹 성능 분석을 바탕으로 포트폴리오 개선하기',
+        image: CDN_IMAGES.PERFORMANCE,
+        link: LINK_URL.PORTFOLIO_PERFORMANCE,
+        isInternal: false,
+        tags: ['Lighthouse', 'Performance Tab', 'WebPageTest'],
+    },
+    {
         id: 'rally-portfolio',
-        title: '나만의 인터렉션 시스템 Rally 만들기',
+        title: '나만의 인터렉션 시스템 Rally',
         description: '토스 인터렉션 팀의 Rally의 구조를 참고해 직접 만들어 본 인터렉션 시스템',
         image: CDN_IMAGES.PORTFOLIO,
         link: LINK_URL.PORTFOLIO,
@@ -25,7 +34,7 @@ export const CONTENT_DATA: ContentData[] = [
     {
         id: 'interactive-graph',
         title: '바닐라 JS로 상태관리 해보기',
-        description: "목표: 데이터가 바뀌면 관련된 모든 UI가 바뀌어야 한다. 근데 이제 useState를 곁들이지 않고",
+        description: "옵저버 패턴과 State 패턴을 사용해 데이터의 변화에 따라 관련된 UI 업데이트하기",
         image: CDN_IMAGES.INTERACTIVE_GRAPH,
         link: LINK_URL.INTERACTIVE_GRAPH,
         isInternal: false,
@@ -57,14 +66,5 @@ export const CONTENT_DATA: ContentData[] = [
         link: LINK_URL.REACT_TRIP,
         isInternal: false,
         tags: ['React', 'Recoil'],
-    },
-    {
-        id: 'rally-refactoring',
-        title: 'TypeScript로 Rally 개선하기',
-        description: 'Rally 구현 과정에서 아쉬웠던 부분들을 하나씩 개선하기',
-        image: CDN_IMAGES.RALLY_REFACTORING,
-        link: LINK_URL.RALLY_REFACTORING,
-        isInternal: true,
-        tags: ['React', 'TypeScript'],
     },
 ]

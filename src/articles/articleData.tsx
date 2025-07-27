@@ -28,10 +28,4 @@ export const articleMap: ArticleMap = {
     imageUrl: CDN_IMAGES.FIVA,
     content: <FivaArticle />
   },
-  [ARTICLE_KEYS.RALLY_REFACTORING]: {
-    title: "TypeScript로 Rally 개선하기",
-    date: "2025-07-07",
-    imageUrl: CDN_IMAGES.RALLY_REFACTORING,
-    content: <RallyRefactoringArticle />
-  },
 };

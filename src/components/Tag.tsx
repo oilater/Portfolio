@@ -47,6 +47,12 @@ const getTagColor = (text: string) => {
             return Colors.blue800;
         case 'Recoil':
             return Colors.purple400;
+        case 'Lighthouse':
+            return Colors.red300;
+        case 'Performance Tab':
+            return Colors.orange500;
+        case 'WebPageTest':
+            return Colors.teal500;
         default:
             return Colors.grey500;
     }
