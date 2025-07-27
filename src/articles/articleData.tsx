@@ -3,7 +3,6 @@ import { ARTICLE_KEYS } from '../constants/article.ts';
 import { CDN_IMAGES } from '../cdn.ts';
 import FivaArticle from './FivaArticle.tsx';
 import PortfolioArticle from './PortfolioArticle.tsx';
-import RallyRefactoringArticle from './RallyRefactoringArticle.tsx';
 
 export type ArticleData = {
   title: string;
