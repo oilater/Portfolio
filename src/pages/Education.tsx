@@ -39,8 +39,8 @@ export function Education() {
         target: `.item-${index + 1}`,
         timeline: gsap.timeline(),
         options: {
-          start: 'top 60%',
-          end: 'bottom 20%',
+          start: 'top 70%',
+          end: 'bottom 40%',
           onEnter: () => {
             dot.classList.add('active-dot');
           },

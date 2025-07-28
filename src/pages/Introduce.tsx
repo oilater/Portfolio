@@ -29,7 +29,7 @@ export default function Introduce() {
         <div className="info-1">
         <InfoCard
           title="모던 프론트엔드 개발"
-          description="고차함수, 클로저, 자료구조 등 필수적인 자바스크립트(ES6) 개념을 활용할 수 있습니다. React, TypeScript 공식문서와 서적을 바탕으로 이해한 내용을 기술 블로그에 정리하고 있습니다."
+          description="고차함수, 클로저, 자료구조 등 필수적인 자바스크립트(ES6+) 개념을 활용할 수 있습니다. React, TypeScript 공식문서와 서적을 바탕으로 이해한 내용을 기술 블로그에 정리하고 있습니다."
           image={CDN_IMAGES.LANGUAGES}
           isHighPriority={true}
         />

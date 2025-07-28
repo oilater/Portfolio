@@ -4,6 +4,7 @@ import Intro from "./Intro";
 import Introduce from "./Introduce";
 import { Work } from "./Work";
 import { Education } from "./Education";
+import { Outro } from "./Outro";
 
 export default function Portfolio() {
   return (
@@ -14,6 +15,7 @@ export default function Portfolio() {
           <Work />
           <Content />
           <Education />
+          <Outro />
       </main>
     </div>
   );
