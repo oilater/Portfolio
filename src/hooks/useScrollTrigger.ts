@@ -5,6 +5,10 @@ type ScrollTriggerOptions = {
   end: string;
   scrub?: boolean | number;
   markers?: boolean;
+  onEnter?: () => void;
+  onLeave?: () => void;
+  onEnterBack?: () => void;
+  onLeaveBack?: () => void;
 };
 
 type AnimateScrollProps = {
@@ -25,7 +29,7 @@ export function useScrollTrigger() {
       markers: false,
     }
   }: AnimateScrollProps) {
-    const { start, end, scrub, markers } = options;
+    const { start, end, scrub, markers, onEnter, onLeave, onEnterBack, onLeaveBack } = options;
 
     return ScrollTrigger.create({
       trigger: target,
@@ -34,6 +38,10 @@ export function useScrollTrigger() {
       animation: timeline,
       scrub,
       markers,
+      onEnter,
+      onLeave,
+      onEnterBack,
+      onLeaveBack,
     });
   }
 

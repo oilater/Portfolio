@@ -16,7 +16,7 @@ export const CONTENT_DATA: ContentData[] = [
     {
         id: 'portfolio-performance',
         title: '포트폴리오 성능 개선하기',
-        description: '웹 성능 분석을 바탕으로 포트폴리오 개선하기',
+        description: '웹 성능 분석을 통해 LCP와 접근성 개선하기',
         image: CDN_IMAGES.PERFORMANCE,
         link: LINK_URL.PORTFOLIO_PERFORMANCE,
         isInternal: false,
@@ -34,7 +34,7 @@ export const CONTENT_DATA: ContentData[] = [
     {
         id: 'interactive-graph',
         title: '바닐라 JS로 상태관리 해보기',
-        description: "옵저버 패턴과 State 패턴을 사용해 데이터의 변화에 따라 관련된 UI 업데이트하기",
+        description: "useState 없이 Observer, State 패턴을 사용해 데이터가 변하면 관련된 UI를 업데이트 해보자",
         image: CDN_IMAGES.INTERACTIVE_GRAPH,
         link: LINK_URL.INTERACTIVE_GRAPH,
         isInternal: false,
