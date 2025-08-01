@@ -1,10 +1,3 @@
-export type MotionValue = {
-  from?: number | string;
-  to?: number | string;
-  duration?: number;
-  ease?: string;
-};
-
 // Timeline
 export type Playable = gsap.core.Timeline | gsap.core.Tween;
 
