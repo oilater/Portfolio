@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-amber-mu-57.vercel.app/sitemap.xml
