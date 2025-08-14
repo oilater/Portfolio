@@ -16,7 +16,7 @@ export const CONTENT_DATA: ContentData[] = [
     {
         id: 'medical-charts',
         title: 'Recharts로 데이터 표현하기',
-        description: '백만 년만에 공공 API 활용해보기 📊 클릭 시 배포 사이트로 이동합니다',
+        description: '백만 년 만에 공공 API 활용해보기 📊 클릭 시 배포 사이트로 이동합니다',
         image: CDN_IMAGES.MEDICAL_CHARTS,
         link: LINK_URL.MEDICAL_CHARTS,
         isInternal: false,
