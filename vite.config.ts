@@ -12,6 +12,7 @@ export default defineConfig({
           libraries: ['gsap', '@gsap/react', 'jotai', '@emotion/react', '@emotion/styled', '@vanilla-extract/css', '@vanilla-extract/vite-plugin'],
         },
       },
+      external: ['fsevents']
     },
   },
 })
