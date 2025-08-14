@@ -33,7 +33,7 @@ export const CONTENT_DATA: ContentData[] = [
     },
     {
         id: 'rally-portfolio',
-        title: '나만의 인터렉션 시스템 Rally',
+        title: '인터렉션 시스템 Rally 만들어보기',
         description: '토스 인터렉션 팀의 Rally의 구조를 참고해 직접 만들어 본 인터렉션 시스템',
         image: CDN_IMAGES.PORTFOLIO,
         link: LINK_URL.PORTFOLIO,
