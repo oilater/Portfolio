@@ -14,6 +14,15 @@ type ContentData = {
 export const CONTENT_DATA: ContentData[] = [
     // Article
     {
+        id: 'medical-charts',
+        title: 'Recharts로 데이터 표현하기',
+        description: '백만 년만에 공공 API 활용해보기 📊 클릭 시 배포 사이트로 이동합니다',
+        image: CDN_IMAGES.MEDICAL_CHARTS,
+        link: LINK_URL.MEDICAL_CHARTS,
+        isInternal: false,
+        tags: ['React', 'Tanstack Query', 'Recharts', 'Emotion'],
+    },
+    {
         id: 'portfolio-performance',
         title: '포트폴리오 성능 개선하기',
         description: '웹 성능 분석을 통해 LCP와 접근성 개선하기',
@@ -39,15 +48,6 @@ export const CONTENT_DATA: ContentData[] = [
         link: LINK_URL.INTERACTIVE_GRAPH,
         isInternal: false,
         tags: ['HTML5', 'CSS3', 'JavaScript'],
-    },
-    {
-        id: 'crewing',
-        title: 'SocketIO로 실시간 운동 친구 만들기',
-        description: 'NextJS와 카카오 로그인, Node JS, SocketIO를 활용해 실시간 연동해보기',
-        image: CDN_IMAGES.CREWING,
-        link: LINK_URL.CREWING,
-        isInternal: false,
-        tags: ['NextJS', 'Firebase', 'SocketIO', 'SCSS'],
     },
     {
         id: 'homet-friend',

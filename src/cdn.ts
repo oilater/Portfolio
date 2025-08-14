@@ -8,6 +8,7 @@ export const CDN_IMAGES = {
     // 메인 썸네일
     PORTFOLIO: `${CDN_BASE_URL}/assets/images/portfolio.avif`,
     LANGUAGES: `${CDN_BASE_URL}/assets/images/languages.jpg`,
+    MEDICAL_CHARTS: `${CDN_BASE_URL}/assets/images/medical-charts.jpg`,
     PERFORMANCE: `${CDN_BASE_URL}/assets/images/performance.jpg`,
     COMMUNICATION: `${CDN_BASE_URL}/assets/images/communication.jpg`,
     HOMET_FRIEND: `${CDN_BASE_URL}/assets/images/hometfriend.avif`,

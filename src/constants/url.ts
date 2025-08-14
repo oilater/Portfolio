@@ -9,6 +9,7 @@ export const LINK_URL = {
     RALLY_REFACTORING: '/article/rally-refactoring',
     INTERACTIVE_GRAPH: `${VELOG_URL}/interactive-graph`,
     PORTFOLIO_PERFORMANCE: `${VELOG_URL}/portfolio-performance`,
+    MEDICAL_CHARTS: 'https://medical-chart.vercel.app/',
     CREWING: `${VELOG_URL}/series/WorkoutTogether-%EA%B0%9C%EB%B0%9C-%EA%B3%BC%EC%A0%95`,
     HOMET_FRIEND: `${GITHUB_URL}/HomeTraining-Friend`,
     REACT_TRIP: `${GITHUB_URL}/React-trip-project`,

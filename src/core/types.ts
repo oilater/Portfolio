@@ -16,7 +16,6 @@ export interface StaggerTimelineProps extends BaseTimelineProps {
 
 export type TimelineProps = SerialOrParallelTimelineProps | StaggerTimelineProps;
 
-
 // Rally
 export type PlayCount = number | 'infinite';
 
