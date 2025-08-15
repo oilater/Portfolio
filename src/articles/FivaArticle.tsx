@@ -1,5 +1,5 @@
 import { CDN_IMAGES } from "../cdn";
-import * as styles from './Article.css';
+import * as styles from '../styles/Article.css';
 
 export default function FivaArticle() {
   return (
