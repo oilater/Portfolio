@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { Colors } from '../../theme/theme';
+import { mediaQueries } from '../common/breakpoints.css';
 
 export const wideCard = style({
   display: 'flex',
@@ -11,7 +12,7 @@ export const wideCard = style({
   cursor: 'pointer',
   overflow: 'hidden',
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       flexDirection: 'column',
       height: 'auto',
       minHeight: '400px'
@@ -25,7 +26,7 @@ export const cardImageWrapper = style({
   borderRadius: '16px',
   overflow: 'hidden',
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       width: '100%',
       aspectRatio: '7/5',
       position: 'relative',
@@ -44,7 +45,7 @@ export const cardImage = style({
     transform: 'scale(1.05)'
   },
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       position: 'absolute',
       top: 0,
       left: 0,
@@ -63,7 +64,7 @@ export const cardContent = style({
   padding: '40px',
   boxSizing: 'border-box',
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       justifyContent: 'flex-start',
       padding: '24px',
       gap: '16px'
@@ -79,7 +80,7 @@ export const categoryText = style({
   lineHeight: '1.2',
   transition: 'color 0.2s ease',
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       fontSize: '18px'
     }
   }
@@ -93,7 +94,7 @@ export const cardTitle = style({
   lineHeight: '1.3',
   transition: 'color 0.2s ease',
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       fontSize: '1.5rem'
     }
   }
@@ -107,7 +108,7 @@ export const cardDescription = style({
   lineHeight: '1.6',
   transition: 'color 0.2s ease',
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       fontSize: '1rem'
     }
   }

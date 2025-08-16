@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { Colors } from '../../theme/theme';
+import { mediaQueries } from '../common/breakpoints.css';
 
 export const wrapper = style({
   width: '100%',
@@ -15,7 +16,7 @@ export const outroSection = style({
   height: '100%',
   width: '30%',
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       width: '50%'
     }
   }

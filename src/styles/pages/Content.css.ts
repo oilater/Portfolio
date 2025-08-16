@@ -1,4 +1,5 @@
 import { style, globalStyle } from '@vanilla-extract/css';
+import { mediaQueries } from '../common/breakpoints.css';
 
 export const wrapper = style({
   width: '100%',
@@ -17,13 +18,13 @@ export const contentSection = style({
 // 자식 요소들에 대한 스타일을 globalStyle로 정의
 globalStyle(`${contentSection} > *`, {
   '@media': {
-    '(min-width: 769px)': {
+    [mediaQueries.desktop]: {
       flexBasis: 'calc((100% - 40px) / 3)',
       maxWidth: 'calc((100% - 40px) / 3)',
       height: '480px',
       marginRight: '20px'
     },
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       width: '100%',
       marginRight: '0'
     }
@@ -33,7 +34,7 @@ globalStyle(`${contentSection} > *`, {
 // 3n번째 요소의 margin-right 제거
 globalStyle(`${contentSection} > *:nth-of-type(3n)`, {
   '@media': {
-    '(min-width: 769px)': {
+    [mediaQueries.desktop]: {
       marginRight: '0'
     }
   }

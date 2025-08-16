@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { Colors } from '../../theme/theme';
+import { mediaQueries } from '../common/breakpoints.css';
 
 export const articleRoot = style({
   width: '100%',
@@ -73,7 +74,7 @@ export const articleContent = style({
   lineHeight: '1.68',
   marginBottom: '10rem',
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       padding: '0 16px',
       fontSize: '18px'
     }

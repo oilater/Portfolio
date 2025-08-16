@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { Colors } from '../../theme/theme';
+import { mediaQueries } from '../common/breakpoints.css';
 
 export const introduceWrapper = style({
   width: '100%',
@@ -17,13 +18,13 @@ export const infoSection = style({
   gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
   gap: '1rem',
   '@media': {
-    '(max-width: 768px)': {
+    [mediaQueries.mobile]: {
       gridTemplateColumns: '1fr',
       padding: '8px',
       margin: '0 12px',
       marginTop: '1.5rem'
     },
-    '(min-width: 769px)': {
+    [mediaQueries.desktop]: {
       gap: '1.5rem'
     }
   }

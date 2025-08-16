@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { Colors } from '../../theme/theme';
+import { mediaQueries } from '../common/breakpoints.css';
 
 export const introWrapper = style({
   width: '100%',
@@ -30,12 +31,12 @@ export const baseTitle = style({
       width: '95vw',
       maxWidth: '350px'
     },
-    '(min-width: 481px) and (max-width: 768px)': {
+    [mediaQueries.mobile]: {
       fontSize: '1.8rem',
       width: '90vw',
       maxWidth: '500px'
     },
-    '(min-width: 769px) and (max-width: 1024px)': {
+    [mediaQueries.tablet]: {
       fontSize: '2.2rem',
       width: '85vw',
       maxWidth: '600px'
