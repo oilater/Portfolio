@@ -32,7 +32,7 @@ export default function Introduce() {
         <div className="info-1">
         <InfoCard
           title="모던 프론트엔드 개발"
-          description="자바스크립트의 동작 원리에 대해 관심을 가지고 학습했습니다. 유연한 컴포넌트를 만드는 것을 좋아하고, 배운 내용들은 블로그에 정리하고 있습니다."
+          description="자바스크립트의 동작 원리에 대해 관심이 많고, 유연하게 재사용할 수 있는 컴포넌트를 만드는 것을 좋아합니다. 배운 내용들은 블로그에 정리하고 있습니다."
           image={CDN_IMAGES.LANGUAGES}
           isHighPriority={true}
         />
