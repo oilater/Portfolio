@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, cloneElement } from "react";
+import { dropdownLabel, dropdownItem } from "../styles/Dropdown.css";
 
 interface DropdownProps {
   label: string;
@@ -29,7 +30,7 @@ export function Dropdown({ label, onChange, children }: DropdownProps) {
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen, onSelectItem }}>
       <div>
-        <div style={{ fontSize: '20px', fontWeight: '600', color: '#191f28' }}>
+        <div className={dropdownLabel}>
           {label}
         </div>
         {children}
@@ -59,27 +60,7 @@ function Item({ children }: { children: string }) {
   return (
     <div 
       onClick={() => onSelectItem(children)}
-      style={{
-        width: '280px',
-        padding: '16px 20px',
-        fontSize: '16px',
-        color: '#191f28',
-        cursor: 'pointer',
-        borderBottom: '1px solid #f2f4f6',
-        transition: 'all 0.2s ease',
-        backgroundColor: 'transparent',
-        display: 'flex',
-        alignItems: 'center',
-        minHeight: '48px'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#f8fafc';
-        e.currentTarget.style.color = '#3182f6';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = 'transparent';
-        e.currentTarget.style.color = '#191f28';
-      }}
+      className={dropdownItem}
     >
       {children}
     </div>

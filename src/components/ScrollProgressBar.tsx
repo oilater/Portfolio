@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { css } from '@emotion/react';
+import { progressBarContainer, progressBar } from '../styles/ScrollProgressBar.css';
 
 type ScrollProgressBarProps = {
   trigger?: string;
@@ -31,24 +31,8 @@ export default function ScrollProgressBar({ trigger }: ScrollProgressBarProps) {
   }, [trigger]);
 
   return (
-    <div css={progressBarContainer}>
-      <div ref={progressBarRef} css={progressBar} />
+    <div className={progressBarContainer}>
+      <div ref={progressBarRef} className={progressBar} />
     </div>
   );
 }
-
-const progressBarContainer = css`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: rgba(0, 0, 0, 0.1);
-  z-index: 9999;
-`;
-
-const progressBar = css`
-  height: 100%;
-  background: #fff;
-  width: 0%;
-`;

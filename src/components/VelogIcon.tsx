@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
+import { velogIcon } from '../styles/VelogIcon.css';
 
 export function VelogIcon() {
     return (
         <svg 
-            css={velogIcon}
+            className={velogIcon}
             viewBox="0 0 192 192" 
             fill="#C3C3C6"
         >
@@ -17,14 +17,3 @@ export function VelogIcon() {
         </svg>
     )
 }
-
-const velogIcon = css`
-    width: 30px;
-    height: 30px;
-    display: block;
-    transition: transform 0.3s ease-in-out;
-    
-    &:hover {
-        transform: scale(1.2);
-    }
-`;

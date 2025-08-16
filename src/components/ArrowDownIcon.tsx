@@ -1,11 +1,11 @@
-import { css } from "@emotion/react";
+import { icon } from "../styles/ArrowDownIcon.css";
 
 export function ArrowDownIcon() {
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
       viewBox="0 0 48 48" 
-      css={icon}
+      className={icon}
     >
       <path 
         d="M2 6l10 10 10-10" 
@@ -16,9 +16,3 @@ export function ArrowDownIcon() {
     </svg>
   );
 };
-
-const icon = css`
-  width: 14px;
-  height: 14px;
-  color: #E4E4E5;
-`;

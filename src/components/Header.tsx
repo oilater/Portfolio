@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
-import { css } from '@emotion/react';
 import { HomeIcon } from './HomeIcon.tsx';
 import { GithubIcon } from './GithubIcon.tsx';
 import { VelogIcon } from './VelogIcon.tsx';
-import { Colors } from '../theme/theme.ts';
+import { header, nav, innerNav } from '../styles/Header.css';
 
 type HeaderProps = {
     className: string;
@@ -30,9 +29,9 @@ export default function Header({ onVelog, onGithub, onHome, className }: HeaderP
   }, []);
 
     return (
-    <header className={className} css={header}>
-      <nav css={nav}>
-        <div css={innerNav}>
+    <header className={`${className} ${header}`}>
+      <nav className={nav}>
+        <div className={innerNav}>
           <button type="button" onClick={onHome} aria-label="홈으로 이동">
             <HomeIcon />
           </button>
@@ -47,35 +46,3 @@ export default function Header({ onVelog, onGithub, onHome, className }: HeaderP
     </header>
     );
 };
-
-const header = css`
-  z-index: 100;
-  transform: translateZ(0);
-  // background-color: rgba(18, 20, 23, 0.95);
-  background-color: #fff;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 60px;
-  padding: 10px 10px 10px 0;
-  transition: opacity 0.3s ease-in-out;
-  
-  body.active-border & {
-    border-bottom: 1px solid ${Colors.grey300};
-  }
-`;
-
-const nav = css`
-  width: 100%; 
-  max-width: 896px;
-`;
-
-const innerNav = css`
-  width: 92%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 13px;
-`;

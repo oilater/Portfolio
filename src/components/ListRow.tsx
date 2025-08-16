@@ -1,18 +1,10 @@
 import type { ReactNode } from 'react';
-import { css } from '@emotion/react';
+import { listRow } from '../styles/ListRow.css';
 
 type ListRowProps = {
   children: ReactNode;
 };
 
 export function ListRow({ children }: ListRowProps) {
-  return <div css={listRow}>{children}</div>;
+  return <div className={listRow}>{children}</div>;
 }
-
-const listRow = css`
-  padding: 15px 15px 25px;
-
-  &:last-child {
-    padding-bottom: 15px;
-  }
-`;

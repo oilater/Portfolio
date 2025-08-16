@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
+import { githubIcon } from '../styles/GithubIcon.css';
 
 export function GithubIcon() {
     return (
         <svg
-            css={githubIcon}
+            className={githubIcon}
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0,0,256,256"
             fill="#C3C3C6"
@@ -31,15 +31,4 @@ export function GithubIcon() {
         </svg>
     )
 }
-
-const githubIcon = css`
-    width: 36px;
-    height: 36px;
-    display: block;
-    transition: transform 0.3s ease-in-out;
-    
-    &:hover {
-        transform: scale(1.2);
-    }
-`;
 

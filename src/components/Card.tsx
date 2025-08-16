@@ -1,6 +1,13 @@
-import { css } from "@emotion/react";
-import { Colors } from "../theme/theme.ts";
 import type { ReactNode } from "react";
+import { 
+  card, 
+  cardImageWrapper, 
+  cardImage, 
+  cardContent, 
+  cardTitle, 
+  cardDescription, 
+  cardTags 
+} from "../styles/Card.css";
 
 type CardRootProps = {
   image: string;
@@ -22,11 +29,11 @@ type CardTagsProps = {
 
 function CardRoot({ image, onClick, children }: CardRootProps) {
   return (
-    <div css={card} onClick={onClick}>
-      <div css={cardImageWrapper}>
-        <img src={image} alt="" css={cardImage} loading="lazy" />
+    <div className={card} onClick={onClick}>
+      <div className={cardImageWrapper}>
+        <img src={image} alt="" className={cardImage} loading="lazy" />
       </div>
-      <div css={cardContent}>
+      <div className={cardContent}>
         {children}
       </div>
     </div>
@@ -34,15 +41,15 @@ function CardRoot({ image, onClick, children }: CardRootProps) {
 }
 
 function CardTitle({ children }: CardTitleProps) {
-  return <p css={cardTitle}>{children}</p>;
+  return <p className={cardTitle}>{children}</p>;
 }
 
 function CardDescription({ children }: CardDescriptionProps) {
-  return <p css={cardDescription}>{children}</p>;
+  return <p className={cardDescription}>{children}</p>;
 }
 
 function CardTags({ children }: CardTagsProps) {
-  return <div css={cardTags}>{children}</div>;
+  return <div className={cardTags}>{children}</div>;
 }
 
 export const Card = {
@@ -51,69 +58,3 @@ export const Card = {
   Description: CardDescription,
   Tags: CardTags,
 };
-
-// 스타일 정의
-const card = css`
-  display: flex;
-  flex-direction: column;
-  vertical-align: top;
-  background: inherit;
-  border: 1px solid ${Colors.grey300};
-  border-radius: 16px;
-  transition: background 0.2s ease;
-  cursor: pointer;
-
-  &:hover {
-    background: ${Colors.opacity50};
-  }
-`;
-
-const cardImageWrapper = css`
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 16px 16px 0 0;
-  overflow: hidden;
-  padding: 0;
-
-  @media (min-width: 1024px) {
-    max-height: 260px;
-  } 
-`;
-
-const cardImage = css`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.2s ease-out;
-  transform: translateZ(0);
-
-  &:hover {
-    transform: scale(1.08);
-  }
-`;
-
-const cardContent = css`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 24px;
-`;
-
-const cardTitle = css`
-  font-size: 20px;
-  font-weight: 600;
-  color: ${Colors.grey800};
-`;
-
-const cardDescription = css`
-  font-size: 15px;
-  font-weight: 400;
-  color: ${Colors.grey600};
-`;
-
-const cardTags = css`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-`;

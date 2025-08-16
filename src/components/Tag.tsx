@@ -1,5 +1,5 @@
-import { css } from "@emotion/react";
 import { Colors } from "../theme/theme";
+import { tag } from "../styles/Tag.css";
 
 type TagProps = {
     text: string;
@@ -9,7 +9,7 @@ export default function Tag({ text }: TagProps) {
     const tagColor = getTagColor(text);
 
     return (
-        <div css={tag}>
+        <div className={tag}>
             <span style={{ color: tagColor }}>{text}</span>
         </div>
     )   
@@ -57,16 +57,3 @@ const getTagColor = (text: string) => {
             return Colors.grey500;
     }
 }
-
-const tag = css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
-    height: fit-content;
-    padding: 3px 6px;
-    border-radius: 16px;
-    font-size: 12.5px;
-    font-weight: 500;
-    background-color: ${Colors.grey100};
-`;
