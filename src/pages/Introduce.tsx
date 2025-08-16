@@ -1,12 +1,15 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { useAtom } from "jotai";
-import { css } from "@emotion/react";
 import { animationPlayStateAtom } from "../stores/timelineStore.ts";
 import { introduceTimeline } from "../timelines/introduceTimeline.ts";
-import { Colors } from "../theme/theme.ts";
 import { InfoCard } from "../components/InfoCard.tsx";
 import { CDN_IMAGES } from "../cdn.ts";
+import {
+  introduceWrapper,
+  infoSection,
+  mainDescription
+} from "../styles/pages/Introduce.css";
 
 export default function Introduce() {
   const [isPlayed, setIsPlayed] = useAtom(animationPlayStateAtom);
@@ -19,13 +22,13 @@ export default function Introduce() {
   }, { scope: introduceScope });
 
   return (
-    <div ref={introduceScope} css={introduceWrapper}>
-      <div css={mainDescription}>
+    <div ref={introduceScope} className={introduceWrapper}>
+      <div className={mainDescription}>
         <p>React를 중심으로 웹 프론트엔드를 개발합니다.</p>
         <p>UX와 성능 개선에 높은 가치를 두고 있습니다.</p>
       </div>
 
-      <div className="info-section" css={infoSection}>
+      <div className={`info-section ${infoSection}`}>
         <div className="info-1">
         <InfoCard
           title="모던 프론트엔드 개발"
@@ -52,42 +55,3 @@ export default function Introduce() {
     </div>
   );
 }
-
-const introduceWrapper = css`
-  width: 100%;
-  height: auto;
-  padding-bottom: 5rem;
-  margin-top: 1rem;
-`;
-
-const infoSection = css`
-  border-radius: 16px;
-  padding: 10px;
-  margin: 0 16px;
-  margin-top: 3rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    padding: 8px;
-    margin: 0 12px;
-    margin-top: 1.5rem;
-  }
-  
-  @media (min-width: 769px) {
-    gap: 1.5rem;
-  }
-`;
-
-const mainDescription = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: ${Colors.grey500};
-  padding: 10px 16px;
-  line-height: 1.4;
-`;

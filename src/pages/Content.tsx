@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import { useRef } from "react";
 import { useAtom } from "jotai";
 import { useGSAP } from "@gsap/react";
@@ -10,6 +9,12 @@ import { CONTENT_DATA } from "../constants/content-data";
 import { Top } from "../components/Top";
 import { Card } from "../components/Card.tsx";
 import Tag from "../components/Tag.tsx";
+import {
+  wrapper,
+  contentSection,
+  mainDescription,
+  hr
+} from "../styles/pages/Content.css";
 
 export function Content() {
   const navigate = useNavigate();
@@ -33,8 +38,8 @@ export function Content() {
   }, {scope: contentContainer});
 
   return (
-    <div ref={contentContainer} css={wrapper}>
-      <hr css={hr} className="topHr" />
+    <div ref={contentContainer} className={wrapper}>
+      <hr className={`topHr ${hr}`} />
       <Top.Root 
         title={
           <Top.Paragraph>
@@ -43,11 +48,11 @@ export function Content() {
         }
       />
 
-      <div className="mainDescription" css={mainDescription}>
+      <div className={`mainDescription ${mainDescription}`}>
         <p>새로운 것을 배우면 재밌는 서비스로 만들어봅니다.</p>
       </div>
 
-      <div className="contentSection" css={contentSection}>
+      <div className={`contentSection ${contentSection}`}>
         {CONTENT_DATA.map((content) => {
           if (!content) return null;
           return (
@@ -75,51 +80,3 @@ export function Content() {
     </div>
   );
 }
-
-const wrapper = css`
-  width: 100%;
-  height: 100%;
-  padding-bottom: 6rem;
-`;
-
-const contentSection = css`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 54px 0;
-  padding: 0 16px;
-  will-change: transform, opacity;
-
-  & > * {
-    @media (min-width: 769px) {
-      flex-basis: calc((100% - 40px) / 3);
-      max-width: calc((100% - 40px) / 3);
-      height: 480px;
-      margin-right: 20px;
-      
-      &:nth-of-type(3n) {
-        margin-right: 0;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      width: 100%;
-      margin-right: 0;
-    }
-  }
-`;
-
-const mainDescription = css`
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #7E7E87;
-  padding: 0 16px;
-  line-height: 1.65;
-  margin-bottom: 3.5rem;
-`;
-
-const hr = css`
-  border: 0;
-  height: 2px;
-  background: rgba(222, 222, 255, 0.19);
-  margin: 0 16px;
-`;

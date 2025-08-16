@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import { useRef } from "react";
 import { useAtom } from "jotai";
 import { useGSAP } from "@gsap/react";
@@ -9,7 +8,12 @@ import { animationPlayStateAtom } from "../stores/timelineStore";
 import { Top } from "../components/Top";
 import { WideCard } from "../components/WideCard";
 import { WORK_DATA } from "../constants/work-data.ts";
-import { Colors } from "../theme/theme.ts";
+import {
+  wrapper,
+  contentSection,
+  mainDescription,
+  hr
+} from "../styles/pages/Work.css";
 
 export function Work() {
   const navigate = useNavigate();
@@ -33,8 +37,8 @@ export function Work() {
   }, {scope: contentContainer});
 
   return (
-    <div ref={contentContainer} css={wrapper}>
-      <hr css={hr} className="topHr" />
+    <div ref={contentContainer} className={wrapper}>
+      <hr className={`topHr ${hr}`} />
       <Top.Root 
         title={
           <Top.Paragraph>
@@ -43,11 +47,11 @@ export function Work() {
         }
       />
 
-      <div className="mainDescription" css={mainDescription}>
+      <div className={`mainDescription ${mainDescription}`}>
         <p>스타트업에서의 개발 경험을 공유합니다.</p>
       </div>
 
-      <div className="contentSection" css={contentSection}>
+      <div className={`contentSection ${contentSection}`}>
         {WORK_DATA?.map((work) => {
           if (!work) return null;
           
@@ -70,32 +74,3 @@ export function Work() {
     </div>
   );
 }
-
-const wrapper = css`
-  width: 100%;
-  height: 100%;
-  padding-bottom: 6rem;
-`;
-
-const contentSection = css`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 54px 16px;
-  padding: 0 16px;
-`;
-
-const mainDescription = css`
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: ${Colors.grey500};
-  padding: 0 16px;
-  line-height: 1.65;
-  margin-bottom: 3.5rem;
-`;
-
-const hr = css`
-  border: 0;
-  height: 2px;
-  background: rgba(222, 222, 255, 0.19);
-  margin: 0 16px;
-`;
