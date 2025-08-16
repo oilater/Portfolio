@@ -32,12 +32,12 @@ export const baseTitle = style({
       maxWidth: '350px'
     },
     [mediaQueries.mobile]: {
-      fontSize: '1.8rem',
+      fontSize: '2.5rem',
       width: '90vw',
       maxWidth: '500px'
     },
     [mediaQueries.tablet]: {
-      fontSize: '2.2rem',
+      fontSize: '2.5rem',
       width: '85vw',
       maxWidth: '600px'
     }
