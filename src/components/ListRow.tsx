@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { listRow } from '../styles/ListRow.css';
+import { listRow } from '../styles/components/ListRow.css';
 
 type ListRowProps = {
   children: ReactNode;

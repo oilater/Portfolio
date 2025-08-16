@@ -1,4 +1,4 @@
-import { iconWrapper, icon } from '../styles/HomeIcon.css';
+import { iconWrapper, icon } from '../styles/components/HomeIcon.css';
 
 export function HomeIcon() {
   return (

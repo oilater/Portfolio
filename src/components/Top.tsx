@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { rootStyle, paragraphStyle } from '../styles/Top.css';
+import { rootStyle, paragraphStyle } from '../styles/components/Top.css';
 
 type TopRootProps = {
   title: ReactNode;

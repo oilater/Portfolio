@@ -14,7 +14,7 @@ import {
   imageGradient,
   articleContent,
   scrollDownButton
-} from "../styles/Article.css";
+} from "../styles/components/Article.css";
 
 type ArticleRootProps = {
   header: ReactNode;

@@ -5,7 +5,7 @@ import {
   cardContent,
   cardTitle,
   cardDescription
-} from "../styles/InfoCard.css";
+} from "../styles/components/InfoCard.css";
 
 type InfoCardProps = {
   title: string;

@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { Colors } from '../theme/theme';
+import { Colors } from '../../theme/theme';
 
 export const inputButton = style({
   marginTop: '10px',

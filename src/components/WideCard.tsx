@@ -9,7 +9,7 @@ import {
   categoryTextHover,
   cardTitleHover,
   cardDescriptionHover
-} from "../styles/WideCard.css";
+} from "../styles/components/WideCard.css";
 
 type WideCardProps = {
   title: string;

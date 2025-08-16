@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { HomeIcon } from './HomeIcon.tsx';
 import { GithubIcon } from './GithubIcon.tsx';
 import { VelogIcon } from './VelogIcon.tsx';
-import { header, nav, innerNav } from '../styles/Header.css';
+import { header, nav, innerNav } from '../styles/components/Header.css';
 
 type HeaderProps = {
     className: string;

@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { Colors } from '../theme/theme';
+import { Colors } from '../../theme/theme';
 
 export const dropdownLabel = style({
   fontSize: '20px',

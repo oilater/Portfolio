@@ -7,7 +7,7 @@ import {
   cardTitle, 
   cardDescription, 
   cardTags 
-} from "../styles/Card.css";
+} from "../styles/components/Card.css";
 
 type CardRootProps = {
   image: string;

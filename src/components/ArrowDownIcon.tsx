@@ -1,4 +1,4 @@
-import { icon } from "../styles/ArrowDownIcon.css";
+import { icon } from "../styles/components/ArrowDownIcon.css";
 
 export function ArrowDownIcon() {
   return (

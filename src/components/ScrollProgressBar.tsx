@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { progressBarContainer, progressBar } from '../styles/ScrollProgressBar.css';
+import { progressBarContainer, progressBar } from '../styles/components/ScrollProgressBar.css';
 
 type ScrollProgressBarProps = {
   trigger?: string;

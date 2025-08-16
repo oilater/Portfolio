@@ -1,4 +1,4 @@
-import { githubIcon } from '../styles/GithubIcon.css';
+import { githubIcon } from '../styles/components/GithubIcon.css';
 
 export function GithubIcon() {
     return (

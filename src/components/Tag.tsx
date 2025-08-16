@@ -1,5 +1,5 @@
 import { Colors } from "../theme/theme";
-import { tag } from "../styles/Tag.css";
+import { tag } from "../styles/components/Tag.css";
 
 type TagProps = {
     text: string;

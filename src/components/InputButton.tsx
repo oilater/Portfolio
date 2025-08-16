@@ -1,4 +1,4 @@
-import { inputButton, inputButtonPlaceholder, inputButtonIcon } from "../styles/InputButton.css";
+import { inputButton, inputButtonPlaceholder, inputButtonIcon } from "../styles/components/InputButton.css";
 
 interface InputButtonProps {
   value: string;

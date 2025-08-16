@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, cloneElement } from "react";
-import { dropdownLabel, dropdownItem } from "../styles/Dropdown.css";
+import { dropdownLabel, dropdownItem } from "../styles/components/Dropdown.css";
 
 interface DropdownProps {
   label: string;

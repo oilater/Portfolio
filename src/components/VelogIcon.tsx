@@ -1,4 +1,4 @@
-import { velogIcon } from '../styles/VelogIcon.css';
+import { velogIcon } from '../styles/components/VelogIcon.css';
 
 export function VelogIcon() {
     return (
