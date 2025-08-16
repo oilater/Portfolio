@@ -25,14 +25,14 @@ export default function Introduce() {
     <div ref={introduceScope} className={introduceWrapper}>
       <div className={mainDescription}>
         <p>React를 중심으로 웹 프론트엔드를 개발합니다.</p>
-        <p>UX와 성능 개선에 높은 가치를 두고 있습니다.</p>
+        <p>UX/DX에 높은 가치를 두고 개발합니다.</p>
       </div>
 
       <div className={`info-section ${infoSection}`}>
         <div className="info-1">
         <InfoCard
           title="모던 프론트엔드 개발"
-          description="고차함수, 클로저, 자료구조 등 필수적인 자바스크립트(ES6+) 개념을 활용할 수 있습니다. React, TypeScript 공식문서와 서적을 바탕으로 이해한 내용을 기술 블로그에 정리하고 있습니다."
+          description="자바스크립트의 동작 원리에 대해 관심을 가지고 학습했습니다. 유연한 컴포넌트를 만드는 것을 좋아하고, 배운 내용들은 블로그에 정리하고 있습니다."
           image={CDN_IMAGES.LANGUAGES}
           isHighPriority={true}
         />
@@ -40,14 +40,14 @@ export default function Introduce() {
         <div className="info-2">
         <InfoCard
           title="웹 성능과 사용자 경험"
-          description="인터렉션 시스템을 개발하면서 웹 성능에 관심을 가지게 되었습니다. Lighthouse, DevTools, WebPageTest 등 성능 측정 방식을 이해하고, 포트폴리오 페이지의 성능과 접근성을 개선했습니다."
+          description="인터렉션 시스템을 개발하면서 웹 성능에 관심을 가지게 되었습니다. 성능 측정 도구를 통해 LCP를 개선하며 Progressive Enhancement 원칙을 적용해 개선하고 있습니다."
           image={CDN_IMAGES.PERFORMANCE}
         />
         </div>
         <div className="info-3">
         <InfoCard
           title="커뮤니케이션 및 협업"
-          description="스타트업에서의 Git Flow를 통한 협업 경험을 바탕으로 머지 이슈 해결에 능숙합니다. 슬랙, 노션, Jira 등 협업 도구 사용 경험도 있습니다. 함께 좋은 코드를 만드는 코드리뷰 문화를 좋아합니다."
+          description="Git Flow를 통한 협업 경험을 바탕으로 Git 이슈를 해결에 능숙합니다. 슬랙, 노션, Jira 등 협업 도구를 사용해보았고, 코드리뷰 문화를 좋아합니다."
           image={CDN_IMAGES.COMMUNICATION}
         />
         </div>
