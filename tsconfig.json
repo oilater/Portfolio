@@ -6,7 +6,6 @@
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
-    "types": ["@emotion/react/types/css-prop", "gsap/types"]
+    "types": ["gsap/types"]
   }
 }

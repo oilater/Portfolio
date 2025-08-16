@@ -9,7 +9,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           react: ['react', 'react-dom'],
-          libraries: ['gsap', '@gsap/react', 'jotai', '@emotion/react', '@emotion/styled', '@vanilla-extract/css', '@vanilla-extract/vite-plugin'],
+          libraries: ['gsap', '@gsap/react', 'jotai', '@vanilla-extract/css', '@vanilla-extract/vite-plugin'],
         },
       },
       external: ['fsevents']
