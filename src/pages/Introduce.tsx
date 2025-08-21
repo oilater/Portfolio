@@ -24,8 +24,11 @@ export default function Introduce() {
   return (
     <div ref={introduceScope} className={introduceWrapper}>
       <div className={mainDescription}>
-        <p>React를 중심으로 웹 프론트엔드를 개발합니다.</p>
-        <p>UX/DX에 높은 가치를 두고 개발합니다.</p>
+        <p>포트폴리오를 기술 블로그로 마이그레이션했습니다.</p>
+        
+          <a style={{display: 'inline-block', color: 'black', textDecoration: 'none'}} href="https://tech-blog-portfolio.vercel.app/" rel="noopener noreferrer">
+          <span style={{textDecoration: 'underline', color: 'black'}}>보러가기</span>
+          </a>
       </div>
 
       <div className={`info-section ${infoSection}`}>
